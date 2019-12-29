@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     <v-content transition="slide-x-transition">
       <router-view></router-view>
     </v-content>

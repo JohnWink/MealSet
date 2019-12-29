@@ -1,21 +1,51 @@
+
 <template>
+
     <div class="LandingPage">
+  
     <v-row align="center" justify="center">
       <v-img
       src="..\assets\landingPageImg.jpg"
       class="grey lighten-3"
       >
-      <v-row>
-        <v-col sm="9">
-            
+      <v-row
+      align="start"
+      justify="center"
+      >
+         <!--Registration Button to pop up modal   !-->
+        <v-col  
+          md="1"
+          offset-sm="6">
+          <v-btn
+          large
+           rounded color="#FFEB3B" 
+           dark
+           >
+           Registar</v-btn>
         </v-col>
-        <v-col  sm="2" md="2">
+        <!--Login Button to pop up modal   !-->
+        <v-col  
+          md="2">
+          <v-btn
+          large
+           rounded color="#5C6BC0" 
+           dark
+           >
+           Iniciar Sessão</v-btn>
+        </v-col>
+        <!--Search Text Field   !-->
+        <v-col  md="2">
           <v-text-field
-            placeholder="Search"
+            label="search"
+            prepend-inner-icon="fas fa-search"
+            height="2px"
+            background-color= "#FFFFFF"
             filled
             rounded
             dense
-          ></v-text-field>
+          >
+      
+          </v-text-field>
         </v-col>
       </v-row>
        
@@ -26,3 +56,4 @@
    
     </div>
 </template>
+
