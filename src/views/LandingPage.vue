@@ -56,7 +56,11 @@
 
     <navBar/>
 
+    <footerVue/>
+
   </div>
+  
+  
 </template>
 
 <style>
@@ -66,11 +70,14 @@
 <script>    
 
 import NavBar from "@/components/navBar.vue";
+import footerVue from "@/components/footerVue.vue";
 
 export default {
   name: "landingPage",
   components: {
-    NavBar
+    NavBar,
+    footerVue
+
   }
 
 };
