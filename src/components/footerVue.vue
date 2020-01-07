@@ -1,42 +1,36 @@
 <template>
-    <v-footer
-        dark
-        padless
+  <v-footer
+    dark
+    color="indigo lighten-1"
+    
+    class="pl-12 ml-12"
+
+  >
+    <v-row
+      justify="center"
+      no-gutters
+      
     >
-    
-        <v-card
-        flat
-        tile
-        class="indigo lighten-1 white--text text-center"
-        >
-            <v-row
-            class="mb-6"
-            no-gutters  
-            >
-                <v-col :sm="1" outlined
-      color="red"></v-col> <!-- back space for the navbar-->
-                <v-col outlined
-      color="blue" :sm="11" > <!--Will have another row with 3 colums-->
-                    <v-card-text class="white--text pt-0">
-                        dsadasdsadassssssssssssssssssssssssssssssssssssssssssssss  
-                    </v-card-text>
 
-                    <v-divider></v-divider>
-
-                    <v-card-text class="white--text">
-                        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-                    </v-card-text>
-
-                </v-col>
-            </v-row>
+    <!--add the footers info, logo, and links-->
 
 
-        
+    <!-- This text will serve has a guide to leght of the padding and margins-->
+        <v-card-text class="white--text pt-0">
+            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        </v-card-text>
 
-           
-        </v-card>
-    </v-footer>
-    
+      
+      
+      <v-divider></v-divider>
+      <v-col
+        class="py-4 text-center white--text"
+        cols="12"
+      >
+        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      </v-col>
+    </v-row>
+  </v-footer>
 </template>
 
 
