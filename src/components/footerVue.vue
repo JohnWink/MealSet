@@ -7,28 +7,38 @@
 
   >
     <v-row
-      justify="center"
+      justify="space-between"
+      align-content="center"
+      
       no-gutters
+      class="pl-4"
+      
+
       
     >
 
     <!--add the footers info, logo, and links-->
+    
+    <v-col cols="2">
+        Logo here
+    </v-col>
+
+    <v-col cols="2">
+        Links here
+    </v-col>
+
+    <v-col cols="6">
+        contacts here
+    </v-col>
+
+    <v-col cols="2">
+        copyrights here   
+    </v-col>
+    
+    
 
 
-    <!-- This text will serve has a guide to leght of the padding and margins-->
-        <v-card-text class="white--text pt-0">
-            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        </v-card-text>
-
-      
-      
-      <v-divider></v-divider>
-      <v-col
-        class="py-4 text-center white--text"
-        cols="12"
-      >
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-col>
+    
     </v-row>
   </v-footer>
 </template>
