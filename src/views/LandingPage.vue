@@ -13,6 +13,9 @@
       justify="center"
       >
          <!--Registration Button to pop up modal   !-->
+         <v-col md="1">
+            <navBar/>
+         </v-col>
         <v-col  
           md="1"
           offset-sm="6">
@@ -54,7 +57,7 @@
     </v-row>
 
 
-    <navBar/>
+     <navBar/>
 
     <footerVue/>
 
