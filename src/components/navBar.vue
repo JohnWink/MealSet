@@ -25,7 +25,6 @@
         </v-list>
         </template>
   
-        <v-divider></v-divider>
   
         <v-list>
         <v-tooltip right>
