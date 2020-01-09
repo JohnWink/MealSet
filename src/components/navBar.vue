@@ -11,28 +11,18 @@
         color ="#5C6BC0"
       >
 
-          <template>
-            <!--
-<v-btn
-              width="100%"
-              @click.stop="drawer = !drawer">
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
           <template v-slot:prepend>
--->
-
-
-
-
-          <v-list>
-            <v-list-item class="logoColor">
-             <v-img src="../assets/icon_V2_logo2.png">
-               
-             </v-img>
-            </v-list-item>
-  
-          
-          </v-list>
+        <v-list>
+          <v-list-item class="logoColor">
+            <v-img
+              max-height="49"
+              max-width="49"
+              position="center"
+              src="../assets/icon_V2_logo2_white.png"
+            ></v-img>
+          </v-list-item>
+        
+        </v-list>
         </template>
   
         <v-divider></v-divider>
@@ -42,13 +32,7 @@
             <template v-slot:activator="{ on }">
           <v-list-item link v-on="on">
 
-            <!--
- <v-list
-          nav
-          dense
-        >
-          <v-list-item link>
-              -->
+
             <v-list-item-icon>
               <v-icon>fas fa-store</v-icon>
             </v-list-item-icon>
@@ -58,7 +42,7 @@
             </template>
                <span>Restaurantes</span>
         </v-tooltip>
-      <v-list-item link>
+
          <v-tooltip right>
             <template v-slot:activator="{ on }">
               <v-list-item link v-on="on">
@@ -70,7 +54,7 @@
               </template>
               <span>Pratos</span>
         </v-tooltip>
-           <v-list-item link>
+       
 
 
   
@@ -86,37 +70,16 @@
               <span>Perfil</span>
         </v-tooltip>
         </v-list>
-      </template>
+ 
 
-<!--+++++++++++++++++++++++++++++++++++++++++++++Expanded NavBar++++++++++++++++++++++++++++++++++++++++++-->
      
-       <v-navigation-drawer
-        v-model="drawer"
-        absolute
-        bottom
-        temporary
-        color ="#5C6BC0"
-      >
-       <v-btn
-              width="100%"
-              @click.stop="drawer = !drawer">
-              <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
-
-      <template v-slot:prepend>
-        <v-list>
-          <v-list-item class="logoColor">
-            <v-img
-              max-height="49"
-              max-width="49"
-              position="center"
-              src="../assets/icon_V2_logo2_white.png"
-            ></v-img>
-          </v-list-item>
-        </v-list>
+  
+      
       </v-navigation-drawer>
     
 
+<!--+++++++++++++++++++++++++++++++++++++++++++++Expanded NavBar++++++++++++++++++++++++++++++++++++++++++-->
+<!--
       <v-list nav dense>
         <v-list-item link>
           <v-list-item-icon>
@@ -137,8 +100,8 @@
           <v-list-item-title>Perfil</v-list-item-title>
         </v-list-item>
       </v-list>
-
 -->
+-
     <!--
        <v-navigation-drawer
         expand-on-hover
