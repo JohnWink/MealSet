@@ -86,7 +86,7 @@
               <span>Perfil</span>
         </v-tooltip>
         </v-list>
-      </v-navigation-drawer>
+      </template>
 
 <!--+++++++++++++++++++++++++++++++++++++++++++++Expanded NavBar++++++++++++++++++++++++++++++++++++++++++-->
      
@@ -103,51 +103,43 @@
               <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
 
-        <template v-slot:prepend>
-          <v-list>
-            <v-list-item class="logoColor">
-             <v-img
-             
-              max-height="49" 
+      <template v-slot:prepend>
+        <v-list>
+          <v-list-item class="logoColor">
+            <v-img
+              max-height="49"
               max-width="49"
-              position=center
-             src="../assets/icon_V2_logo2.png">
-             </v-img>
-            </v-list-item>
-  
-           
-          </v-list>
-        </template>
-  
-        <v-divider></v-divider>
-  
-        <v-list
-          nav
-          dense
-        >
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>fas fa-store</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Restaurantes</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>fas fa-utensils</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Pratos</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-icon>
-              <v-icon>fas fa-user-circle</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Perfil</v-list-item-title>
+              position="center"
+              src="../assets/icon_V2_logo2_white.png"
+            ></v-img>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
     
 
-      <!--
+      <v-list nav dense>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>fas fa-store</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Restaurantes</v-list-item-title>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>fas fa-utensils</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Pratos</v-list-item-title>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>fas fa-user-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Perfil</v-list-item-title>
+        </v-list-item>
+      </v-list>
+
+-->
+    <!--
        <v-navigation-drawer
         expand-on-hover
         fixed
@@ -204,34 +196,31 @@
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
--->
-    </div>
-  
+    -->
+  </div>
 </template>
 
 <script>
 export default {
   name: "navBar",
-  
+
   data: () => ({
-      drawer: true,
-      items: [
-        { title: 'Home', icon: 'mdi-home-city' },
-        { title: 'My Account', icon: 'mdi-account' },
-        { title: 'Users', icon: 'mdi-account-group-outline' },
-      ],
-     mini: true, 
-    
+    drawer: true,
+    items: [
+      { title: "Home", icon: "mdi-home-city" },
+      { title: "My Account", icon: "mdi-account" },
+      { title: "Users", icon: "mdi-account-group-outline" }
+    ],
+    mini: true
   })
-}
+};
 </script>
 
 <style>
-.logoColor{
-  background-color: yellow
+.logoColor {
+  background-color: #f7c23e;
 }
-.navBar{
+.navBar {
   top: 0px;
-  
 }
 </style>

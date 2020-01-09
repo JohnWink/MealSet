@@ -5,7 +5,7 @@
   
     <v-row align="center" justify="center">
       <v-img
-      src="..\assets\landingPageImg.jpg"
+      src="../assets/landingPageImg.jpg"
       class="grey lighten-3"
       >
       <v-row
