@@ -1,3 +1,6 @@
+
+<!--Vue footer v1 the original from the mookups-->
+
 <template>
   <v-footer
     dark
@@ -8,7 +11,7 @@
   >
     <v-row
       justify="space-between"
-      align-content="center"
+      
       
       no-gutters
       class="pl-4 py-6"
@@ -21,10 +24,10 @@
     
     <v-col cols="2"> <!--Logohere svg settup-->
     
-    <!-- the copy paste from xd turns thins in to svgs, witch is cool but you have to know what it says and change the size acording to the respocive ness of the app, sence our market target are mobiles 
-    there will be some issuies, so not only tablets and phones and laptops -->
+    <!--the copy paste from xd turns thins in to svgs, witch is cool but you have to know what it says and change the size acording to the respocive ness of the app, sence our market target are mobiles 
+    there will be some issuies, so not only tablets and phones and laptops-->
     <!-- looks like the thing that we can play with are the width="186" height="178" on the svg, extracted from the adobe XD-->
-    <!--adding a v-if with new var in if the device display is x size changes the values -->
+    <!--adding a v-if with new var in if the device display is x size changes the values-->
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="auto" viewBox="0 0 186 178">
           <defs>
             <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 385 265">
@@ -78,6 +81,12 @@
     </v-row>
   </v-footer>
 </template>
+
+
+
+
+
+
 
 
 <script>
