@@ -1,3 +1,73 @@
+<template >
+  <v-footer
+    
+    padless    
+    class="pl-12 ml-12 indigo lighten-1"    
+
+  >
+    <v-row
+        justify="center"
+        no-gutters>
+        
+
+        <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-4 white--text"
+            icon
+          >
+            <v-icon size="24px">{{ icon }}</v-icon>
+          </v-btn>
+
+    
+
+
+        
+      
+
+      <v-col class="white--text pt-0" cols="2">
+        <v-row>
+        Contactos</v-row>
+        <v-row>mealset@gmail.com</v-row>
+        <v-row>+351912345678</v-row>
+        
+      </v-col>
+    </v-row>
+
+      
+
+      <v-row class="white--text" justify="center">
+        
+        {{ new Date().getFullYear() }} — <strong>MealSET © 2019 Todos os direitos reservados.</strong>
+      </v-row>
+    
+  </v-footer>
+</template>
+
+
+
+
+
+
+
+
+<script>
+export default {
+  name: "footerVue",   
+  data: () => ({
+    icons: [
+        'fab fa-facebook',
+        'fab fa-twitter',
+        'fab fa-instagram',
+      ],
+      
+  })
+}
+
+
+// putting the tamplet code here because its easyer
+/*
+
 
 <!--Vue footer v1 the original from the mookups-->
 
@@ -86,14 +156,9 @@
 
 
 
+ */
 
 
 
-<script>
-export default {
-  name: "footerVue",   
-  data: () => ({
-      
-  })
-}
+
 </script>
