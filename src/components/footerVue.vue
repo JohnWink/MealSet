@@ -7,7 +7,8 @@
   >
     <v-row
         justify="center"
-        no-gutters>
+        no-gutters
+        style="border: solid red">
         
 
         <v-btn
@@ -25,18 +26,17 @@
         
       
 
-      <v-col class="white--text pt-0" cols="2">
-        <v-row>
-        Contactos</v-row>
-        <v-row>mealset@gmail.com</v-row>
-        <v-row>+351912345678</v-row>
+      <v-col class="white--text pt-0 " cols="2" style="border: solid red" >
+        <p>Contactos</p>
+        mealset@gmail.com
+        <br>+351912345678
         
       </v-col>
     </v-row>
 
       
 
-      <v-row class="white--text" justify="center">
+      <v-row class="white--text" justify="center" style="border: solid red">
         
         {{ new Date().getFullYear() }} — <strong>MealSET © 2019 Todos os direitos reservados.</strong>
       </v-row>
@@ -65,37 +65,13 @@ export default {
 }
 
 
+
 // putting the tamplet code here because its easyer
 /*
 
 
 <!--Vue footer v1 the original from the mookups-->
 
-<template>
-  <v-footer
-    dark
-    color="indigo lighten-1"
-    
-    class="pl-12 ml-12"
-
-  >
-    <v-row
-      justify="space-between"
-      
-      
-      no-gutters
-      class="pl-4 py-6"
-      
-
-      
-    >
-
-    <!--add the footers info, logo, and links-->
-    
-    <v-col cols="2"> <!--Logohere svg settup-->
-    
-    <!--the copy paste from xd turns thins in to svgs, witch is cool but you have to know what it says and change the size acording to the respocive ness of the app, sence our market target are mobiles 
-    there will be some issuies, so not only tablets and phones and laptops-->
     <!-- looks like the thing that we can play with are the width="186" height="178" on the svg, extracted from the adobe XD-->
     <!--adding a v-if with new var in if the device display is x size changes the values-->
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="auto" viewBox="0 0 186 178">
@@ -116,45 +92,6 @@ export default {
           </g>
           <text id="MealSET" transform="translate(87 168)" fill="#fff" font-size="40" font-family="SegoeUI, Segoe UI"><tspan x="-74.658" y="0">MealSET</tspan></text>
         </svg>
-
-    </v-col>
-
-    <v-col cols="2">
-        <p>Segue-nos</p>
-        <ul style="list-style-type:none;" class="py-4">
-          <li class="py-1">Facebook</li>
-          <li class="py-1">Twitter</li>
-          <li class="py-1">Instagram</li>
-        </ul>
-    </v-col>
-
-    <v-col cols="4">
-        <p>Contactos</p>
-        <ul style="list-style-type:none;" class="py-4">
-          <li class="py-1">mealset@gmail.com</li>
-          <li class="py-1">+351912345678</li>          
-        </ul>
-
-    </v-col>
-
-    <v-col cols="4" align-self="end"
->
-        
-        <p>MealSET © 2019 Todos os direitos reservados.</p>
-        <p>Criado por Ana Moreira, Luís Pires e Miguel Amaral</p>
-    </v-col>
-    
-    
-
-
-    
-    </v-row>
-  </v-footer>
-</template>
-
-
-
-
 
  */
 
