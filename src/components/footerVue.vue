@@ -8,25 +8,20 @@
     <v-row
         justify="center"
         no-gutters
-        style="border: solid red">
+        :style="checker">
         
 
-        <v-btn
+
+        <v-col cols="4"><v-btn
             v-for="icon in icons"
             :key="icon"
             class="mx-4 white--text"
             icon
           >
             <v-icon size="24px">{{ icon }}</v-icon>
-          </v-btn>
+          </v-btn></v-col>
 
-    
-
-
-        
-      
-
-      <v-col class="white--text pt-0 " cols="2" style="border: solid red" >
+      <v-col class="white--text pt-0 " cols="6" :style="checker" >
         <p>Contactos</p>
         mealset@gmail.com
         <br>+351912345678
@@ -36,7 +31,7 @@
 
       
 
-      <v-row class="white--text" justify="center" style="border: solid red">
+      <v-row class="white--text" justify="center" :style="checker">
         
         {{ new Date().getFullYear() }} — <strong>MealSET © 2019 Todos os direitos reservados.</strong>
       </v-row>
@@ -60,6 +55,8 @@ export default {
         'fab fa-twitter',
         'fab fa-instagram',
       ],
+
+    checker: "border: solid red"
       
   })
 }
