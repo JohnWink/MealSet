@@ -19,6 +19,11 @@
           </v-card>
         </v-col>
       </v-row>
+
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+
+
     </v-app>
   </div>
 </template>
@@ -30,8 +35,8 @@
 export default {
   name: "introductionCards",
   data: () => ({
-    titulos1: ["mano", "fixe", "lol"],
-    titulos2: ["bro", "top", "mana"]
+    titulos1: ["1", "2", "3"],
+    titulos2: ["4", "5", "6"]
   })
 };
 </script>
