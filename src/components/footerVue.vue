@@ -8,7 +8,7 @@
     <v-row
         justify="center"
         no-gutters
-        :style="checker">
+        >
         
 
 
@@ -21,7 +21,7 @@
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn></v-col>
 
-      <v-col class="white--text pt-0 " cols="6" :style="checker" >
+      <v-col class="white--text pt-0 " cols="6"  >
         <p>Contactos</p>
         mealset@gmail.com
         <br>+351912345678
@@ -31,7 +31,7 @@
 
       
 
-      <v-row class="white--text" justify="center" :style="checker">
+      <v-row class="white--text" justify="center" >
         
         {{ new Date().getFullYear() }} — <strong>MealSET © 2019 Todos os direitos reservados.</strong>
       </v-row>
