@@ -1,18 +1,19 @@
 <template >
   <v-footer
     
-    padless    
-    class="pl-12 ml-12 indigo lighten-1"    
+        
+    class="pl-12 ml-12 indigo lighten-1 py-2"    
 
   >
     <v-row
         justify="center"
+        align="center"
         no-gutters
         >
         
 
 
-        <v-col cols="4"><v-btn
+        <v-col cols="5"><v-btn
             v-for="icon in icons"
             :key="icon"
             class="mx-4 white--text"
@@ -21,9 +22,9 @@
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn></v-col>
 
-      <v-col class="white--text pt-0 " cols="6"  >
-        <p>Contactos</p>
-        mealset@gmail.com
+      <v-col class="white--text pt-0 " cols="5"  >
+        Contactos
+        <br>mealset@gmail.com
         <br>+351912345678
         
       </v-col>
@@ -56,7 +57,7 @@ export default {
         'fab fa-instagram',
       ],
 
-    checker: "border: solid red"
+    checker: "border: solid red" // this data is used in the :style="checker" to check the cols and rows
       
   })
 }
