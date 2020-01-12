@@ -9,8 +9,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path:"/",
-    name:"landinPage",
+    path:"/landingPage",
+    name:"landingPage",
     component:()=>
     import("@/views/LandingPage.vue")
   },
@@ -35,6 +35,12 @@ const routes = [
     name:"registration",
     component:() =>
       import("../views/Registration.vue")
+  },
+  {
+    path:"/restaurant",
+    name: "restaurant",
+    component:() =>
+      import("../views/RestaurantPage.vue")
   }
 ];
 

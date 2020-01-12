@@ -1,7 +1,7 @@
 <template>
   <div class="restaurantPage">
     <v-row align="center" justify="center">
-      <v-img src="../assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg" class="grey lighten-3">
+      <!--<v-img src="../assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg" class="grey lighten-3">-->
         <v-row align="start" justify="center">
           <!--Registration Button to pop up modal   !-->
           <v-col md="1">
@@ -28,7 +28,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-      </v-img>
+     <!-- </v-img>-->
     </v-row>
     <footerVue />
   </div>
