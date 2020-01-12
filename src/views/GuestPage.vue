@@ -1,6 +1,5 @@
-
 <template>
-  <div class="landingPage">
+  <div class="guestPage">
     <v-row align="center" justify="center">
       <v-img src="../assets/landingPageImg.jpg" class="grey lighten-3">
         <v-row align="start" justify="center">
@@ -31,8 +30,8 @@
         </v-row>
       </v-img>
     </v-row>
-
-    <recomendedCards />
+    <guestPageContent />
+    <v-spacer></v-spacer>
     <footerVue />
   </div>
 </template>
@@ -45,16 +44,16 @@ import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
 import registration from "@/components/registration.vue";
 import login from "@/components/login.vue";
-import recomendedCards from "@/components/RecomendedCards.vue";
+import guestPageContent from "@/components/guestPageContent.vue";
 
 export default {
-  name: "landingPage",
+  name: "guestPage",
   components: {
     NavBar,
     footerVue,
     registration,
     login,
-    recomendedCards
+    guestPageContent
   },
   data: () => ({})
 };

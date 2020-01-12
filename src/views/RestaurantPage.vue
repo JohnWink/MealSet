@@ -113,7 +113,7 @@ import registration from "@/components/registration.vue";
 import login from "@/components/login.vue";
 
 export default {
-  name: "landingPage",
+  name: "restaurantPage",
   components: {
     NavBar,
     footerVue,

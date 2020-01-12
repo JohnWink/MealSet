@@ -41,6 +41,11 @@ const routes = [
     name: "restaurant",
     component:() =>
       import("../views/RestaurantPage.vue")
+  },
+  {
+    path:"/guestPage",
+    name:"guestpage",
+    component:() => import("../views/GuestPage")
   }
 ];
 
