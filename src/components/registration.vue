@@ -31,13 +31,7 @@
         required
       ></v-text-field>
   
-      <v-select
-        v-model="select"
-        :items="items"
-        :rules="[v => !!v || 'Item is required']"
-        label="Item"
-        required
-      ></v-select>
+  
   
   
   
@@ -59,33 +53,42 @@
         name: "registration",
         
 data: () => ({
+  
     dialog: false,
     valid: true,
-    name: '',
+    username: '',
+    email:'',
+    id:0,
+
     nameRules: [
       v => !!v || 'Por favor preencha o nome',
       v => (v && v.length <= 20) || 'Tem de ter menos de 20 caracteres',
       v =>(v && v.length >=6 || 'Tem de ter no mínimo 6 caracteres')
     ],
-    username: '',
-    email:'',
+
+   
     emailRules: [
       v => !!v || 'Por favor introduza o seu email',
     ],
-    select: null,
-    items: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-    ],
-    checkbox: false,
+  
   }),
+  
 
 methods: {
     submit () {
+
+      this.$store.commit("initializeStore")
       if (this.$refs.form.validate()) {
-        this.snackbar = true
+
+        this.dialog=false
+
+        this.$store.commit("ADD_USER",{
+        id: this.$store.getters.getLastUserId,
+        username: this.username,
+        email:this.email,
+        });
+
+        this.$router.replace("/")
         
       }
     },
@@ -98,8 +101,10 @@ methods: {
   computed: {
     form () {
       return {
+      
         username: this.username,
         email: this.email,
+        dialog: this.dialog
       }
     },
   }

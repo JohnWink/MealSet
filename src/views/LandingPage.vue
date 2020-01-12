@@ -18,10 +18,10 @@
          </v-col>
          <!-- ++++++++++++++++++++++++++++++++++Registration dialog box+++++++++++++++++++++++++++++++-->
     
-        <v-col  
+        <v-col   
           md="1"
           offset-sm="6">
-          
+          <p>{{$store.getters.userInfo}}</p>
            <registration/>
      
           
