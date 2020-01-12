@@ -1,14 +1,21 @@
  <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
-          <template v-slot:activator="{ on }">
-            <v-btn
-          large
-           rounded color="#FFEB3B" 
-           dark
-           v-on="on"
-           >Registar</v-btn>
-          </template>
-        <v-card>
+    <template v-slot:activator="{ on }">
+      <v-btn large rounded color="#f7c23e" dark v-on="on">Registar</v-btn>
+    </template>
+    <v-card>
+      <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
+        <v-text-field v-model="username" :counter="10" :rules="nameRules" label="username" required></v-text-field>
+
+        <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+
+        <v-select
+          v-model="select"
+          :items="items"
+          :rules="[v => !!v || 'Item is required']"
+          label="Item"
+          required
+        ></v-select>
 
      <v-form
       class="pa-10"
@@ -40,12 +47,10 @@
       <v-btn color="primary" text @click="reset">Limpar Informação </v-btn>
 
         <v-btn color="primary" text @click="submit">Registar</v-btn>
-    </v-form>
-        
-        </v-card>
+      </v-form>
+    </v-card>
   </v-dialog>
-        
-    </template>
+</template>
 
     <script>
         
@@ -92,14 +97,13 @@ methods: {
         
       }
     },
-    reset () {
-      this.$refs.form.reset()
-    },
-   
+    reset() {
+      this.$refs.form.reset();
+    }
   },
 
   computed: {
-    form () {
+    form() {
       return {
       
         username: this.username,
@@ -108,6 +112,5 @@ methods: {
       }
     },
   }
-
-        };
-    </script>
+};
+</script>

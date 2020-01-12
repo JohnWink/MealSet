@@ -1,8 +1,6 @@
 
 <template>
-
-    <div class="LandingPage">
-  
+  <div class="landingPage">
     <v-row align="center" justify="center">
       <v-img
       src="../assets/landingPageImg.jpg"
@@ -47,29 +45,22 @@
       </v-row>
        
       </v-img>
-      
     </v-row>
 
-
-
-
-    <footerVue/>
-
+    <recomendedCards />
+    <footerVue />
   </div>
-  
-  
 </template>
 
 <style>
-
 </style>
 
-<script>    
-
+<script>
 import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
 import registration from "@/components/registration.vue";
 import login from "@/components/login.vue";
+import recomendedCards from "@/components/RecomendedCards.vue";
 
 export default {
   name: "landingPage",
@@ -77,13 +68,9 @@ export default {
     NavBar,
     footerVue,
     registration,
-    login
-
+    login,
+    recomendedCards
   },
-  data:() =>({
-  
-  })
-
+  data: () => ({})
 };
-
 </script>

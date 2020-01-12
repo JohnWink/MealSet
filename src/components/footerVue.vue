@@ -1,42 +1,24 @@
 <template >
-  <v-footer
-    
-        
-    class="pl-12 ml-12 indigo lighten-1 py-2"    
+  <v-footer class="pl-12 ml-12 indigo lighten-1 py-2">
+    <v-row justify="center" align="center" no-gutters>
+      <v-col cols="5">
+        <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
+          <v-icon size="24px">{{ icon }}</v-icon>
+        </v-btn>
+      </v-col>
 
-  >
-    <v-row
-        justify="center"
-        align="center"
-        no-gutters
-        >
-        
-
-
-        <v-col cols="5"><v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-          >
-            <v-icon size="24px">{{ icon }}</v-icon>
-          </v-btn></v-col>
-
-      <v-col class="white--text pt-0 " cols="5"  >
+      <v-col class="white--text pt-0" cols="5">
         Contactos
         <br>mealset@gmail.com
-        <br>+351912345678
-        
+        <br>
++351912345678
       </v-col>
     </v-row>
 
-      
-
-      <v-row class="white--text" justify="center" >
-        
-        {{ new Date().getFullYear() }} — <strong>MealSET © 2019 Todos os direitos reservados.</strong>
-      </v-row>
-    
+    <v-row class="white--text" justify="center">
+      {{ new Date().getFullYear() }} —
+      <strong>MealSET © 2019 Todos os direitos reservados.</strong>
+    </v-row>
   </v-footer>
 </template>
 
@@ -49,20 +31,13 @@
 
 <script>
 export default {
-  name: "footerVue",   
+  name: "footerVue",
   data: () => ({
-    icons: [
-        'fab fa-facebook',
-        'fab fa-twitter',
-        'fab fa-instagram',
-      ],
+    icons: ["fab fa-facebook", "fab fa-twitter", "fab fa-instagram"],
 
     checker: "border: solid red" // this data is used in the :style="checker" to check the cols and rows
-      
   })
-}
-
-
+};
 
 // putting the tamplet code here because its easyer
 /*
@@ -92,8 +67,4 @@ export default {
         </svg>
 
  */
-
-
-
-
 </script>
