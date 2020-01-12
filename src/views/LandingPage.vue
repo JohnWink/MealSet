@@ -21,9 +21,8 @@
           offset-sm="6">
           <p>{{$store.getters.userInfo}}</p>
            <registration/>
-     
-          
         </v-col>
+        
         <!--Login Button to pop up modal   !-->
         <v-col  
           md="2">

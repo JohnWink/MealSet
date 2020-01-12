@@ -9,17 +9,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path:"/landingPage",
+    path:"/",
     name:"landingPage",
     component:()=>
     import("@/views/LandingPage.vue")
   },
-  {
-    path: "/login",
-    name: "login",
-    component:()=>
-    import("../views/Login.vue")
-  },
+  
   {
     path: "/about",
     name: "about",
@@ -30,12 +25,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
  
-  {
-    path:"/registration",
-    name:"registration",
-    component:() =>
-      import("../views/Registration.vue")
-  },
+  
   {
     path:"/restaurant",
     name: "restaurant",
