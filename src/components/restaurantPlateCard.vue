@@ -5,8 +5,9 @@
       <v-carousel hide-delimiters >
         <!--needs to made a method first to determan the best 5 dishes(in this case, sort by evaluation from the local storage)-->
        <v-carousel-item v-for="dish in dishes" :key="dish">
-          <v-row class="mb-7" no-gutters >
-            <v-col>
+
+          <v-row no-gutters justify="center" align="center" >
+            <v-col cols="12">
               <v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
                 <v-img id="cardsImg" :src="dish.img"></v-img>
                 <br />
@@ -15,6 +16,7 @@
               </v-card>
             </v-col>
           </v-row>
+
        </v-carousel-item>
       </v-carousel>
     </v-app>
