@@ -14,7 +14,7 @@
         <v-col cols="6" md="4" v-for="card in cards" :key="card">
           <v-card id="cards" class="mx-auto" elevation="10" height="350" max-width="500">
             <v-title class="ml-5 font-weight-bold" id="titles">{{ card.title }}</v-title>
-            <v-img width="50%" height="50%" id="cardsImg" :src="card.img"></v-img>
+            <v-img position:center max-width="100%" max-height="100%" id="cardsImg" :src="card.img"></v-img>
             <br>
           </v-card>
         </v-col>

@@ -1,14 +1,12 @@
-
 <template>
-  <div class="landingPage">
+   <div class="RestaurantList">
     <v-row align="center" justify="center">
-      <v-img src="../assets/landingPageImg.jpg" class="grey lighten-3">
+     
         <v-row align="start" justify="center">
           <!--Registration Button to pop up modal   !-->
           <v-col md="1">
             <navBar/>
           </v-col>
-
           <!--Search Text Field   !-->
           <v-col md="2" offset-sm="7">
             <v-text-field
@@ -20,12 +18,11 @@
               dense
             ></v-text-field>
           </v-col>
-           
+
           <v-col md="2">
-             <logout/>
+           <logout/>
           </v-col>
         </v-row>
-      </v-img>
     </v-row>
 
     <RecomendedCards />
@@ -33,25 +30,22 @@
   </div>
 </template>
 
-<style>
-</style>
-
 <script>
 import NavBar from "@/components/navBar.vue";
-import footerVue from "@/components/footerVue.vue";
-import RecomendedCards from "@/components/RecomendedCards.vue";
 import Logout from "@/components/logout.vue";
+import RecomendedCards from "@/components/RecomendedCards.vue";
 
 export default {
-  name: "landingPage",
-  components: {
-    NavBar,
-    footerVue,
-    RecomendedCards,
-    Logout
-  },
-  data: () => ({}),
+    components:{
+        NavBar,
+        Logout,
+        RecomendedCards
+    }
+    
 
-
-};
+}
 </script>
+
+<style>
+
+</style>

@@ -10,8 +10,11 @@
       <v-row class="mb-6">
         <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant" >
           <a onclick="restaurantPage()">
+             
             <v-card id="cards" class="mx-auto" elevation="10" height="350" max-width="500">
+               <router-link :to="restaurant.routerLink">
               <v-img id="cardsImg" :src="restaurant.img"></v-img>
+                </router-link>
               <br>
               <v-title class="ml-5 font-weight-bold" id="titles">{{ restaurant.name }}</v-title>
               <p id="ps" class>a {{ restaurant.location }} km de si</p>
@@ -21,6 +24,7 @@
                 <i class="fas fa-star"></i>
               </p>
             </v-card>
+           
           </a>
         </v-col>
       </v-row>
@@ -59,6 +63,7 @@ export default {
         description: "",
         location: 4,
         evaluation: 5,
+        routerLink: "/restaurant",
         comments: ""
       },
       {

@@ -8,6 +8,10 @@ export default new Vuex.Store({
     //Array de users
     users:[],
 
+    restaurants:[],
+
+    dishes:[],
+
     loggedUser:[],
   
      //variável para a função login

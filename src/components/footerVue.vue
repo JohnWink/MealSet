@@ -11,7 +11,7 @@
         Contactos
         <br>mealset@gmail.com
         <br>
-+351912345678
+      +351912345678
       </v-col>
     </v-row>
 
