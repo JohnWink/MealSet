@@ -1,6 +1,5 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
-<<<<<<< HEAD
     <template v-slot:activator="{ on }">
       <v-btn large rounded color="#5C6BC0" dark v-on="on">Iniciar Sessão</v-btn>
     </template>
@@ -68,33 +67,6 @@
         <v-btn color="primary" text @click="submit">Login</v-btn>
       </v-card-actions>
     </v-card>
-=======
-          <template v-slot:activator="{ on }">
-             <v-btn
-            large
-            rounded color="#5C6BC0" 
-            dark
-            v-on="on"
-            >Iniciar Sessão</v-btn>
-          </template>
-        <v-card>
-           <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="username" :counter="20" :rules="nameRules" label="username" required></v-text-field>
-
-        <v-text-field v-model="password" :rules="passwordRules" label="password" required></v-text-field>
-  
-  
-      <v-btn color="blue darken-1" text @click="dialog = false">Fechar Janela</v-btn>
- 
-      <v-btn color="primary" text @click="reset">Limpar Informação </v-btn>
-
-        <v-btn color="primary" text @click="submit">Logar</v-btn>
-     </v-form>
-          
-          
-            
-        </v-card>
->>>>>>> 6482952f683db1a595e2eb789e008bde8492d69d
   </v-dialog>
 </template>
 
@@ -102,7 +74,6 @@
 export default {
   name: "login",
 
-<<<<<<< HEAD
   data: () => ({
     countries: [
       "Afghanistan",
@@ -321,15 +292,6 @@ export default {
     country: null,
     formHasErrors: false,
     dialog: false
-=======
-    data: () => ({
-     
-    dialog: false,
-    valid: true,
-    username: '',
-    password:'',
-   
->>>>>>> 6482952f683db1a595e2eb789e008bde8492d69d
   }),
 
 
@@ -360,7 +322,6 @@ methods: {
   computed: {
     form() {
       return {
-<<<<<<< HEAD
         name: this.name,
         address: this.address,
         city: this.city,
@@ -369,14 +330,6 @@ methods: {
         country: this.country
       };
     }
-=======
-        username:this.username,
-        password:this.password,
-        dialog:this.dialog
-      
-      }
-    },
->>>>>>> 6482952f683db1a595e2eb789e008bde8492d69d
   }
 };
 </script>
