@@ -20,6 +20,15 @@
               dense
             ></v-text-field>
           </v-col>
+
+          <v-col md="2">
+            <v-btn
+            large
+            rounded color="#5C6BC0" 
+            dark
+            @click="logout"
+            >Logout</v-btn>
+          </v-col>
         </v-row>
       </v-img>
     </v-row>
@@ -44,6 +53,13 @@ export default {
     footerVue,
     RecomendedCards
   },
-  data: () => ({})
+  data: () => ({}),
+
+  methods:{
+    logout(){
+      this.$store.commit("LOGOUT"),
+      this.$router.push({path: '/'})
+    }
+  }
 };
 </script>

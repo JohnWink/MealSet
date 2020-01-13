@@ -59,7 +59,7 @@ methods: {
         });
 
         if(this.$store.getters.checkLogged === true){
-          this.$router.replace('/landingPage')
+          this.$router.push({path:'/landingPage'})
         }
          
         

@@ -125,7 +125,7 @@ export default new Vuex.Store({
   },
 
   LOGOUT(state) {
-    state.loggedUser = {};
+    state.loggedUser = [];
     state.logged = false;
     sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
   },
