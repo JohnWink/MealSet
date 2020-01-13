@@ -1,5 +1,5 @@
 <template >
-  <v-footer class="pl-12 ml-12 indigo lighten-1 py-2">
+  <v-footer class="pl-12 ml-12 indigo black py-2">
     <v-row justify="center" align="center" no-gutters>
       <v-col cols="5">
         <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
