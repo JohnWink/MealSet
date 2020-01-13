@@ -1,19 +1,22 @@
 <template>
   <div id="RecomendedCards">
-    <v-app id="inspire" class="pl-12 ml-12">      
+    <v-app id="inspire">      
       <!--RECOMENDAÇÃO DE PRATOS-->
-      <v-title>Recomendação de pratos:</v-title>
-      <br />
-      <v-row class="mb-7" no-gutters >
-        <v-col v-for="dish in dishes" :key="dish">
-          <v-card id="cards" class="mx-auto" elevation="10" height="240" max-width="290">
-            <v-img id="cardsImg" :src="dish.img"></v-img>
-            <br />
-            <v-title>{{ dish.name }}</v-title>
-            <p> {{ dish.description }}</p>
-          </v-card>
-        </v-col>
-      </v-row>
+      <v-carousel hide-delimiters >
+        <!--needs to made a method first to determan the best 5 dishes(in this case, sort by evaluation from the local storage)-->
+       <v-carousel-item v-for="dish in dishes" :key="dish">
+          <v-row class="mb-7" no-gutters >
+            <v-col>
+              <v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
+                <v-img id="cardsImg" :src="dish.img"></v-img>
+                <br />
+                <v-title>{{ dish.name }}</v-title>
+                <p> {{ dish.description }}</p>
+              </v-card>
+            </v-col>
+          </v-row>
+       </v-carousel-item>
+      </v-carousel>
     </v-app>
   </div>
 </template>
@@ -31,8 +34,9 @@
 
 <script>
 export default {
-  name: "RecomendedCards",
+  name: "RestaurantCards",
   data: () => ({
+    // dishes get filled 5 top evaluations and from sort local storage bye evaluation, each time, time clear the dishes obj and add again to update  the list
     dishes: [
       {
         name: "Polvo",
@@ -61,7 +65,14 @@ export default {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 2
-      }
+      },
+      {
+        name: "rissoto",
+        img: "",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        restaurant: "",
+        evaluation: 5
+      },
     ]
   })
 };

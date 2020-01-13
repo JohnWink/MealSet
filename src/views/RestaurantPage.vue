@@ -90,32 +90,20 @@
       </v-row>
 
       <v-row class="pl-12 ml-12 py-4" justify="center" :style="checker">
-        <v-card
-          elevation="3"
-          max-width="350"
-          class="mx-auto"
-        >
+        <v-col cols="12">
+            <v-card
+            elevation="3"
+            max-width="900px"
+            class="mx-auto"
+            >
 
-          <v-carousel hide-delimiters>
-            <!--  v-carousell item base
-            <v-carousel-item
             
-              v-for="(item,i) in items"
-              :key="i"
-              :src="item.src"
-            ></v-carousel-item>
-            -->
+              <RestaurantCards />
+                
 
-            <v-carousel-item>
-              
-
-
-            </v-carousel-item>
-
-
-          </v-carousel>
-
-        </v-card>  
+            </v-card>
+        </v-col>
+          
 
 
 
@@ -146,6 +134,7 @@ import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
 import registration from "@/components/registration.vue";
 import login from "@/components/login.vue";
+import RestaurantCards from "@/components/restaurantPlateCard.vue"
 
 export default {
   name: "restaurantPage",
@@ -153,7 +142,8 @@ export default {
     NavBar,
     footerVue,
     registration,
-    login
+    login,
+    RestaurantCards
   },
   data: () => ({
     checker:"border: solid red",
