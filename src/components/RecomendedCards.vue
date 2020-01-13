@@ -2,51 +2,31 @@
   <div id="RecomendedCards">
     <v-app id="inspire" class="pl-12 ml-12">
       <br>
-      <!--RECOMENDAÇÃO DE RESTAURANTES-->
-      <v-title>Recomendação de restaurantes:</v-title>
-      <br />
-      <v-row class="mb-7" no-gutters >
-        <v-col v-for="restaurant in restaurants" :key="restaurant">
-          <v-card id="cards" class="mx-auto" elevation="10" height="240" max-width="290">
-            <v-img id="cardsImg" :src="restaurant.img"></v-img>
-            <br />
-            <v-title>{{ restaurant.name }}</v-title>
-            <p>a {{ restaurant.localization }} km de si</p>
-          </v-card>
-        </v-col>
-      </v-row>
       <br>
-      <!--RECOMENDAÇÃO DE PRATOS-->
-      <v-title>Recomendação de pratos:</v-title>
-      <br />
-      <v-row class="mb-7" no-gutters >
-        <v-col v-for="dish in dishes" :key="dish">
-          <v-card id="cards" class="mx-auto" elevation="10" height="240" max-width="290">
-            <v-img id="cardsImg" :src="dish.img"></v-img>
-            <br />
-            <v-title>{{ dish.name }}</v-title>
-            <p> {{ dish.description }}</p>
-          </v-card>
+      <br>
+      <!--RECOMENDAÇÃO DE RESTAURANTES-->
+      <v-title id="titles" class="text-center font-weight-bold">Restaurantes recomendados</v-title>
+      <br>
+      <v-row class="mb-6">
+        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant" >
+          <a onclick="restaurantPage()">
+            <v-card id="cards" class="mx-auto" elevation="10" height="350" max-width="500">
+              <v-img id="cardsImg" :src="restaurant.img"></v-img>
+              <br>
+              <v-title class="ml-5 font-weight-bold" id="titles">{{ restaurant.name }}</v-title>
+              <p id="ps" class>a {{ restaurant.location }} km de si</p>
+
+              <p style="margin-right: 25px;" >
+                {{ restaurant.evaluation }}
+                <i class="fas fa-star"></i>
+              </p>
+            </v-card>
+          </a>
         </v-col>
       </v-row>
     </v-app>
   </div>
 </template>
-
-<!-- v-for="restaurant in restaurants" :key="restaurant"  
-<v-row
-        class="mb-6"
-        no-gutters
-      >
-        <v-col
-          v-for="n in 4"
-          :key="n"
-        >
-          <v-card
-            class="pa-2"
-            tile
-            outlined
-          >-->
 
 <style>
 #cards {
@@ -54,8 +34,17 @@
 }
 
 #cardsImg {
-  max-width: 400px;
-  max-height: 200px;
+  max-width: 500px;
+  max-height: 250px;
+}
+
+#titles {
+  font-size: 20px;
+}
+
+#ps {
+  margin-left: 21px;
+  font-size: 13px;
 }
 </style>
 
@@ -66,33 +55,49 @@ export default {
     restaurants: [
       {
         name: "Chimarrão",
-        img: "../assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg",
+        img: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
         description: "",
-        localization: 4,
+        location: 4,
         evaluation: 5,
         comments: ""
       },
       {
         name: "Cascata",
-        img: "../assets/tae-in-kim-jivmv9hE6bM-unsplash.jpg",
+        img: require("@/assets/tae-in-kim-jivmv9hE6bM-unsplash.jpg"),
         description: "",
-        localization: 6,
+        location: 6,
         evaluation: 3,
         comments: ""
       },
       {
         name: "Rochedo",
-        img: "../assets/lily-banse--YHSwy6uqvk-unsplash.jpg",
+        img: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
         description: "",
-        localization: 15,
+        location: 15,
         evaluation: 2,
         comments: ""
       },
       {
         name: "Dona Maria",
-        img: "../assets/jason-leung-poI7DelFiVA-unsplash.jpg",
+        img: require("@/assets/jason-leung-poI7DelFiVA-unsplash.jpg"),
         description: "",
-        localization: 7,
+        location: 7,
+        evaluation: 4,
+        comments: ""
+      },
+      {
+        name: "Esht",
+        img: require("@/assets/daan-evers-tKN1WXrzQ3s-unsplash.jpg"),
+        description: "",
+        location: 7,
+        evaluation: 4,
+        comments: ""
+      },
+      {
+        name: "Su",
+        img: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
+        description: "",
+        location: 7,
         evaluation: 4,
         comments: ""
       }
@@ -101,28 +106,32 @@ export default {
       {
         name: "Polvo",
         img: "",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 4
       },
       {
         name: "Bacalhau",
         img: "",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 5
       },
       {
         name: "Legumes Salteados",
         img: "",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 3
       },
       {
         name: "Novilho",
         img: "",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 2
       }
