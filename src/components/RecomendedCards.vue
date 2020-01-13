@@ -1,5 +1,5 @@
 <template>
-  <div id="recomendedCards">
+  <div id="RecomendedCards">
     <v-app id="inspire" class="pl-12 ml-12">
       <br>
       <!--RECOMENDAÇÃO DE RESTAURANTES-->
@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  name: "recomendedCards",
+  name: "RecomendedCards",
   data: () => ({
     restaurants: [
       {

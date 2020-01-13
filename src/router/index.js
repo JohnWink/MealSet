@@ -9,10 +9,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path:"/",
+    path:"/landingPage",
     name:"landingPage",
     component:()=>
-    import("@/views/LandingPage.vue")
+    import("../views/LandingPage.vue")
   },
   
   {
@@ -33,9 +33,10 @@ const routes = [
       import("../views/RestaurantPage.vue")
   },
   {
-    path:"/guestPage",
-    name:"guestpage",
-    component:() => import("../views/GuestPage")
+    path:"/",
+    name:"guestPage",
+    component:() => 
+    import("../views/GuestPage.vue")
   }
 ];
 
