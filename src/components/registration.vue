@@ -6,7 +6,9 @@
     </template>
     <v-card>
       <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="username" :counter="10" :rules="nameRules" label="username" required></v-text-field>
+        <v-text-field v-model="username" :counter="20" :rules="nameRules" label="Username" required></v-text-field>
+
+         <v-text-field v-model="password" :counter="20" :rules="passwordRules" label="Password" required></v-text-field>
 
         <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
   
@@ -29,17 +31,23 @@
 data: () => ({
   
     dialog: false,
-    valid: true,
     username: '',
+    password:'',
     email:'',
     id:0,
 
     nameRules: [
-      v => !!v || 'Por favor preencha o nome',
+      v => !!v || 'Por favor preencha o Username',
       v => (v && v.length <= 20) || 'Tem de ter menos de 20 caracteres',
-      v =>(v && v.length >=6 || 'Tem de ter no mínimo 6 caracteres')
     ],
 
+    passwordRules:[
+      password =>!!password || 'Por favor preencha a Password',
+      password => (password.length >=6 || 'A password tem de ter no mínimo 6 caracteres'),
+      password => (password.length <=20 || 'A password não pode ter mais que 20 caracteres'),
+    ],
+
+  
    
     emailRules: [
       v => !!v || 'Por favor introduza o seu email',
@@ -59,6 +67,7 @@ methods: {
         this.$store.commit("ADD_USER",{
         id: this.$store.getters.getLastUserId,
         username: this.username,
+        password: this.password,
         email:this.email,
         });
 
@@ -76,6 +85,7 @@ methods: {
       return {
       
         username: this.username,
+        password:this.password,
         email: this.email,
         dialog: this.dialog
       }

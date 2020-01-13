@@ -53,7 +53,7 @@
     <v-container>
       <v-row class="pl-9 ml-9 py-4" justify="center">
         <!--INformation collum-->
-        <v-col cols="12" md="5" :style=checker class="text-left">
+        <v-col cols="12" md="6" :style=checker class="text-left">
 
           <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
           <br><br>
@@ -82,11 +82,46 @@
 
     <!-- ++++++++++++++++++++++++++++++ row card MENU +++++++++++++++++++++++++++++++++++++++++++++++-->
     <!-- make sure that from md to large it shows 3 cards; lower will only show a card-->
-    <v-container class="pl-12 ml-12 py-4" >
-      
-      <v-row justify="center">
-        <p class="headline font-weight-bold ">Pratos do restaurante</p><br>
+    <v-container >      
+      <v-row class="pl-12 ml-12 py-2" justify="center" :style="checker">
+        <v-col cols="12">
+          <p class="headline font-weight-bold ">Pratos Recomendados</p><br>
+        </v-col>        
       </v-row>
+
+      <v-row class="pl-12 ml-12 py-4" justify="center" :style="checker">
+        <v-card
+          elevation="3"
+          max-width="350"
+          class="mx-auto"
+        >
+
+          <v-carousel hide-delimiters>
+            <!--  v-carousell item base
+            <v-carousel-item
+            
+              v-for="(item,i) in items"
+              :key="i"
+              :src="item.src"
+            ></v-carousel-item>
+            -->
+
+            <v-carousel-item>
+              
+
+
+            </v-carousel-item>
+
+
+          </v-carousel>
+
+        </v-card>  
+
+
+
+      </v-row>
+
+      
 
     </v-container>
 
@@ -121,7 +156,24 @@ export default {
     login
   },
   data: () => ({
-    checker:"border: solid red"
+    checker:"border: solid red",
+
+    
+    items: [
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+      },
+      {
+        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+      },
+    ],
+    
     
   }),
   methods:{
