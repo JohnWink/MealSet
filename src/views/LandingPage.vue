@@ -8,19 +8,9 @@
           <v-col md="1">
             <navBar />
           </v-col>
-          <!-- ++++++++++++++++++++++++++++++++++Registration dialog box+++++++++++++++++++++++++++++++-->
 
-          <v-col md="1" offset-sm="6">
-            <p>{{$store.getters.userInfo}}</p>
-            <registration />
-          </v-col>
-
-          <!--Login Button to pop up modal   !-->
-          <v-col md="2">
-            <login />
-          </v-col>
           <!--Search Text Field   !-->
-          <v-col md="2">
+          <v-col md="2" offset-sm="7">
             <v-text-field
               prepend-inner-icon="fas fa-search"
               height="2px"
@@ -45,8 +35,6 @@
 <script>
 import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
-import registration from "@/components/registration.vue";
-import login from "@/components/login.vue";
 import RecomendedCards from "@/components/RecomendedCards.vue";
 
 export default {
@@ -54,8 +42,6 @@ export default {
   components: {
     NavBar,
     footerVue,
-    registration,
-    login,
     RecomendedCards
   },
   data: () => ({})
