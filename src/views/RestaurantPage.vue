@@ -83,28 +83,49 @@
     <!-- ++++++++++++++++++++++++++++++ row card MENU +++++++++++++++++++++++++++++++++++++++++++++++-->
     <!-- make sure that from md to large it shows 3 cards; lower will only show a card-->
     <v-container >      
-      <v-row class="pl-12 ml-12 py-2" justify="center" :style="checker">
-        <v-col cols="12">
+      <v-row class="pl-9 ml-9 py-2" justify="space-between" align="center" :style="checker">
+        <v-col cols="3">
           <p class="headline font-weight-bold ">Pratos Recomendados</p><br>
-        </v-col>        
+        </v-col>
+        <c-col cols="3">
+          <v-btn large rounded color="#f7c23e" dark v-on="on">Mostrar Menu</v-btn>
+        </c-col>    
       </v-row>
 
-      <v-row class="pl-12 ml-12 py-6" justify="center" :style="checker">
+      <v-row class="pl-9 ml-9 py-6" justify="center" :style="checker">
         <v-col cols="10" :style="checker">
           
-            <RestaurantCards />
-          
-          
-            
-        </v-col>       
-
-
-
+          <RestaurantCards />      
+        </v-col>    
       </v-row>
 
+    </v-container>
+
+
+    <v-container > 
+      <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
+      <v-row class="pl-12 ml-12 py-2" justify="space-between" align="center" :style="checker">
+        <v-col cols="4" class="headline" :style="checker">
+          Avaliações do restaurante
+        </v-col>
+        <v-col cols="3" class="font-weight-bold" :style="checker">
+          <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+          3/5
+        </v-col>  
+
+      </v-row>
+      <!-- comment evaluation component -->
+
+      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" :style="checker">       
+          
+        <commentReview />    
+           
+      </v-row>
       
 
+
     </v-container>
+
 
 
     <!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
@@ -128,6 +149,7 @@ import footerVue from "@/components/footerVue.vue";
 import registration from "@/components/registration.vue";
 import login from "@/components/login.vue";
 import RestaurantCards from "@/components/restaurantPlateCard.vue"
+import commentReview from "@/components/commentReview.vue"
 
 export default {
   name: "restaurantPage",
@@ -136,27 +158,11 @@ export default {
     footerVue,
     registration,
     login,
-    RestaurantCards
+    RestaurantCards,
+    commentReview
   },
   data: () => ({
-    checker:"border: solid red",
-
-    
-    items: [
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-      },
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-      },
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-      },
-      {
-        src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-      },
-    ],
-    
+    checker:"border: solid red"
     
   }),
   methods:{

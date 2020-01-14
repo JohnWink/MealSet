@@ -1,18 +1,61 @@
 <template>  
   <!--RECOMENDAÇÃO DE PRATOS-->
-  <v-carousel hide-delimiters height="270">
+  <v-carousel hide-delimiters height="300px">
     <!--needs to made a method first to determan the best 5 dishes(in this case, sort by evaluation from the local storage)-->
     
       
-        <v-carousel-item v-for="dish in dishes" :key="dish" >        
+        <v-carousel-item v-for="dish in dishes" :key="dish" >   
 
-          <v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
-            <v-img id="cardsImg" :src="dish.img"></v-img>
-            <br />
-            <v-title>{{ dish.name }}</v-title>
+               
+
+          <!--<v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
+            
+            <v-row :style="checker">
+              <v-img id="cardsImg" :src="dish.img" ></v-img>
+            </v-row>
+            
+            <v-row justify="center">
+              <v-title class="headline">{{ dish.name }}</v-title>
+            </v-row>
+            
             <p> {{ dish.description }}</p>
-          </v-card>
+          </v-card>-->
+
+          <v-card id="cards" class="mx-auto indigo" elevation="8" height="300px" max-width="600px">
+              
+              <v-container>
+
+                <v-row class="mx-2" :style="checker">
+                  <v-col>
+                    <v-img contain=true max-width="300px" :src="dish.img" ></v-img>
+                  </v-col>
+                  
+                  <v-col>
+                    <br>
+                    <v-title class="title font-weight-bold" >{{ dish.name }}</v-title>
+                    <p  >{{ dish.description }} </p>
+
+                    <p style="margin-right: 25px;" class="font-weight-bold" >
+                      {{ dish.evaluation }}
+                      <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+                    </p>
+                  </v-col>
+
+
+
+                </v-row>
+                
+              </v-container>
+            </v-card>
+
+          
+
+
+
+
         </v-carousel-item>  
+
+
       
     
   </v-carousel>
@@ -28,6 +71,8 @@
   max-width: 400px;
   max-height: 200px;
 }
+
+
 </style>
 
 <script>
@@ -38,35 +83,35 @@ export default {
     dishes: [
       {
         name: "Polvo",
-        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
+        img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 4
       },
       {
         name: "Bacalhau",
-        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
+        img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 5
       },
       {
         name: "Legumes Salteados",
-        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
+        img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         evaluation: 3
       },
       {
         name: "Novilho",
-        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
+        img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 2
       },
       {
         name: "rissoto",
-        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
+        img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 5
