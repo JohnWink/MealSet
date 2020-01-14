@@ -2,21 +2,19 @@
     
     <v-container>
         <v-row id="comment" v-for="comment in comments" :key="comment" justify="space-between" align="center" :style="checker">
-            <v-col cols="4" class="mx-4">{{comment.name}} {{comment.date}}</v-col>
+            
+            <v-col cols="4" class="mx-4">                
+                {{comment.name}} {{comment.date}}
+            </v-col>
 
             <!--method to calculate and print the rate stars and empthy stars-->
             <v-col  cols="2">
                 <div v-html="rateprint(comment.evaluation)"></div>
-                
-                
-
-
-                
             </v-col>
-        
 
-
-
+            <v-col cols="12">
+                <v-row class="pl-6">{{comment.comment}}</v-row>
+            </v-col >
         </v-row>
     </v-container>
 </template>
@@ -68,18 +66,11 @@ export default {
         rateprint: function(rate){
             
             let rateCode = ""
-            for(let i=0;i<rate;i++){
-                rateCode += `<i style="color:gold" class="fas fa-star"></i> `
+            for(let i=0;i<rate;i++){  rateCode += `<i style="color:gold" class="fas fa-star"></i> ` }     
+                        
+            let nostar = 5-rate
 
-            }      
-            
-            if (rate<5){
-
-                for(let i=0;i<rate-5;i++){
-                rateCode += `<i class="fas fa-star"></i> `
-
-                } 
-            }
+            for(let i=0;i<nostar;i++)  {rateCode += `<i style="color:BurlyWood" class="fas fa-star"></i> `}             
 
             return rateCode;
             
