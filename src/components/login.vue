@@ -42,7 +42,7 @@ export default {
 methods: {
     submit () {
 
-      this.$store.commit("initializeStore")
+     
       if (this.$refs.form.validate()) {
 
         this.dialog=false

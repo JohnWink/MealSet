@@ -20,5 +20,8 @@ export default {
     //
   }),
 
+  beforeCreate(){
+    this.$store.commit("initializeStore")
+  }
 };
 </script>
