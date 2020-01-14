@@ -1,24 +1,39 @@
 <template>
   <div class="guestPage">
     <v-row align="center" justify="center">
-      <v-img src="../assets/landingPageImg.jpg" class="grey lighten-3">
+      <v-img
+        src="../assets/landingpage.png" 
+      >
         <v-row align="start" justify="center">
-
           <!-- ++++++++++++++++++++++++++++++++++Registration dialog box+++++++++++++++++++++++++++++++-->
 
           <v-col md="1" offset-sm="6">
-            <registration />
+            <registration/>
           </v-col>
           <!--Login Button to pop up modal   !-->
           <v-col md="2">
-            <login />
+            <login/>
+          </v-col>
+        </v-row>
+        <v-row class="pl-12 ml-12">
+          <v-col>
+            <p
+              style="margin-top: 15%"
+              id="header-text"
+              class="display-4 font-weight-bold black--text text-center"
+            >Bem vindo ao MealSet!</p>
+            <br>
+            <p
+              id="header-text"
+              class="headline font-weight-bold black--text text-center"
+            >Começa já a utilizar a nossa aplicação</p>
           </v-col>
         </v-row>
       </v-img>
     </v-row>
-    <guestPageContent />
+    <guestPageContent/>
     <v-spacer></v-spacer>
-    <footerVue />
+    <footerVue/>
   </div>
 </template>
 

@@ -4,11 +4,7 @@
       <br>
       <br>
       <!--CONTENT GUEST PAGE-->
-      <!--TITULOS-->
-      <v-title class="text-center">Bem vindo ao MealSet!</v-title>
-      <br>
-      <v-title class="text-center">Começa já a utilizar a nossa aplicação:</v-title>
-      <br>
+      
       <!--CARDS-->
       <v-row class="mb-6">
         <v-col cols="6" md="4" v-for="card in cards" :key="card">
@@ -19,6 +15,7 @@
           </v-card>
         </v-col>
       </v-row>
+
       <v-img src="../assets/tlmv.png"></v-img>
     </v-app>
     <v-spacer></v-spacer>
