@@ -1,26 +1,22 @@
-<template>
-  <div id="RecomendedCards">
-    <v-app id="inspire">      
-      <!--RECOMENDAÇÃO DE PRATOS-->
-      <v-carousel hide-delimiters >
-        <!--needs to made a method first to determan the best 5 dishes(in this case, sort by evaluation from the local storage)-->
-       <v-carousel-item v-for="dish in dishes" :key="dish">
+<template>  
+  <!--RECOMENDAÇÃO DE PRATOS-->
+  <v-carousel hide-delimiters height="270">
+    <!--needs to made a method first to determan the best 5 dishes(in this case, sort by evaluation from the local storage)-->
+    
+      
+        <v-carousel-item v-for="dish in dishes" :key="dish" >        
 
-          <v-row no-gutters justify="center" align="center" >
-            <v-col cols="12">
-              <v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
-                <v-img id="cardsImg" :src="dish.img"></v-img>
-                <br />
-                <v-title>{{ dish.name }}</v-title>
-                <p> {{ dish.description }}</p>
-              </v-card>
-            </v-col>
-          </v-row>
-
-       </v-carousel-item>
-      </v-carousel>
-    </v-app>
-  </div>
+          <v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
+            <v-img id="cardsImg" :src="dish.img"></v-img>
+            <br />
+            <v-title>{{ dish.name }}</v-title>
+            <p> {{ dish.description }}</p>
+          </v-card>
+        </v-carousel-item>  
+      
+    
+  </v-carousel>
+    
 </template>
 
 <style>
@@ -42,40 +38,41 @@ export default {
     dishes: [
       {
         name: "Polvo",
-        img: "",
+        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 4
       },
       {
         name: "Bacalhau",
-        img: "",
+        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 5
       },
       {
         name: "Legumes Salteados",
-        img: "",
+        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        restaurant: "",
+        restaurant: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         evaluation: 3
       },
       {
         name: "Novilho",
-        img: "",
+        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 2
       },
       {
         name: "rissoto",
-        img: "",
+        img: "../assets/eaters-collective-vOdK_eih7B0-unsplash.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         restaurant: "",
         evaluation: 5
       },
-    ]
+    ],
+    checker: "border: solid red;"
   })
 };
 </script>
