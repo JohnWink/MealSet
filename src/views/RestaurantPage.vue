@@ -89,21 +89,14 @@
         </v-col>        
       </v-row>
 
-      <v-row class="pl-12 ml-12 py-4" justify="center" :style="checker">
-        <v-col cols="12">
-            <v-card
-            elevation="3"
-            max-width="900px"
-            class="mx-auto"
-            >
-
-            
-              <RestaurantCards />
-                
-
-            </v-card>
-        </v-col>
+      <v-row class="pl-12 ml-12 py-6" justify="center" :style="checker">
+        <v-col cols="10" :style="checker">
           
+            <RestaurantCards />
+          
+          
+            
+        </v-col>       
 
 
 
