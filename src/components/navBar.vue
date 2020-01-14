@@ -64,6 +64,20 @@
           </template>
           <span>Perfil</span>
         </v-tooltip>
+
+          <v-tooltip right>
+          <template v-slot:activator="{ on }" >
+            <v-list-item link v-on="on">
+              <v-list-item-icon>
+                 <router-link to="/restaurantManager">
+                <v-icon>fas fa-user-shield</v-icon>
+                 </router-link>
+              </v-list-item-icon>
+              <v-list-item-title>Manager de restaurantes</v-list-item-title>
+            </v-list-item>
+          </template>
+          <span>Manager de restaurantes</span>
+        </v-tooltip>
       </v-list>
     </v-navigation-drawer>
 
