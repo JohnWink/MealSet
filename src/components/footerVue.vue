@@ -1,24 +1,28 @@
 <template >
-  <v-footer class="pl-12 ml-12 indigo black py-2">
-    <v-row justify="center" align="center" no-gutters>
-      <v-col cols="5">
-        <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
-          <v-icon size="24px">{{ icon }}</v-icon>
-        </v-btn>
-      </v-col>
+  <v-footer class="indigo black py-2">
+    <v-container >
+        <v-row justify="center" align="center" justify-sm="space-around" align-content="center"  no-gutters >
+          <v-col cols="12" sm="3" class="py-2" >
+            <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
+              <v-icon size="24px">{{ icon }}</v-icon>
+            </v-btn>
+          </v-col>
 
-      <v-col class="white--text pt-0" cols="5">
-        Contactos
-        <br>mealset@gmail.com
-        <br>
-      +351912345678
-      </v-col>
-    </v-row>
+          <v-col class="white--text pt-0 " cols="12" sm="3" >
+            Contactos
+            <br>mealset@gmail.com
+            <br>
+            +351912345678
+          </v-col>
+        </v-row>
 
-    <v-row class="white--text" justify="center">
-      {{ new Date().getFullYear() }} —
-      <strong>MealSET © 2019 Todos os direitos reservados.</strong>
-    </v-row>
+        <v-row class="white--text py-2" justify="center" align="center">
+          {{ new Date().getFullYear() }} —
+          <strong>MealSET © 2019 Todos os direitos reservados.</strong>
+        </v-row>
+
+    </v-container>
+    
   </v-footer>
 </template>
 
