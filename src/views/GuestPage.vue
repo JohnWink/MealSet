@@ -19,12 +19,12 @@
           <v-col>
             <p
               style="margin-top: 15%"
-              id="header-text"
-              class="display-4 font-weight-bold black--text text-center"
+              id="header-text1"
+              class="display-4 font-weight-bold white--text text-center"
             >Bem vindo ao MealSet!</p>
             <br>
             <p
-              id="header-text"
+              id="header-text2" style="margin-top: 15%"
               class="headline font-weight-bold black--text text-center"
             >Começa já a utilizar a nossa aplicação</p>
           </v-col>
@@ -38,6 +38,13 @@
 </template>
 
 <style>
+#header-text1 {
+  text-shadow: 1px 1px 14px gray ;
+}
+#header-text2 {
+  text-shadow: 0px 0px 20px gray ;
+}
+
 </style>
 
 <script>

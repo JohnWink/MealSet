@@ -1,21 +1,24 @@
 <template>
   <div id="guestPageContent">
-    <v-app class="pl-12 ml-12">
+    <v-app>
       <br>
       <br>
       <!--CONTENT GUEST PAGE-->
-      
+      <v-spacer></v-spacer>
       <!--CARDS-->
       <v-row class="mb-6">
         <v-col cols="6" md="4" v-for="card in cards" :key="card">
-          <v-card id="cards" class="mx-auto" elevation="10" height="350" max-width="500">
-            <v-title class="ml-5 font-weight-bold" id="titles">{{ card.title }}</v-title>
-            <v-img position:center max-width="100%" max-height="100%" id="cardsImg" :src="card.img"></v-img>
+          <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
+            <br>
+            <v-title class="headline ml-7 font-weight-bold" id="titles">{{ card.index }}</v-title>
+            <v-title class="ml-7 font-weight-bold" id="titles">{{ card.title }}</v-title>
+            <v-img max-width="70%" max-height="70%" :src="card.img" id="cardsImg" ></v-img>
             <br>
           </v-card>
         </v-col>
       </v-row>
-
+      <v-spacer></v-spacer>
+      <v-title class="headline ml-7 font-weight-bold text-center">Hello </v-title>
       <v-img src="../assets/tlmv.png"></v-img>
     </v-app>
     <v-spacer></v-spacer>
@@ -27,9 +30,14 @@
 <style>
 #cards {
   border-radius: 20px;
+  margin-top: 20%;
 }
 #bg {
   background-color: black;
+}
+#cardsImg {
+  margin-left: 15%;
+  margin-top: 10%;
 }
 </style>
 
@@ -39,27 +47,33 @@ export default {
   data: () => ({
     cards: [
       {
-        title: "1. Começa por te registar",
+        index: "1.",
+        title: "Começa por te registar",
         img: require("@/assets/1.png")
       },
       {
-        title: "2. Pesquisa",
+        index: "2.",
+        title: "Pesquisa",
         img: require("@/assets/2.png")
       },
       {
-        title: "3. Faz reservas",
+        index: "3.",
+        title: "Faz reservas",
         img: require("@/assets/3.png")
       },
       {
-        title: "4. Avalia as refeições",
+        index: "4.",
+        title: "Avalia as refeições",
         img: require("@/assets/4.png")
       },
       {
-        title: "5. Sobre os restaurantes",
+        index: "5.",
+        title: "Sobre os restaurantes",
         img: require("@/assets/5.png")
       },
       {
-        title: "6. Comenta sobre os restaurantes",
+        index: "6.",
+        title: "Comenta sobre os restaurantes",
         img: require("@/assets/6.png")
       }
     ]
