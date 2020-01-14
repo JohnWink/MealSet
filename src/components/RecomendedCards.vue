@@ -13,11 +13,11 @@
              
             <v-card id="cards" class="mx-auto" elevation="10" height="350" max-width="500">
                <router-link :to="restaurant.routerLink">
-              <v-img id="cardsImg" :src="restaurant.img"></v-img>
+              <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
                 </router-link>
               <br>
               <v-title class="ml-5 font-weight-bold" id="titles">{{ restaurant.name }}</v-title>
-              <p id="ps" class>a {{ restaurant.location }} km de si</p>
+              <p id="ps" class>a {{ restaurant.distance }} km de si</p>
 
               <p style="margin-right: 25px;" >
                 {{ restaurant.evaluation }}
@@ -56,64 +56,14 @@
 export default {
   name: "RecomendedCards",
   data: () => ({
-    restaurants: [
-      {
-        name: "Chimarrão",
-        img: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
-        description: "",
-        location: 4,
-        evaluation: 5,
-        routerLink: "/restaurant",
-        comments: ""
-      },
-      {
-        name: "Cascata",
-        img: require("@/assets/tae-in-kim-jivmv9hE6bM-unsplash.jpg"),
-        description: "",
-        location: 6,
-        evaluation: 3,
-        comments: ""
-      },
-      {
-        name: "Rochedo",
-        img: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
-        description: "",
-        location: 15,
-        evaluation: 2,
-        comments: ""
-      },
-      {
-        name: "Dona Maria",
-        img: require("@/assets/jason-leung-poI7DelFiVA-unsplash.jpg"),
-        description: "",
-        location: 7,
-        evaluation: 4,
-        comments: ""
-      },
-      {
-        name: "Esht",
-        img: require("@/assets/daan-evers-tKN1WXrzQ3s-unsplash.jpg"),
-        description: "",
-        location: 7,
-        evaluation: 4,
-        comments: ""
-      },
-      {
-        name: "Su",
-        img: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
-        description: "",
-        location: 7,
-        evaluation: 4,
-        comments: ""
-      }
-    ],
+   
+    restaurants:[],
     dishes: [
       {
         name: "Polvo",
         img: "",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        restaurant: "",
         evaluation: 4
       },
       {
@@ -121,7 +71,6 @@ export default {
         img: "",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        restaurant: "",
         evaluation: 5
       },
       {
@@ -129,7 +78,6 @@ export default {
         img: "",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        restaurant: "",
         evaluation: 3
       },
       {
@@ -137,10 +85,14 @@ export default {
         img: "",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        restaurant: "",
         evaluation: 2
       }
     ]
-  })
+  }),
+  created(){
+   this.restaurants  = this.$store.getters.getRestaurants
+  },
+   
+
 };
 </script>

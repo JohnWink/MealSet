@@ -26,6 +26,8 @@ export default new Vuex.Store({
   getters: {
 
     checkLogged: state => state.logged,
+
+    getRestaurants: state => state.restaurants,
     
     //get last user Id in array
     getLastUserId: (state)=>{
@@ -44,16 +46,168 @@ export default new Vuex.Store({
    initializeStore(state){
     if(localStorage.getItem('users')){
       state.users = JSON.parse(localStorage.getItem("users"));
+    }else{
+      state.users = [
+        {
+          id:0,
+          username: "admin",
+          password:"AllHailAdmins666",
+          email: "veryImportantAdmin@yourHouse.lol",
+          admin: true
+        }
+      ]
+      localStorage.setItem("users", JSON.stringify(state.users))
+    }
+
+    if(localStorage.getItem("restuarants")){
+      state.restaurants = JSON.parse(localStorage.getItem("restaurants"))
+    }else{
+      state.restaurants = [
+        {
+          id:0,
+          name:"Chimarrão",
+          routerLink:"/restaurant",
+          coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
+          evaluation: 5,
+          description:"Chimarrão é mesmo bão",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 20,
+          location:"Vila do Conde",
+          distance:"5",
+          comments: ""
+        },
+        {
+          id:1,
+          name:"Cascasta",
+          routerLink:"/restaurant",
+          coverImg: require("@/assets/tae-in-kim-jivmv9hE6bM-unsplash.jpg"),
+          evaluation: 6,
+          description:"Cascata é mesmo barata",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 20,
+          location:"Vila do Conde",
+          distance:"8",
+          comments: ""
+        },
+        {
+          id:2,
+          name:"Rochedo",
+          routerLink:"/restaurant",
+          coverImg: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
+          evaluation: 2,
+          description:"Rochedo, sabe bem!",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 20,
+          location:"Vila do Conde",
+          distance:"10",
+          comments: ""
+        },
+        {
+          id:3,
+          name:"Dona Maria",
+          routerLink:"/restaurant",
+          coverImg: require("@/assets/jason-leung-poI7DelFiVA-unsplash.jpg"),
+          evaluation: 2,
+          description:"Dona Maria, comer lá quem não queria!",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 4,
+          location:"Vila do Conde",
+          distance:"20",
+          comments: ""
+        },
+        {
+          id:4,
+          name:"ESHT",
+          routerLink:"/restaurant",
+          coverImg: require("@/assets/daan-evers-tKN1WXrzQ3s-unsplash.jpg"),
+          evaluation: 7,
+          description:"Tão bom como o nome sugere",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 4,
+          location:"Vila do Conde",
+          distance:"30",
+          comments: ""
+        },
+        {
+          id:5,
+          name:"Su",
+          routerLink:"/restaurant",
+          coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
+          evaluation: 4,
+          description:"Sempre Unidos",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 4,
+          location:"Vila do Conde",
+          distance:"40",
+          comments: ""
+        }
+
+      ]
+
+      localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+
+      
+    }
+
+    if(localStorage.getItem("dishes")){
+      state.dishes = JSON.parse(localStorage.getItem("dishes"))
+    }else{
+      state.dishes = [{
+        id:0,
+        name: "Polvo",
+        img: "",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        restaurantId: 0,
+        evaluation: 4
+      },
+      {
+        id:1,
+        name: "Bacalhau",
+        img: "",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          restaurantId: 0,
+        evaluation: 5
+      },
+      {
+        id:2,
+        name: "Legumes Salteados",
+        img: "",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          restaurantId: 2,
+        evaluation: 3
+      },
+      {
+        id:3,
+        name: "Novilho",
+        img: "",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        restaurantId: 2,
+        evaluation: 2
+      }
+      ]
+      localStorage.setItem("dishes",JSON.stringify(state.dishes))
     }
     
    },
     
     ADD_USER(state, payload) {
 
+      /*
       if(localStorage.getItem('users')){
         state.users = JSON.parse(localStorage.getItem("users"));
       }
-    
+    */
+
     //check se email já está registado
     if (!state.users.some(user => user.email === payload.email)) {
       if(!state.users.some(user =>user.username === payload.username )){
@@ -92,9 +246,6 @@ export default new Vuex.Store({
   },
  
   LOGIN(state,payload){
-    if(localStorage.getItem('users')){
-      state.users = JSON.parse(localStorage.getItem("users"));
-    }
 
     for (const user of state.users) {
       if (
