@@ -202,11 +202,7 @@ export default new Vuex.Store({
     
     ADD_USER(state, payload) {
 
-      /*
-      if(localStorage.getItem('users')){
-        state.users = JSON.parse(localStorage.getItem("users"));
-      }
-    */
+    
 
     //check se email já está registado
     if (!state.users.some(user => user.email === payload.email)) {
