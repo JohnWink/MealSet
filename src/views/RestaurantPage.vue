@@ -101,7 +101,7 @@
 
     </v-container>
 
-
+<!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
     <v-container > 
       <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
       <v-row class="pl-12 ml-12 py-2" justify="space-between" align="center" :style="checker">
@@ -121,6 +121,10 @@
         <commentReview />    
            
       </v-row>
+
+      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" :style="checker">
+        <commentAdd />
+      </v-row>
       
 
 
@@ -128,7 +132,7 @@
 
 
 
-    <!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
+    
       
 
 
@@ -144,12 +148,15 @@
 </style>
 
 <script>
+//Import componets of the page
 import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
 import registration from "@/components/registration.vue";
 import login from "@/components/login.vue";
 import RestaurantCards from "@/components/restaurantPlateCard.vue"
 import commentReview from "@/components/commentReview.vue"
+import commentAdd from "@/components/commentADD.vue"
+
 
 export default {
   name: "restaurantPage",
@@ -159,7 +166,8 @@ export default {
     registration,
     login,
     RestaurantCards,
-    commentReview
+    commentReview,
+    commentAdd
   },
   data: () => ({
     checker:"border: solid red"
