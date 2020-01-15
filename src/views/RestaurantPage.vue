@@ -9,17 +9,8 @@
           <v-col md="1">
             <navBar />
           </v-col>
-          
-
-          <v-col md="1" offset-sm="6">
-            <registration />
-          </v-col>
-          <!--Login Button to pop up modal   !-->
-          <v-col md="2">
-            <login />
-          </v-col>
           <!--Search Text Field   !-->
-          <v-col md="2">
+          <v-col md="2" offset-sm="7">
             <v-text-field
               prepend-inner-icon="fas fa-search"
               height="2px"
@@ -29,14 +20,18 @@
               dense
             ></v-text-field>
           </v-col>
+           
+          <v-col md="2">
+             <logout/>
+          </v-col>
         </v-row>
         <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
         <v-row class="pl-12 ml-12">
 
-          <v-col class="text-left pl-4">
+          <v-col class="text-left mx-4">
             <!--add a mustache data to identify the size-->
-            <p id="header-text" class="display-4 font-weight-bold white--text" >Chimarão</p>
-            <p id="header-text" class="headline font-weight-bold white--text" >Norteshopping, Porto, Portugal</p>
+            <p id="header-text" class="font-weight-bold white--text" :style="fontsize">Chimarão</p>
+            <p id="header-text" class="font-weight-bold white--text" style="font-size:135%">Norteshopping, Porto, Portugal</p>
 
 
             <!--Make a conponent of this button-->
@@ -84,10 +79,10 @@
     <!-- make sure that from md to large it shows 3 cards; lower will only show a card-->
     <v-container >      
       <v-row class="pl-9 ml-9 py-2" justify="space-between" align="center" :style="checker">
-        <v-col cols="3">
+        <v-col cols="12" sm="3">
           <p class="headline font-weight-bold ">Pratos Recomendados</p><br>
         </v-col>
-        <c-col cols="3">
+        <c-col cols="12" sm="4">
           <v-btn large rounded color="#f7c23e" dark v-on="on">Mostrar Menu</v-btn>
         </c-col>    
       </v-row>
@@ -151,11 +146,10 @@
 //Import componets of the page
 import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
-import registration from "@/components/registration.vue";
-import login from "@/components/login.vue";
 import RestaurantCards from "@/components/restaurantPlateCard.vue"
 import commentReview from "@/components/commentReview.vue"
 import commentAdd from "@/components/commentADD.vue"
+import Logout from "@/components/logout.vue";
 
 
 export default {
@@ -163,14 +157,14 @@ export default {
   components: {
     NavBar,
     footerVue,
-    registration,
-    login,
+    Logout,
     RestaurantCards,
     commentReview,
     commentAdd
   },
   data: () => ({
-    checker:"border: solid red"
+    checker:"border: solid red",
+    fontsize: " "
     
   }),
   methods:{
@@ -182,7 +176,24 @@ export default {
       };
       var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
  
+    },
+    //method to ajust the css font size for xs devices, handset
+    mobileAjust(){
+      let cssLine = "font-size:400%;"
+      if(window.innerWidth < 600){
+        
+        cssLine += "font-size:280%;"
+        
+      }
+      this.fontsize = cssLine;
     }
+  },
+  created() {
+    window.addEventListener('resize', this.mobileAjust)
+    this.mobileAjust();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.mobileAjust)
   }
    
 };
