@@ -1,62 +1,33 @@
 <template>  
   <!--RECOMENDAÇÃO DE PRATOS-->
-  <v-carousel hide-delimiters height="300px">
+  <v-carousel hide-delimiters :height="compHeight">
     <!--needs to made a method first to determan the best 5 dishes(in this case, sort by evaluation from the local storage)-->
     
       
-        <v-carousel-item v-for="dish in dishes" :key="dish" >   
+        <v-carousel-item v-for="dish in dishes" :key="dish" >  
 
-               
-
-          <!--<v-card id="cards" class="mx-auto" elevation="8" height="270" max-width="300">
-            
-            <v-row :style="checker">
-              <v-img id="cardsImg" :src="dish.img" ></v-img>
-            </v-row>
-            
-            <v-row justify="center">
-              <v-title class="headline">{{ dish.name }}</v-title>
-            </v-row>
-            
-            <p> {{ dish.description }}</p>
-          </v-card>-->
-
-          <v-card id="cards" class="mx-auto indigo" elevation="8" height="300px" max-width="600px">
-              
-              <v-container>
+          <v-card id="cards" class="mx-auto indigo" elevation="8"  max-width="600px">
 
                 <v-row class="mx-2" :style="checker">
-                  <v-col>
+                  <v-col cols="12" sm="7">
                     <v-img contain=true max-width="300px" :src="dish.img" ></v-img>
-                  </v-col>
-                  
-                  <v-col>
-                    <br>
-                    <v-title class="title font-weight-bold" >{{ dish.name }}</v-title>
-                    <p  >{{ dish.description }} </p>
+                  </v-col>                                 
 
+                  <v-col cols="12" sm="5">
+                    <v-title class="title font-weight-bold" >{{ dish.name }}</v-title>
+                    <p >{{ dish.description }} </p>
                     <p style="margin-right: 25px;" class="font-weight-bold" >
                       {{ dish.evaluation }}
                       <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
                     </p>
-                  </v-col>
-
-
-
+                  </v-col> 
+                  
                 </v-row>
                 
-              </v-container>
+              
             </v-card>
 
-          
-
-
-
-
         </v-carousel-item>  
-
-
-      
     
   </v-carousel>
     
@@ -67,10 +38,7 @@
   border-radius: 20px;
 }
 
-#cardsImg {
-  max-width: 400px;
-  max-height: 200px;
-}
+
 
 
 </style>
@@ -117,7 +85,29 @@ export default {
         evaluation: 5
       },
     ],
-    checker: "border: solid red;"
-  })
+    checker: "border: solid red;",
+    compHeight :""
+  }),
+  methods:{    
+    //method to ajust the css font size for xs devices, handset
+    mobileAjust(){
+      let heightSize = "310px"
+      if(window.innerWidth < 770){
+        
+        heightSize = "470px"
+        
+      }
+      this.compHeight = heightSize;
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.mobileAjust)
+    this.mobileAjust();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.mobileAjust)
+  }
+   
 };
+
 </script>

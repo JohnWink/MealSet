@@ -48,23 +48,26 @@
     <v-container>
       <v-row class="pl-9 ml-9 py-4" justify="center">
         <!--INformation collum-->
-        <v-col cols="12" md="6" :style=checker class="text-left">
+        <v-col cols="12" md="6"  class="text-left">
+          <v-card id="cards" elevation="5" class="pa-2">
+            <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
+            <br><br>
+            <p class="headline font-weight-bold ">Informação</p><br>
 
-          <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
-          <br><br>
-          <p class="headline font-weight-bold ">Informação</p><br>
+            <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
+            <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
+            <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
+            <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>
+          </v-card>
 
-          <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
-          <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
-          <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
-          <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>  
+            
 
         </v-col>
 
 
 
         <!--Google Maps API box-->        
-        <v-col cols="12" md="6" :style=checker>
+        <v-col cols="12" md="6" >
           <p class="headline font-weight-bold ">Localização do restaurante</p><br>
           <!--temp place holder for the actually thing-->
           <div id="googleMap" style="width:100%;min-height:400px;border: solid red"></div>
@@ -78,18 +81,17 @@
     <!-- ++++++++++++++++++++++++++++++ row card MENU +++++++++++++++++++++++++++++++++++++++++++++++-->
     <!-- make sure that from md to large it shows 3 cards; lower will only show a card-->
     <v-container >      
-      <v-row class="pl-9 ml-9 py-2" justify="space-between" align="center" :style="checker">
-        <v-col cols="12" sm="3">
-          <p class="headline font-weight-bold ">Pratos Recomendados</p><br>
+      <v-row class="pl-9 ml-9 py-2" justify="space-between" align="center" >
+        <v-col cols="12" sm="5">
+          <p class=" headline font-weight-bold " >Pratos Recomendados</p><br>
         </v-col>
-        <c-col cols="12" sm="4">
+        <v-col cols="12" sm="3">
           <v-btn large rounded color="#f7c23e" dark v-on="on">Mostrar Menu</v-btn>
-        </c-col>    
+        </v-col>    
       </v-row>
 
-      <v-row class="pl-9 ml-9 py-6" justify="center" :style="checker">
-        <v-col cols="10" :style="checker">
-          
+      <v-row class="pl-9 ml-9 py-6" justify="center" >
+        <v-col cols="10" >          
           <RestaurantCards />      
         </v-col>    
       </v-row>
@@ -99,11 +101,11 @@
 <!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
     <v-container > 
       <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
-      <v-row class="pl-12 ml-12 py-2" justify="space-between" align="center" :style="checker">
-        <v-col cols="4" class="headline" :style="checker">
-          Avaliações do restaurante
+      <v-row class="pl-12 ml-12 py-2" justify="space-between" align="center" >
+        <v-col cols="6" class="title" >
+          <p>Avaliações do restaurante</p>
         </v-col>
-        <v-col cols="3" class="font-weight-bold" :style="checker">
+        <v-col cols="3" class=" title font-weight-bold" >
           <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
           3/5
         </v-col>  
@@ -111,13 +113,13 @@
       </v-row>
       <!-- comment evaluation component -->
 
-      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" :style="checker">       
+      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" >       
           
         <commentReview />    
            
       </v-row>
 
-      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" :style="checker">
+      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" >
         <commentAdd />
       </v-row>
       
@@ -139,6 +141,9 @@
 <style>
 #header-text{
   text-shadow: 2px 2px 3px black ;
+}
+#cards {
+  border-radius: 20px;
 }
 </style>
 
