@@ -2,24 +2,22 @@
   <div id="guestPageContent">
     <v-app>
       <br>
-      <br>
       <!--CONTENT GUEST PAGE-->
-      <v-spacer></v-spacer>
+
       <!--CARDS-->
+      <v-title class="headline font-weight-bold text-center">Algumas funcionalidades:</v-title>
       <v-row class="mb-6">
         <v-col cols="6" md="4" v-for="card in cards" :key="card">
           <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
             <br>
-            <v-title class="headline ml-7 font-weight-bold" id="titles">{{ card.index }}</v-title>
-            <v-title class="ml-7 font-weight-bold" id="titles">{{ card.title }}</v-title>
-            <v-img max-width="70%" max-height="70%" :src="card.img" id="cardsImg" ></v-img>
+            <v-title class="headline ml-7 font-weight-bold">{{ card.index }}</v-title>
+            <v-title class="ml-7 font-weight-bold">{{ card.title }}</v-title>
+            <v-img max-width="70%" max-height="70%" :src="card.img" id="cardsImg"></v-img>
             <br>
           </v-card>
         </v-col>
       </v-row>
-      <v-spacer></v-spacer>
-      <v-title class="headline ml-7 font-weight-bold text-center">Hello </v-title>
-      <v-img src="../assets/tlmv.png"></v-img>
+      <v-img id="mobileAd" src="../assets/tlmv.png"></v-img>
     </v-app>
     <v-spacer></v-spacer>
 
@@ -30,14 +28,18 @@
 <style>
 #cards {
   border-radius: 20px;
-  margin-top: 20%;
+  margin-top: 10%;
 }
 #bg {
   background-color: black;
 }
 #cardsImg {
   margin-left: 15%;
-  margin-top: 10%;
+  margin-top: 8%;
+}
+#mobileAd {
+  margin-top: 8%;
+  margin-bottom: 8%;
 }
 </style>
 
