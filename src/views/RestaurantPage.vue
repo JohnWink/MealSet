@@ -86,7 +86,7 @@
           <p class=" headline font-weight-bold " >Pratos Recomendados</p><br>
         </v-col>
         <v-col cols="12" sm="3">
-          <v-btn large rounded color="#f7c23e" dark v-on="on">Mostrar Menu</v-btn>
+          <restaurantMenu />
         </v-col>    
       </v-row>
 
@@ -155,6 +155,7 @@ import RestaurantCards from "@/components/restaurantPlateCard.vue"
 import commentReview from "@/components/commentReview.vue"
 import commentAdd from "@/components/commentADD.vue"
 import Logout from "@/components/logout.vue";
+import restaurantMenu from"@/components/RestaurantMenu.vue"
 
 
 export default {
@@ -165,7 +166,8 @@ export default {
     Logout,
     RestaurantCards,
     commentReview,
-    commentAdd
+    commentAdd,
+    restaurantMenu
   },
   data: () => ({
     checker:"border: solid red",
