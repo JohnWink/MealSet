@@ -5,7 +5,7 @@
     </template>
 
     <!--CARd of the menus v-for cycle-->
-    <v-container style="background-color: white">
+    <v-container class="white darken-2">
         <v-row justify="space-around" align="center">
             <v-col cols="12" sm="4" v-for="dish in menu" :key="dish">
               <v-card  elevation="4" class="ma-auto">
