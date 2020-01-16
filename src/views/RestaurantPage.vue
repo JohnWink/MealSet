@@ -107,7 +107,7 @@
         </v-col>
         <v-col cols="3" class=" title font-weight-bold" >
           <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
-          3/5
+          3/5 <!-- Will need to turn this in to a {{Totalrate}}-->
         </v-col>  
 
       </v-row>
@@ -126,10 +126,6 @@
 
 
     </v-container>
-
-
-
-    
       
 
 
@@ -171,7 +167,8 @@ export default {
   },
   data: () => ({
     checker:"border: solid red",
-    fontsize: " "
+    fontsize: " ",
+    totalRate: 0
     
   }),
   methods:{
@@ -193,6 +190,17 @@ export default {
         
       }
       this.fontsize = cssLine;
+    },
+
+    //method to calculate the total rate from all the comments
+    scoreCalc(){
+      let score = 0;
+
+      // formula will be: the sum of all the scores from the comment section of the restaurante / the number of comments , then round it to a 1 digit number.
+      //if the round goes beyond 6, then it will turn in to 5 
+
+
+
     }
   },
   created() {

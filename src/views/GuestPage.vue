@@ -1,13 +1,13 @@
 <template>
   <div class="guestPage">
     <v-row align="center" justify="center">
-      <v-img
+      <v-img max-height="100%" max-width="100%"
         src="../assets/landingpage.png" 
       >
         <v-row align="start" justify="center">
           <!-- ++++++++++++++++++++++++++++++++++Registration dialog box+++++++++++++++++++++++++++++++-->
 
-          <v-col md="1" offset-sm="6">
+          <v-col md="1" offset-sm="9">
             <registration/>
           </v-col>
           <!--Login Button to pop up modal   !-->
@@ -22,7 +22,6 @@
               id="header-text1"
               class="display-4 font-weight-bold white--text text-center"
             >Bem vindo ao MealSet!</p>
-            <br>
             <p
               id="header-text2" style="margin-top: 15%"
               class="headline font-weight-bold black--text text-center"
