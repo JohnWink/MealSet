@@ -2,7 +2,7 @@
 <template>
   <div class="landingPage">
     <v-row align="center" justify="center">
-      <v-img src="../assets/landingPageImg.jpg" class="grey lighten-3" gradient="to top right, rgba(100,115,201,.10), rgba(25,32,72,.3)" >
+      <v-img src="../assets/landingpage.png" >
         <v-row align="start" justify="center">
           <!--Registration Button to pop up modal   !-->
           <v-col md="1">
