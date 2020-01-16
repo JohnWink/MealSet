@@ -53,6 +53,7 @@ methods: {
         });
 
         if(this.$store.getters.checkLogged === true){
+          // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher. 
           this.$router.push({path:'/landingPage'})
         }
          

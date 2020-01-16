@@ -10,12 +10,27 @@
       class="elevation-1"
     >
     </v-data-table>
-    <p>{{selected}}</p>
+     <v-row align="start" justify="center">
+ 
+          <v-col sm="3" offset-sm="5">
+                <addRestaurant/>
+          </v-col>
+       
+          <v-col sm="3">
+            <v-btn large rounded color="#FF0000" dark>Remover Restaurante Selecionado</v-btn>
+          </v-col>
+     </v-row>
 </div>
 </template>
 
 <script>
+
+ import AddRestaurant from "@/components/AddRestaurant.vue";
+
 export default {
+components:{
+  AddRestaurant
+},
 data () {
     return {
       singleSelect: false,

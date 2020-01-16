@@ -11,7 +11,7 @@
         <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant" >
           <a onclick="restaurantPage()">
              
-            <v-card id="cards" class="mx-auto" elevation="10" height="350" max-width="500">
+            <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
                <router-link :to="restaurant.routerLink">
               <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
                 </router-link>
@@ -58,6 +58,7 @@ export default {
   data: () => ({
    
     restaurants:[],
+    
     dishes: [
       {
         name: "Polvo",
@@ -89,7 +90,7 @@ export default {
       }
     ]
   }),
-  created(){
+  beforeMount(){
    this.restaurants  = this.$store.getters.getRestaurants
   },
    

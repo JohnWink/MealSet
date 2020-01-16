@@ -37,6 +37,14 @@ export default new Vuex.Store({
         return 0;
       }
     },
+
+    getLastRestaurantId:(state)=>{
+      if(state.restaurants.length){
+        return 1 + state.restaurants[state.restaurants.length-1].id;
+      }else{
+        return 0;
+      }
+    },
    
     userInfo: state => state.users,
   },
@@ -59,7 +67,7 @@ export default new Vuex.Store({
       localStorage.setItem("users", JSON.stringify(state.users))
     }
 
-    if(localStorage.getItem("restuarants")){
+    if(localStorage.getItem("restaurants")){
       state.restaurants = JSON.parse(localStorage.getItem("restaurants"))
     }else{
       state.restaurants = [
@@ -198,6 +206,21 @@ export default new Vuex.Store({
       localStorage.setItem("dishes",JSON.stringify(state.dishes))
     }
     
+   },
+
+   ADD_RESTAURANT(state,payload){
+     if(!state.restaurants.some(restaurant => restaurant.name === payload.name)){
+      state.restaurants.push({
+        id: payload.id,
+        name:payload.name,
+        description:payload.description,
+        outDoor: payload.outDoor,
+        parking: payload.parking,
+        location: payload.location,
+        coverImg: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
+      });
+      localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+     }
    },
     
     ADD_USER(state, payload) {
