@@ -20,6 +20,8 @@
             <v-btn large rounded color="#FF0000" dark>Remover Restaurante Selecionado</v-btn>
           </v-col>
      </v-row>
+      <p v-if="this.selected.length!== 0">{{this.selected[0].id}}</p> 
+   
 </div>
 </template>
 

@@ -28,7 +28,7 @@
       </v-img>
     </v-row>
 
-    <RecomendedCards />
+    <RecomendedCards/>
     <footerVue/>
   </div>
 </template>

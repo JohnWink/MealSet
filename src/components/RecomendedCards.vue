@@ -5,10 +5,10 @@
       <br>
       <br>
       <!--RECOMENDAÇÃO DE RESTAURANTES-->
-      <v-title id="titles" class="text-center font-weight-bold">Restaurantes recomendados</v-title>
+    
       <br>
       <v-row class="mb-6">
-        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant" >
+        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant.id" >
           <a onclick="restaurantPage()">
              
             <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
@@ -16,7 +16,7 @@
               <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
                 </router-link>
               <br>
-              <v-title class="ml-5 font-weight-bold" id="titles">{{ restaurant.name }}</v-title>
+             
               <p id="ps" class>a {{ restaurant.distance }} km de si</p>
 
               <p style="margin-right: 25px;" >
@@ -55,6 +55,7 @@
 <script>
 export default {
   name: "RecomendedCards",
+  //props:["restaurant"]
   data: () => ({
    
     restaurants:[],
