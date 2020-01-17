@@ -168,6 +168,7 @@ export default {
   data: () => ({
     checker:"border: solid indigo",
     fontsize: " ",
+    restaurants: [],
     
     
   }),
@@ -197,6 +198,8 @@ export default {
   created() {
     window.addEventListener('resize', this.mobileAjust)
     this.mobileAjust();
+    this.restaurants  = this.$store.getters.getRestaurants
+
   },
   destroyed() {
     window.removeEventListener('resize', this.mobileAjust)
