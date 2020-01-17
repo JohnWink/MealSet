@@ -98,24 +98,63 @@
           <p class=" headline font-weight-bold " >Pratos Recomendados</p><br>
         </v-col>
         <v-col cols="12" sm="3">
-          <restaurantMenu />
-        </v-col>    
-      </v-row>
+    <!-----------Menu Modal button------------------>
+          <v-dialog v-model="dialog"  max-width="900px">
+            <template v-slot:activator="{ on }">
+              <v-btn large rounded color="#f7c23e" dark v-on="on">Mostar Menu </v-btn>
+            </template>
 
-      <v-row class="pl-9 ml-9 py-6" justify="center" >
-        <v-col cols="10" >          
-          <RestaurantCards />      
-        </v-col>    
-      </v-row>
+            <!--CARd of the menus v-for cycle-->
+            <v-container class="white darken-2">
+                <v-row align="center">
+                    <v-col cols="12" class="headline">Menu</v-col>
+                    <v-col cols="12"  v-for="dish in menu" :key="dish">
+                      
+                      <restaurantMenu v-bind:dish="dish" />
+
+                    </v-col>
+                </v-row>        
+        
+            </v-container>
+    
+            </v-dialog>
+
+
+
+          </v-col>    
+        </v-row>
+
+        <v-row class="pl-9 ml-9 py-6" justify="center" >
+          <v-col cols="10" >          
+            <RestaurantCards />      
+          </v-col>    
+        </v-row>
 
     </v-container>
 
 <!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
     <v-container >       
       
-      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" >       
+      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" > 
+
+        <v-container>
+          <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
+          <v-row  justify="space-between" align="center" >
+              <v-col cols="7" class="title" >
+                  <p>Avaliações do restaurante</p>
+              </v-col>
+              <v-col cols="2" sm="1" class=" title font-weight-bold" >
+                  <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+                  {{totalrate()}}/5 <!-- Will need to turn this in to a {{Totalrate}}-->
+              </v-col>  
+
+          </v-row>
+
+          <v-row  v-for="comment in comments" :key="comment"  >      
           
-        <commentReview />    
+            <commentReview  v-bind:comment="comment"/>  
+          </v-row> 
+        </v-container> 
            
       </v-row>
 
@@ -171,6 +210,66 @@ export default {
     checker:"border: solid indigo",
     fontsize: " ",
     restaurants: [],
+    return:{
+          dialog: false
+      },
+
+      menu:[
+          {
+          name: "Polvo",
+          img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 4
+        },
+        {
+          name: "Bacalhau",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 5
+        },
+        {
+          name: "Legumes Salteados",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 3
+        },
+        {
+          name: "Novilho",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 2
+        },
+        {
+          name: "rissoto",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 5
+        },
+      ],
+
+      comments:[
+        {
+            name: "username1sd",
+            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date:"3/7/2020",
+            evaluation: 4
+        },
+        {
+            name: "username2",
+            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date:"3/7/2020",
+            evaluation: 3
+        },
+        {
+            name: "username3",
+            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date:"3/7/2020",
+            evaluation: 1
+        },
+      ],
     
     
   }),
@@ -194,6 +293,22 @@ export default {
       }
       this.fontsize = cssLine;
     },
+    totalrate: function(){
+            let totalscore = 0
+            for (let i =0;i<this.comments.length;i++){
+                totalscore += this.comments[i].evaluation
+            }
+
+            totalscore = totalscore / this.comments.length;
+            totalscore = Math.round(totalscore);
+
+            if(totalscore >5){
+                totalscore = 5;
+            }
+
+            return totalscore
+
+        }
 
     
   },
