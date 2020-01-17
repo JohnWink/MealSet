@@ -43,6 +43,7 @@ export default {
   name: "commentAdd",
   data: () => ({       
     checker: "border: solid red;",
+    //default to show emphty
     newRate:[{
         newComment: "",
         rating: "3",
