@@ -39,7 +39,7 @@
 
 
               <!--Make a conponent of this button-->
-                <v-btn large rounded color="#f7c23e" dark v-on="on">Fazer Reserva</v-btn>
+                <reservation/>
             </v-col>
             
 
@@ -152,6 +152,7 @@ import commentReview from "@/components/commentReview.vue"
 import commentAdd from "@/components/commentADD.vue"
 import Logout from "@/components/logout.vue";
 import restaurantMenu from"@/components/RestaurantMenu.vue"
+import reservation from "@/components/Reservation.vue"
 
 
 export default {
@@ -163,7 +164,8 @@ export default {
     RestaurantCards,
     commentReview,
     commentAdd,
-    restaurantMenu
+    restaurantMenu,
+    reservation
   },
   data: () => ({
     checker:"border: solid indigo",

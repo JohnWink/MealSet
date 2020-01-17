@@ -1,20 +1,18 @@
 <template>
    <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on }">
-       <v-btn large rounded color="#f7c23e" dark v-on="on">Fazer Reserva</v-btn>
+          <v-btn large rounded color="#f7c23e" dark v-on="on">Fazer Reserva</v-btn>
     </template>
     <v-card>
       <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
         <v-btn color="blue darken-1" text @click="dialog = false">X</v-btn>
 
-        <v-text-field v-model="name" :counter="20" :rules="nameRules" label="Nome do Restaurante" required></v-text-field>
+        <v-text-field v-model="name" :counter="20" :rules="nameRules" label="nome" required></v-text-field>
 
-        <v-text-field v-model="description" :counter="500" :rules="descriptionRules" label="Descrição" required></v-text-field>
+        <v-text-field v-model="peopleNumber" :counter="500" :rules="descriptionRules" label="Número de convidados" required></v-text-field>
 
-        <v-select v-model="outDoorSelection" :items="outDoorCheck" :rules="outDoorCheckRules" label="Tem esplanada?" ></v-select>
+        <v-date-picker v-model="date1"></v-date-picker>
 
-        <v-select v-model="parkingSelection" :items="parkingCheck" :rules="parkingCheckRules" label="Tem parque de estacionamento?"></v-select>
-   
         <v-file-input
           label="File input"
           filled
@@ -36,8 +34,23 @@
 
 <script>
 export default {
-name:"reservation"
+name:"reservation",
+
+data:() => ({
+  date1: '',
+
+}),
+/*
+computed(){
+  this.date1 = new Date().toISOString().substr(0, 10)
 }
+*/
+}
+
+
+
+
+
 </script>
 
 <style>
