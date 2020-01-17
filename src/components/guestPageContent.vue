@@ -5,9 +5,9 @@
       <!--CONTENT GUEST PAGE-->
 
       <!--CARDS-->
-      <v-title class="headline font-weight-bold text-center">Algumas funcionalidades:</v-title>
+     <!-- <v-title class="headline font-weight-bold text-center">Algumas funcionalidades:</v-title> -->
       <v-row class="mb-6">
-        <v-col cols="6" md="4" v-for="card in cards" :key="card">
+        <v-col cols="6" md="4" v-for="card in cards" :key="card.id">
           <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
             <br>
             <v-title class="headline ml-7 font-weight-bold">{{ card.index }}</v-title>

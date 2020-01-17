@@ -39,7 +39,11 @@
        </v-img>
     </v-row>
 
+<<<<<<< HEAD
     <RestaurantCards />
+=======
+    <RecomendedCards/>
+>>>>>>> 1ae4a336b02187cc44996c1f09896a1fff7f29e4
     <footerVue/>
   </div>
 </template>

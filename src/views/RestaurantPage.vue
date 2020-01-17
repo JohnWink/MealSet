@@ -4,77 +4,89 @@
       <v-img src="../assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg" class="grey lighten-3" max-height="380px" gradient="to top right, rgba(100,115,201,.19), rgba(25,32,72,.5)">
         
         <!-- ++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
-        <v-row align="start" justify="center">
-          
-          <v-col md="1">
-            <navBar />
-          </v-col>
-          <!--Search Text Field   !-->
-          <v-col md="2" offset-sm="7">
-            <v-text-field
-              prepend-inner-icon="fas fa-search"
-              height="2px"
-              background-color="#FFFFFF"
-              filled
-              rounded
-              dense
-            ></v-text-field>
-          </v-col>
-           
-          <v-col md="2">
-             <logout/>
-          </v-col>
-        </v-row>
+        <v-col cols="12">
+          <v-row align="start" justify="center">
+            
+            <v-col md="1">
+              <navBar />
+            </v-col>
+            <!--Search Text Field   !-->
+            <v-col md="2" offset-sm="7">
+              <v-text-field
+                prepend-inner-icon="fas fa-search"
+                height="2px"
+                background-color="#FFFFFF"
+                filled
+                rounded
+                dense
+              ></v-text-field>
+            </v-col>
+            
+            <v-col md="2">
+              <logout/>
+            </v-col>
+          </v-row>
+        </v-col>
+        
         <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
-        <v-row class="pl-12 ml-12">
+        <v-col cols="12">
+          <v-row class="pl-12 ml-12" justify="center" >
 
-          <v-col class="text-left mx-4">
-            <!--add a mustache data to identify the size-->
-            <p id="header-text" class="font-weight-bold white--text" :style="fontsize">Chimarão</p>
-            <p id="header-text" class="font-weight-bold white--text" style="font-size:135%">Norteshopping, Porto, Portugal</p>
+            <v-col class="text-left mx-4">
+              <!--add a mustache data to identify the size-->
+              <p id="header-text" class="font-weight-bold white--text" :style="fontsize">Chimarão</p>
+              <p id="header-text" class="font-weight-bold white--text" style="font-size:135%">Norteshopping, Porto, Portugal</p>
 
 
-            <!--Make a conponent of this button-->
-             <v-btn large rounded color="#f7c23e" dark v-on="on">Fazer Reserva</v-btn>
-          </v-col>
-          
+              <!--Make a conponent of this button-->
+                <v-btn large rounded color="#f7c23e" dark v-on="on">Fazer Reserva</v-btn>
+            </v-col>
+            
 
-        </v-row>
+          </v-row>
+        </v-col>
+        
        </v-img>
 
     </v-row>
 
     <!-- ++++++++++++++++++++++++   RESTAURANT PAGE INFORMATION AND MAP   ++++++++++++++++++++++++++++-->
     <v-container>
-      <v-row class="pl-9 ml-9 py-4" justify="center">
+      <div class="pl-9 ml-9 py-4" >
         <!--INformation collum-->
-        <v-col cols="12" md="6"  class="text-left">
-          <v-card id="cards" elevation="5" class="pa-2">
-            <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
-            <br><br>
-            <p class="headline font-weight-bold ">Informação</p><br>
+        <v-card id="cards" elevation="5" class="pa-2">
+          <v-row class="pa-4" justify="space-between">
 
-            <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
-            <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
-            <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
-            <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>
-          </v-card>
+            <v-col cols="12" md="6"  class="text-left">
+            
+              <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
+              <br><br>
+              <p class="headline font-weight-bold ">Informação</p><br>
 
+              <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
+              <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
+              <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
+              <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>
             
 
-        </v-col>
+              
+
+            </v-col>
 
 
 
-        <!--Google Maps API box-->        
-        <v-col cols="12" md="6" >
-          <p class="headline font-weight-bold ">Localização do restaurante</p><br>
-          <!--temp place holder for the actually thing-->
-          <div id="googleMap" style="width:100%;min-height:400px;border: solid red"></div>
+            <!--Google Maps API box-->        
+            <v-col cols="12" md="6" >
+              <p class="headline font-weight-bold ">Localização do restaurante</p><br>
+              <!--temp place holder for the actually thing-->
+              <div id="googleMap" style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
 
-        </v-col>
+            </v-col>
+          </v-row>
+          
+        </v-card>
 
-      </v-row>
+      </div>
     </v-container>
 
 
@@ -99,20 +111,8 @@
     </v-container>
 
 <!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
-    <v-container > 
-      <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
-      <v-row class="pl-12 ml-12 py-2" justify="space-between" align="center" >
-        <v-col cols="6" class="title" >
-          <p>Avaliações do restaurante</p>
-        </v-col>
-        <v-col cols="3" class=" title font-weight-bold" >
-          <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
-          3/5 <!-- Will need to turn this in to a {{Totalrate}}-->
-        </v-col>  
-
-      </v-row>
-      <!-- comment evaluation component -->
-
+    <v-container >       
+      
       <v-row class="pl-12 ml-12 py-3" justify="start" align="center" >       
           
         <commentReview />    
@@ -166,9 +166,9 @@ export default {
     restaurantMenu
   },
   data: () => ({
-    checker:"border: solid red",
+    checker:"border: solid indigo",
     fontsize: " ",
-    totalRate: 0
+    
     
   }),
   methods:{
@@ -192,16 +192,7 @@ export default {
       this.fontsize = cssLine;
     },
 
-    //method to calculate the total rate from all the comments
-    scoreCalc(){
-      let score = 0;
-
-      // formula will be: the sum of all the scores from the comment section of the restaurante / the number of comments , then round it to a 1 digit number.
-      //if the round goes beyond 6, then it will turn in to 5 
-
-
-
-    }
+    
   },
   created() {
     window.addEventListener('resize', this.mobileAjust)

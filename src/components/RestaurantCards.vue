@@ -5,13 +5,29 @@
       <br>
       <br>
       <!--RECOMENDAÇÃO DE RESTAURANTES-->
+<<<<<<< HEAD:src/components/RestaurantCards.vue
 
       <br>
       <v-row class="mb-6 mx-2">
         <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant">
           <router-link :to="restaurant.routerLink">
+=======
+    
+      <br>
+      <v-row class="mb-6">
+        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant.id" >
+          <a onclick="restaurantPage()">
+             
+>>>>>>> 1ae4a336b02187cc44996c1f09896a1fff7f29e4:src/components/RecomendedCards.vue
             <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
               <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
+<<<<<<< HEAD:src/components/RestaurantCards.vue
+=======
+                </router-link>
+              <br>
+             
+              <p id="ps" class>a {{ restaurant.distance }} km de si</p>
+>>>>>>> 1ae4a336b02187cc44996c1f09896a1fff7f29e4:src/components/RecomendedCards.vue
 
               <v-row class="mb-6 mx-2">
                 <v-col class="text-left">
@@ -72,7 +88,12 @@
 
 <script>
 export default {
+<<<<<<< HEAD:src/components/RestaurantCards.vue
   name: "RestaurantCards",
+=======
+  name: "RecomendedCards",
+  //props:["restaurant"]
+>>>>>>> 1ae4a336b02187cc44996c1f09896a1fff7f29e4:src/components/RecomendedCards.vue
   data: () => ({
     restaurants: [],
 

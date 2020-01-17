@@ -13,6 +13,8 @@ export default new Vuex.Store({
     dishes:[],
 
     loggedUser:[],
+
+    reservas:[],
   
      //variável para a função login
   existUser: false,
@@ -24,6 +26,8 @@ export default new Vuex.Store({
  
 
   getters: {
+
+    
 
     checkLogged: state => state.logged,
 
@@ -217,7 +221,7 @@ export default new Vuex.Store({
         outDoor: payload.outDoor,
         parking: payload.parking,
         location: payload.location,
-        coverImg: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
+        coverImg: '../assets/lily-banse--YHSwy6uqvk-unsplash.jpg',
       });
       localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
      }

@@ -1,6 +1,18 @@
 <template>    
     
     <v-container>
+        <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
+        <v-row  justify="space-between" align="center" >
+            <v-col cols="7" class="title" >
+                <p>Avaliações do restaurante</p>
+            </v-col>
+            <v-col cols="2" sm="1" class=" title font-weight-bold" >
+                <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+                {{totalrate()}}/5 <!-- Will need to turn this in to a {{Totalrate}}-->
+            </v-col>  
+
+        </v-row>
+
         <v-row  v-for="comment in comments" :key="comment"  >
 
             <v-card id="comment" elevation="4" class="my-2">
@@ -35,7 +47,6 @@
 <style>
     #comment{
         border-radius: 10px;
-
     }
 </style>
 
@@ -86,6 +97,23 @@ export default {
 
             return rateCode;
             
+        },
+
+        totalrate: function(){
+            let totalscore = 0
+            for (let i =0;i<this.comments.length;i++){
+                totalscore += this.comments[i].evaluation
+            }
+
+            totalscore = totalscore / this.comments.length;
+            totalscore = Math.round(totalscore);
+
+            if(totalscore >5){
+                totalscore = 5;
+            }
+
+            return totalscore
+
         }
 
     },
