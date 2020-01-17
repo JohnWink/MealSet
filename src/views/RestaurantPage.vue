@@ -52,38 +52,41 @@
 
     <!-- ++++++++++++++++++++++++   RESTAURANT PAGE INFORMATION AND MAP   ++++++++++++++++++++++++++++-->
     <v-container>
-      <v-row class="pl-9 ml-9 py-4" justify="center">
+      <div class="pl-9 ml-9 py-4" >
         <!--INformation collum-->
-        <v-col cols="12" md="6"  class="text-left">
-          <v-card id="cards" elevation="5" class="pa-2">
-            <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
-            <br><br>
-            <p class="headline font-weight-bold ">Informação</p><br>
+        <v-card id="cards" elevation="5" class="pa-2">
+          <v-row class="pa-4" justify="space-between">
 
-            <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
-            <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
-            <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
-            <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>
-          </v-card>
+            <v-col cols="12" md="6"  class="text-left">
+            
+              <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
+              <br><br>
+              <p class="headline font-weight-bold ">Informação</p><br>
 
+              <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
+              <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
+              <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
+              <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>
             
 
-        </v-col>
+              
+
+            </v-col>
 
 
 
-        <!--Google Maps API box-->        
-        <v-col cols="12" md="6" >
-          <v-card elevation="5" style="boder-radius: 12px" >
-            <p class="headline font-weight-bold mx-2 ">Localização do restaurante</p><br>
-            <!--temp place holder for the actually thing-->
-            <div id="googleMap" style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
-          </v-card>
+            <!--Google Maps API box-->        
+            <v-col cols="12" md="6" >
+              <p class="headline font-weight-bold ">Localização do restaurante</p><br>
+              <!--temp place holder for the actually thing-->
+              <div id="googleMap" style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
+
+            </v-col>
+          </v-row>
           
+        </v-card>
 
-        </v-col>
-
-      </v-row>
+      </div>
     </v-container>
 
 

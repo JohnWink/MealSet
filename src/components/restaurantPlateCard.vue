@@ -10,11 +10,11 @@
 
                 <v-row class="mx-2" >
                   <v-col cols="12" sm="7">
-                    <v-img contain=true max-width="300px" :src="dish.img" ></v-img>
+                    <v-img  max-width="300px" :src="dish.img" ></v-img>
                   </v-col>                                 
 
                   <v-col cols="12" sm="5">
-                    <v-title class="title font-weight-bold" >{{ dish.name }}</v-title>
+                    <p class="title font-weight-bold" >{{ dish.name }}</p>
                     <p >{{ dish.description }} </p>
                     <p style="margin-right: 25px;" class="font-weight-bold" >
                       {{ dish.evaluation }}
