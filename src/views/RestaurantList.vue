@@ -25,7 +25,7 @@
         </v-row>
     </v-row>
 
-    <RecomendedCards />
+    <RestaurantCards />
     <footerVue/>
   </div>
 </template>
@@ -33,13 +33,13 @@
 <script>
 import NavBar from "@/components/navBar.vue";
 import Logout from "@/components/logout.vue";
-import RecomendedCards from "@/components/RecomendedCards.vue";
+import RestaurantCards from "@/components/RestaurantCards.vue";
 
 export default {
     components:{
         NavBar,
         Logout,
-        RecomendedCards
+        RestaurantCards
     }
     
 

@@ -1,31 +1,35 @@
 <template>
-  <div id="RecomendedCards">
+  <div id="RestaurantCards">
     <v-app id="inspire" class="pl-12 ml-12">
       <br>
       <br>
       <br>
       <!--RECOMENDAÇÃO DE RESTAURANTES-->
-      <v-title id="titles" class="text-center font-weight-bold">Restaurantes recomendados</v-title>
-      <br>
-      <v-row class="mb-6">
-        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant" >
-          <a onclick="restaurantPage()">
-             
-            <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
-               <router-link :to="restaurant.routerLink">
-              <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
-                </router-link>
-              <br>
-              <v-title class="ml-5 font-weight-bold" id="titles">{{ restaurant.name }}</v-title>
-              <p id="ps" class>a {{ restaurant.distance }} km de si</p>
 
-              <p style="margin-right: 25px;" >
-                {{ restaurant.evaluation }}
-                <i class="fas fa-star"></i>
-              </p>
+      <br>
+      <v-row class="mb-6 mx-2">
+        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant">
+          <router-link :to="restaurant.routerLink">
+            <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
+              <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
+
+              <v-row class="mb-6 mx-2">
+                <v-col class="text-left">
+                  <v-title class="ml-5 font-weight-bold" id="nameTitle">{{ restaurant.name }}</v-title>
+                  <p id="ps">
+                    <i class="fas fa-map-marker-alt" color="yellow darken-1"></i>
+                    a {{ restaurant.distance }} km de si
+                  </p>
+                </v-col>
+                <v-col class="text-right">
+                  <p style="margin-right: 25px;" class="font-weight-bold">
+                    {{ restaurant.evaluation }}
+                    <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+                  </p>
+                </v-col>
+              </v-row>
             </v-card>
-           
-          </a>
+          </router-link>
         </v-col>
       </v-row>
     </v-app>
@@ -42,23 +46,36 @@
   max-height: 250px;
 }
 
-#titles {
+#nameTitle {
   font-size: 20px;
+  margin-left: 3%;
+  margin-top: 2%;
+}
+
+#title {
+  font-size: 30px;
+  margin-left: 3%;
+}
+
+#titles2 {
+  font-size: 30px;
+  margin-left: 3%;
+  margin-top: 8%;
 }
 
 #ps {
   margin-left: 21px;
   font-size: 13px;
+  margin-top: 1%;
 }
 </style>
 
 <script>
 export default {
-  name: "RecomendedCards",
+  name: "RestaurantCards",
   data: () => ({
-   
-    restaurants:[],
-    
+    restaurants: [],
+
     dishes: [
       {
         name: "Polvo",
@@ -90,10 +107,8 @@ export default {
       }
     ]
   }),
-  beforeMount(){
-   this.restaurants  = this.$store.getters.getRestaurants
-  },
-   
-
+  beforeMount() {
+    this.restaurants = this.$store.getters.getRestaurants;
+  }
 };
 </script>
