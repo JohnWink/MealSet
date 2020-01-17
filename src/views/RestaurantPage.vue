@@ -98,15 +98,37 @@
           <p class=" headline font-weight-bold " >Pratos Recomendados</p><br>
         </v-col>
         <v-col cols="12" sm="3">
-          <restaurantMenu />
-        </v-col>    
-      </v-row>
+    <!-----------Menu Modal button------------------>
+          <v-dialog v-model="dialog"  max-width="900px">
+            <template v-slot:activator="{ on }">
+              <v-btn large rounded color="#f7c23e" dark v-on="on">Mostar Menu </v-btn>
+            </template>
 
-      <v-row class="pl-9 ml-9 py-6" justify="center" >
-        <v-col cols="10" >          
-          <RestaurantCards />      
-        </v-col>    
-      </v-row>
+            <!--CARd of the menus v-for cycle-->
+            <v-container class="white darken-2">
+                <v-row align="center">
+                    <v-col cols="12" class="headline">Menu</v-col>
+                    <v-col cols="12"  v-for="dish in menu" :key="dish">
+                      
+                      <restaurantMenu v-bind:dish="dish" />
+
+                    </v-col>
+                </v-row>        
+        
+            </v-container>
+    
+            </v-dialog>
+
+
+
+          </v-col>    
+        </v-row>
+
+        <v-row class="pl-9 ml-9 py-6" justify="center" >
+          <v-col cols="10" >          
+            <RestaurantCards />      
+          </v-col>    
+        </v-row>
 
     </v-container>
 
@@ -171,6 +193,42 @@ export default {
     checker:"border: solid indigo",
     fontsize: " ",
     restaurants: [],
+    return:{
+          dialog: false
+      },
+
+      menu:[
+          {
+          name: "Polvo",
+          img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 4
+        },
+        {
+          name: "Bacalhau",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 5
+        },
+        {
+          name: "Legumes Salteados",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 3
+        },
+        {
+          name: "Novilho",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 2
+        },
+        {
+          name: "rissoto",
+          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
+          evaluation: 5
+        },
+      ]
     
     
   }),
