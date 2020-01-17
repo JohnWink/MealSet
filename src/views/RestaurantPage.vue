@@ -135,9 +135,26 @@
 <!-- +++++++++++++++++++++++++++++++++EVALUATION COMMNENTS SECTION+++++++++++++++++++++++++++++++ -->
     <v-container >       
       
-      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" >       
+      <v-row class="pl-12 ml-12 py-3" justify="start" align="center" > 
+
+        <v-container>
+          <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
+          <v-row  justify="space-between" align="center" >
+              <v-col cols="7" class="title" >
+                  <p>Avaliações do restaurante</p>
+              </v-col>
+              <v-col cols="2" sm="1" class=" title font-weight-bold" >
+                  <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+                  {{totalrate()}}/5 <!-- Will need to turn this in to a {{Totalrate}}-->
+              </v-col>  
+
+          </v-row>
+
+          <v-row  v-for="comment in comments" :key="comment"  >      
           
-        <commentReview />    
+            <commentReview  v-bind:comment="comment"/>  
+          </v-row> 
+        </v-container> 
            
       </v-row>
 
@@ -228,7 +245,31 @@ export default {
           description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
           evaluation: 5
         },
-      ]
+      ],
+
+      comments:[
+        {
+            name: "username1sd",
+            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date:"3/7/2020",
+            evaluation: 4
+        },
+        {
+            name: "username2",
+            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date:"3/7/2020",
+            evaluation: 3
+        },
+        {
+            name: "username3",
+            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            date:"3/7/2020",
+            evaluation: 1
+        },
+      ],
     
     
   }),
@@ -252,6 +293,22 @@ export default {
       }
       this.fontsize = cssLine;
     },
+    totalrate: function(){
+            let totalscore = 0
+            for (let i =0;i<this.comments.length;i++){
+                totalscore += this.comments[i].evaluation
+            }
+
+            totalscore = totalscore / this.comments.length;
+            totalscore = Math.round(totalscore);
+
+            if(totalscore >5){
+                totalscore = 5;
+            }
+
+            return totalscore
+
+        }
 
     
   },
