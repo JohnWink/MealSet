@@ -12,8 +12,6 @@
           <router-link :to="restaurant.routerLink">
             <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
               <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
-              <br>
-              <p id="ps" class>a {{ restaurant.distance }} km de si</p>
 
               <v-row class="mb-6 mx-2">
                 <v-col class="text-left">
