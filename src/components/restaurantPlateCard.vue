@@ -8,7 +8,7 @@
 
           <v-card id="cards" class="mx-auto indigo" elevation="8"  max-width="600px">
 
-                <v-row class="mx-2" :style="checker">
+                <v-row class="mx-2" >
                   <v-col cols="12" sm="7">
                     <v-img contain=true max-width="300px" :src="dish.img" ></v-img>
                   </v-col>                                 
