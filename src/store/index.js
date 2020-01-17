@@ -14,7 +14,7 @@ export default new Vuex.Store({
 
     loggedUser:[],
 
-    reservas:[],
+    reservations:[],
   
      //variável para a função login
   existUser: false,
@@ -41,6 +41,15 @@ export default new Vuex.Store({
         return 0;
       }
     },
+
+    getLastReservationId:(state)=>{
+      if (state.reservations.length) {
+        return 1 + state.reservations[state.reservations.length-1].id;
+      } else {
+        return 0;
+      }
+    },
+
 
     getLastRestaurantId:(state)=>{
       if(state.restaurants.length){
@@ -69,6 +78,10 @@ export default new Vuex.Store({
         }
       ]
       localStorage.setItem("users", JSON.stringify(state.users))
+    }
+
+    if(localStorage.getItem('reservations')){
+      state.reservations = JSON.parse(localStorage.getItem("reservations"))
     }
 
     if(localStorage.getItem("restaurants")){
@@ -266,6 +279,19 @@ export default new Vuex.Store({
     }
 
 
+  },
+
+  ADD_RESERVATION(state,payload){
+    state.reservations.push({
+      id: payload.id,
+      userId: payload.userId,
+      name: payload.name,
+      peopleNumber: payload.peopleNumber,
+      mealTime: payload.mealTime,
+      mealDate: payload.mealDate
+    })
+
+    localStorage.setItem("reservations", JSON.stringify(state.reservations))
   },
  
   LOGIN(state,payload){
