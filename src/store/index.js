@@ -75,7 +75,14 @@ export default new Vuex.Store({
           password:"AllHailAdmins666",
           email: "veryImportantAdmin@yourHouse.lol",
           admin: true
-        }
+        },
+        {
+          id:1,
+          username: "123",
+          password:"123",
+          email: "123@123.123",
+          admin: false
+        },
       ]
       localStorage.setItem("users", JSON.stringify(state.users))
     }
