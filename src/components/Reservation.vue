@@ -96,6 +96,7 @@ data:() => ({
        v => !!v || 'Por favor indique a data em que deseja a reserva',
     ]
 }),
+
 methods: {
     submit () {
       if (this.$refs.form.validate()) {
@@ -108,7 +109,8 @@ methods: {
          
          this.$store.commit("ADD_RESERVATION",{
            id: this.$store.getters.getLastReservationId,
-           userId: this.$store.state.loggedUser.id, //Not working
+           userId: this.$store.getters.getLoggedUserId,
+           restaurantId: this.$store.getters.restaurantInfo(parseInt(this.$route.params.id)).id,
            name: this.name,
            peopleNumber: this.peopleNumber,
            mealTime: this.mealTimeSelection,
@@ -133,7 +135,8 @@ fromDateDisp(){
       },
 fromDateTime(){
   return this.mealTimeSelection;
-}
+},
+
 
 }
 

@@ -7,9 +7,9 @@
 
       <v-row class="mb-6 mx-2">
         <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant">
-          <router-link :to="restaurant.routerLink">
-            <v-hover v-slot:default="{ hover }">
-              <v-card id="cards" class="mx-auto" max-height="350" max-width="500" :elevation="hover ? 20 : 2" >
+          <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
+            <v-hover v-slot:default="{ hover }" open-delay="200">
+              <v-card id="cards" class="mx-auto" max-height="350" max-width="500" :elevation="hover ? 16 : 2" >
                 <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
                 <v-row class="mb-6 mx-2">
                   <v-col class="text-left">

@@ -34,8 +34,8 @@
 
             <v-col class="text-left mx-4">
               <!--add a mustache data to identify the size-->
-              <p id="header-text" class="font-weight-bold white--text" :style="fontsize">Chimarão</p>
-              <p id="header-text" class="font-weight-bold white--text" style="font-size:135%">Norteshopping, Porto, Portugal</p>
+              <p id="header-text" class="font-weight-bold white--text" :style="fontsize">{{restaurant.name}}</p>
+              <p id="header-text" class="font-weight-bold white--text" style="font-size:135%">{{restaurant.location}}</p>
 
 
               <!--Make a conponent of this button-->
@@ -63,10 +63,10 @@
               <br><br>
               <p class="headline font-weight-bold ">Informação</p><br>
 
-              <p class="caption  font-weight-bold ">DESCRIÇÃO:</p><br>
-              <p class="caption  font-weight-bold ">ESPLANADA:</p><br>
-              <p class="caption  font-weight-bold ">ESTACIONAMENTO:</p><br>
-              <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA:</p><br>
+              <p class="caption  font-weight-bold ">DESCRIÇÃO: {{restaurant.description}}</p><br>
+              <p class="caption  font-weight-bold " v-if="restaurant.outDoor == true">COM ESPLANADA</p><br>
+              <p class="caption  font-weight-bold " v-if="restaurant.parking == true">COM PARQUE DE ESTACIONAMENTO</p><br>
+              <p class="caption  font-weight-bold ">TEMPO MÉDIO DE ESPERA: {{restaurant.mediumWaitingTime}} minutos</p><br>
             
 
               
@@ -273,6 +273,12 @@ export default {
     
     
   }),
+
+   computed:{
+    restaurant(){
+      return this.$store.getters.restaurantInfo(parseInt(this.$route.params.id));
+  }
+  },
   methods:{
     // this is a place holder for google maps api
     myMap() {
@@ -312,6 +318,8 @@ export default {
 
     
   },
+
+ 
   created() {
     window.addEventListener('resize', this.mobileAjust)
     this.mobileAjust();
