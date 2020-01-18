@@ -9,7 +9,7 @@
       <br>
       <v-row class="mb-6 mx-2">
         <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant">
-          <router-link :to="restaurant.routerLink">
+          <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
             <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
               <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
 

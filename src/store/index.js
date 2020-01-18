@@ -28,8 +28,14 @@ export default new Vuex.Store({
   getters: {
 
     
+    restaurantInfo: state => id => {
+      return state.restaurants.find(restaurant =>restaurant.id === id);
+    },
 
     checkLogged: state => state.logged,
+
+    getLoggedUserId: state => {
+      return state.loggedUser.id},
 
     getRestaurants: state => state.restaurants,
     
@@ -95,8 +101,8 @@ export default new Vuex.Store({
           coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
           evaluation: 5,
           description:"Chimarrão é mesmo bão",
-          outDoor: false,
-          parking: false,
+          outDoor: true,
+          parking: true,
           mediumWaitingTime: 20,
           location:"Vila do Conde",
           distance:"5",

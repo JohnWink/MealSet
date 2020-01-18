@@ -108,7 +108,7 @@ methods: {
          
          this.$store.commit("ADD_RESERVATION",{
            id: this.$store.getters.getLastReservationId,
-           userId: this.$store.state.loggedUser.id, //Not working
+           userId: this.$store.getters.getLoggedUserId, //Not working
            name: this.name,
            peopleNumber: this.peopleNumber,
            mealTime: this.mealTimeSelection,

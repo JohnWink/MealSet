@@ -38,7 +38,6 @@
         </v-row>
        </v-img>
     </v-row>
-
     <RestaurantCards />
     <footerVue/>
   </div>
