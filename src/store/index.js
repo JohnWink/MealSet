@@ -34,8 +34,11 @@ export default new Vuex.Store({
 
     checkLogged: state => state.logged,
 
-    getLoggedUserId: state => {
-      return state.loggedUser.id},
+    getLoggedUserId: (state) => {
+
+        return state.loggedUser[0].id
+      },   
+   
 
     getRestaurants: state => state.restaurants,
     
@@ -91,6 +94,13 @@ export default new Vuex.Store({
         },
       ]
       localStorage.setItem("users", JSON.stringify(state.users))
+    }
+
+    if(sessionStorage.getItem("loggedUser")){
+      state.loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+      state.logged = true;
+    }else{
+      state.logged = false;
     }
 
     if(localStorage.getItem('reservations')){
@@ -254,9 +264,6 @@ export default new Vuex.Store({
    },
     
     ADD_USER(state, payload) {
-
-    
-
     //check se email já está registado
     if (!state.users.some(user => user.email === payload.email)) {
       if(!state.users.some(user =>user.username === payload.username )){
@@ -298,6 +305,7 @@ export default new Vuex.Store({
     state.reservations.push({
       id: payload.id,
       userId: payload.userId,
+      restaurantId: payload.restaurantId,
       name: payload.name,
       peopleNumber: payload.peopleNumber,
       mealTime: payload.mealTime,
