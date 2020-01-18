@@ -1,34 +1,33 @@
 <template>
   <div id="RestaurantCards">
     <v-app id="inspire" class="pl-12 ml-12">
-      <br>
-      <br>
-      <br>
+      <br />
+      <br />
       <!--RECOMENDAÇÃO DE RESTAURANTES-->
 
-      <br>
       <v-row class="mb-6 mx-2">
         <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant">
           <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
-            <v-card id="cards" class="mx-auto" elevation="10" max-height="350" max-width="500">
-              <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
-
-              <v-row class="mb-6 mx-2">
-                <v-col class="text-left">
-                  <v-title class="ml-5 font-weight-bold" id="nameTitle">{{ restaurant.name }}</v-title>
-                  <p id="ps">
-                    <i class="fas fa-map-marker-alt" color="yellow darken-1"></i>
-                    a {{ restaurant.distance }} km de si
-                  </p>
-                </v-col>
-                <v-col class="text-right">
-                  <p style="margin-right: 25px;" class="font-weight-bold">
-                    {{ restaurant.evaluation }}
-                    <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
-                  </p>
-                </v-col>
-              </v-row>
-            </v-card>
+            <v-hover v-slot:default="{ hover }" open-delay="200">
+              <v-card id="cards" class="mx-auto" max-height="350" max-width="500" :elevation="hover ? 16 : 2" >
+                <v-img id="cardsImg" :src="restaurant.coverImg"></v-img>
+                <v-row class="mb-6 mx-2">
+                  <v-col class="text-left">
+                    <v-title class="ml-5 font-weight-bold" id="nameTitle">{{ restaurant.name }}</v-title>
+                    <p id="ps">
+                      <i class="fas fa-map-marker-alt" color="yellow darken-1"></i>
+                      a {{ restaurant.distance }} km de si
+                    </p>
+                  </v-col>
+                  <v-col class="text-right">
+                    <p style="margin-right: 25px;" class="font-weight-bold">
+                      {{ restaurant.evaluation }}
+                      <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
+                    </p>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-hover>
           </router-link>
         </v-col>
       </v-row>
