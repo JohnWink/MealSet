@@ -1,75 +1,105 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog" persistent max-width="400">
     <template v-slot:activator="{ on }">
-      <v-btn large rounded color="#5C6BC0" dark v-on="on">Iniciar Sessão</v-btn>
+      <v-btn large rounded color="#5C6BC0" elevation="7" dark v-on="on">Iniciar Sessão</v-btn>
     </template>
+    <!--MODAL DE LOGIN-->
     <v-card>
+      <!--Fechar-->
+      <v-toolbar color="#5C6BC0">
+        <v-row>
+          <v-col class="text-left mt-2 ml-6">
+            <v-toolbar-title id="text" >Login</v-toolbar-title>
+          </v-col>
+          <v-col class="text-right mt-2">
+            <v-btn color="#ffffff" text right @click="dialog = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-toolbar>
+
       <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="username" :rules="nameRules" label="username" required></v-text-field>
+        <!--Username-->
+        <v-text-field
+          prepend-icon="fas fa-user-circle"
+          v-model="username"
+          clearable
+          color="#5C6BC0"
+          :rules="nameRules"
+          label="Username"
+          required
+        ></v-text-field>
+        <!--Password-->
+        <v-text-field
+          prepend-icon="fas fa-lock"
+          v-model="password"
+          clearable
+          color="#5C6BC0"
+          :rules="passwordRules"
+          label="Password"
+          required
+          type="password"
+        ></v-text-field>
+      </v-form>
 
-         <v-text-field v-model="password" :rules="passwordRules" label="password" required></v-text-field>
-   
-      <v-btn color="blue darken-1" text @click="dialog = false">Fechar Janela</v-btn>
- 
-      <v-btn color="primary" text @click="reset">Limpar Informação </v-btn>
+      <!--Botões-->
+      <v-card-actions>
+        <v-col class="text-right mr-3">
+          <v-btn color="#5C6BC0" dark @click="submit">Iniciar Sessão</v-btn>
+        </v-col>
+      </v-card-actions>
 
-      <v-btn color="primary" text @click="submit">Login</v-btn>
-     </v-form>
     </v-card>
   </v-dialog>
 </template>
 
-    <script>
+
+<style>
+#text {
+  color: white;
+  text-shadow: 0px 0px 5px gray;
+}
+</style>
+
+
+<script>
 export default {
   name: "login",
 
   data: () => ({
     errorMessages: "",
-    username: '',
-    password:'',
+    username: "",
+    password: "",
     dialog: false,
 
-    nameRules: [
-      v => !!v || 'Por favor preencha o Username',
-    ],
+    nameRules: [v => !!v || "Por favor preencha o Username"],
 
-    passwordRules:[
-      password =>!!password || 'Por favor preencha a Password',
-    ],
+    passwordRules: [password => !!password || "Por favor preencha a Password"]
   }),
 
-
-methods: {
-    submit () {
-
-     
+  methods: {
+    submit() {
       if (this.$refs.form.validate()) {
+        this.dialog = false;
 
-        this.dialog=false
-
-        this.$store.commit("LOGIN",{
-        username: this.username,
-        password: this.password,
+        this.$store.commit("LOGIN", {
+          username: this.username,
+          password: this.password
         });
 
-        if(this.$store.getters.checkLogged === true){
-          // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher. 
-          this.$router.push({path:'/landingPage'})
+        if (this.$store.getters.checkLogged === true) {
+          // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher.
+          this.$router.push({ path: "/landingPage" });
         }
-         
-        
       }
-    },
-    reset() {
-      this.$refs.form.reset();
     }
   },
   computed: {
     form() {
       return {
         username: this.username,
-        password:this.password
-
+        password: this.password
       };
     }
   }
