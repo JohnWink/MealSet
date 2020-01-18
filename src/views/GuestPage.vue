@@ -15,7 +15,7 @@
             <login/>
           </v-col>
         </v-row>
-        <v-row class="pl-12 ml-12">
+        <v-row>
           <v-col>
             <p
               style="margin-top: 15%"
