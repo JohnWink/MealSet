@@ -14,11 +14,11 @@
 
                     <!--method to calculate and print the rate stars and empthy stars-->
                     <v-col  cols="3" sm="3">
-                        <div v-html="rateprint(comment.evaluation)"></div>
+                        <div v-html="rateprint(comment.rating)"></div>
                     </v-col>
 
                     <v-col cols="12">
-                        <v-row class=" mx-4">{{comment.comment}}</v-row>
+                        <v-row class=" mx-4">{{comment.description}}</v-row>
                     </v-col >
 
                 </v-row>

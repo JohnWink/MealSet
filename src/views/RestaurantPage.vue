@@ -1,9 +1,9 @@
 <template>
   <div class="restaurantPage">
     <v-row align="center" justify="center">
-      <v-img src="../assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg" class="grey lighten-3" max-height="380px" gradient="to top right, rgba(100,115,201,.19), rgba(25,32,72,.5)">
+      <v-img :src="restaurant.coverImg" class="grey lighten-3" max-height="380px" gradient="to top right, rgba(100,115,201,.19), rgba(25,32,72,.5)">
         
-        <!-- ++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
+        <!-- ++++++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
         <v-col cols="12">
           <v-row align="start" justify="center">
             
@@ -28,7 +28,7 @@
           </v-row>
         </v-col>
         
-        <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
+        <!-- +++++++++++++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
         <v-col cols="12">
           <v-row class="pl-12 ml-12" justify="center" >
 
@@ -150,9 +150,9 @@
 
           </v-row>
 
-          <v-row  v-for="comment in comments" :key="comment"  >      
+          <v-row  v-for="comment in comments" :key="comment.id"  >      
           
-            <commentReview  v-bind:comment="comment"/>  
+            <commentReview v-if="comment.restaurantId === restaurant.id" v-bind:comment="comment"/>  
           </v-row> 
         </v-container> 
            
@@ -247,8 +247,11 @@ export default {
         },
       ],
 
+      comments: [],
+      /*
       comments:[
         {
+            id:0,
             name: "username1sd",
             img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
             comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -256,6 +259,7 @@ export default {
             evaluation: 4
         },
         {
+            id:1,
             name: "username2",
             img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
             comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -263,6 +267,7 @@ export default {
             evaluation: 3
         },
         {
+            id:2,
             name: "username3",
             img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
             comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -271,7 +276,7 @@ export default {
         },
       ],
     
-    
+    */
   }),
 
    computed:{
@@ -328,6 +333,10 @@ export default {
   },
   destroyed() {
     window.removeEventListener('resize', this.mobileAjust)
+  },
+
+  beforeMount() {
+    this.comments = this.$store.getters.getComments;
   }
    
 };

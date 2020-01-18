@@ -7,7 +7,7 @@
                  name="input-7-4"
                  color="indigo darken-1"                 
                  placeholder="Escreva a sua experiencia..."
-                 :rules="commetRules"
+                 :rules="commentRules"
                  v-model="commentText"
                 ></v-textarea>
                 
@@ -47,13 +47,13 @@ export default {
     checker: "border: solid red;",
     //default to show emphty
 
-    rating:3,
+    rating:0,
     commentText:"",
 
 
     //rules for comment/evaluation submitions
 
-    commetRules:[
+    commentRules:[
         v => !!v || 'Por favor preencha escreva a sua expeciencia',
         v => (v && v.length >= 50) || 'Tem de ter mais de 50 caracteres',
     ],
@@ -70,19 +70,22 @@ export default {
       submit(){
           
 
-             // let setDate = new Date()
-            //  let postDate = setDate.getDate() +"/"+ setDate.getMonth() +"/"+ setDate.getFullYear() +"  "+ setDate.getHours()
-             /*  from the user registration exampe to help up has reference
+             let setDate = new Date()
+             let postDate = setDate.getDate() +"/"+ 1 + setDate.getMonth() +"/"+ setDate.getFullYear() +"  "+ setDate.getHours()+ ":" + setDate.getMinutes()
+
+            
 
             this.$store.commit("ADD_COMMENT",{
-            restaurantd: this.$store.getters.getLastUserId,
-            username: this.username,
-            password: this.password,
-            email:this.email,
+            id: this.$store.getters.getLastCommentId,
+            restaurantId: parseInt(this.$route.params.id),
+            name: this.$store.getters.getLoggedUsername,
+            description: this.commentText,
+            date:postDate,
+            rating:this.rating
             });
 
-            this.$router.replace("/")
-            */
+            //this.$router.replace("/")
+            
 
         
 

@@ -15,12 +15,14 @@ export default new Vuex.Store({
     loggedUser:[],
 
     reservations:[],
-  
-     //variável para a função login
-  existUser: false,
 
-  //bool pa dar check se alguém está autenticado
-  logged: false,
+    comments:[],
+
+    //variável para a função login
+    existUser: false,
+
+    //bool pa dar check se alguém está autenticado
+    logged: false,
   },
 
  
@@ -37,8 +39,17 @@ export default new Vuex.Store({
     getLoggedUserId: (state) => {
 
         return state.loggedUser[0].id
-      },   
+      },  
+      
+      getLoggedUsername:(state) => {
+        return state.loggedUser[0].username
+      },
    
+    
+    getComments: state => state.comments,
+    
+    
+    
 
     getRestaurants: state => state.restaurants,
     
@@ -74,6 +85,8 @@ export default new Vuex.Store({
   mutations: {
 
    initializeStore(state){
+
+      //+++++++++++++++++++++++++++++++++++++++++++++Initialize Users++++++++++++++++++++++++++++++++++++++++++++++++
     if(localStorage.getItem('users')){
       state.users = JSON.parse(localStorage.getItem("users"));
     }else{
@@ -96,17 +109,34 @@ export default new Vuex.Store({
       localStorage.setItem("users", JSON.stringify(state.users))
     }
 
+    if(localStorage.getItem('comments')){
+      state.comments = JSON.parse(localStorage.getItem('comments'));
+    }else{
+      state.comments =[
+        {
+          id:0,
+          restaurantId:0,
+          name: "username1sd",
+          img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
+          description: "It tastes like gud burger",
+          date:"3/7/2020",
+          rating: 4
+        }
+      ]
+    }
+
     if(sessionStorage.getItem("loggedUser")){
       state.loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
       state.logged = true;
     }else{
       state.logged = false;
     }
-
+ //+++++++++++++++++++++++++++++++++++++++++++++Initialize Reservations+++++++++++++++++++++++++++++++++++++++++++++
     if(localStorage.getItem('reservations')){
       state.reservations = JSON.parse(localStorage.getItem("reservations"))
     }
 
+    //+++++++++++++++++++++++++++++++++++++++++++++Initialize Restaurants+++++++++++++++++++++++++++++++++++++++++++++
     if(localStorage.getItem("restaurants")){
       state.restaurants = JSON.parse(localStorage.getItem("restaurants"))
     }else{
@@ -202,7 +232,7 @@ export default new Vuex.Store({
 
       
     }
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++Initialize Dishes++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     if(localStorage.getItem("dishes")){
       state.dishes = JSON.parse(localStorage.getItem("dishes"))
     }else{
@@ -300,6 +330,16 @@ export default new Vuex.Store({
 
 
   },
+  ADD_COMMENT(state,payload){
+    state.comments.push({
+      id: payload.id,
+      restaurantId: payload.restaurantId,
+      name: payload.name,
+      description: payload.description,
+      date: payload.date,
+      rating: payload.rating
+    })
+  },
 
   ADD_RESERVATION(state,payload){
     state.reservations.push({
@@ -355,7 +395,7 @@ export default new Vuex.Store({
     sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
   },
   
-
+ 
 },
   actions: {},
   modules: {}

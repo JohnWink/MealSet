@@ -6,7 +6,7 @@
       <!--RECOMENDAÇÃO DE RESTAURANTES-->
 
       <v-row class="mb-6 mx-2">
-        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant">
+        <v-col cols="6" md="4" v-for="restaurant in restaurants" :key="restaurant.id">
           <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
             <v-hover v-slot:default="{ hover }" open-delay="200">
               <v-card id="cards" class="mx-auto" max-height="350" max-width="500" :elevation="hover ? 16 : 2" >
