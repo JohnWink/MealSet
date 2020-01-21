@@ -105,7 +105,7 @@ export default new Vuex.Store({
           password:"AllHailAdmins666",
           email: "veryImportantAdmin@yourHouse.lol",
           avatar: "https://i.imgur.com/t2Q8O9v.jpg",
-          admin: true
+          admin: true,
           restaurantUser: true
         },
         {
