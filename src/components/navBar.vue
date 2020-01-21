@@ -53,18 +53,6 @@
           <span>Pratos</span>
         </v-tooltip>
 
-        <v-tooltip right>
-          <template v-slot:activator="{ on }">
-            <v-list-item link v-on="on">
-              <v-list-item-icon>
-                <v-icon>fas fa-user-circle</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>Perfil</v-list-item-title>
-            </v-list-item>
-          </template>
-          <span>Perfil</span>
-        </v-tooltip>
-
           <v-tooltip right>
           <template v-slot:activator="{ on }" >
             <v-list-item link v-on="on">
