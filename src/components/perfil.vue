@@ -20,7 +20,7 @@
       </v-toolbar>
 
       <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
-     
+
       </v-form>
 
       <!--Botões-->
@@ -45,43 +45,13 @@
 
 <script>
 export default {
-  name: "login",
+  name: "perfil",
 
   data: () => ({
-    errorMessages: "",
-    username: "",
-    password: "",
     dialog: false,
-
-    nameRules: [v => !!v || "Por favor preencha o Username"],
-
-    passwordRules: [password => !!password || "Por favor preencha a Password"]
   }),
 
   methods: {
-    submit() {
-      if (this.$refs.form.validate()) {
-        this.dialog = false;
-
-        this.$store.commit("LOGIN", {
-          username: this.username,
-          password: this.password
-        });
-
-        if (this.$store.getters.checkLogged === true) {
-          // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher.
-          this.$router.push({ path: "/landingPage" });
-        }
-      }
-    }
   },
-  computed: {
-    form() {
-      return {
-        username: this.username,
-        password: this.password
-      };
-    }
-  }
 };
 </script>
