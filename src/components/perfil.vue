@@ -18,11 +18,8 @@
           </v-col>
         </v-row>
       </v-toolbar>
-
-      <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
-
-      </v-form>
-
+  
+      <v-img></v-img>
       <!--Botões-->
       <v-card-actions>
         <v-col class="text-right mr-3">
