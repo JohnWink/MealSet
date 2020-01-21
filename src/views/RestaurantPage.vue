@@ -138,14 +138,14 @@
       <v-row class="pl-12 ml-12 py-3" justify="start" align="center" > 
 
         <v-container>
-          <!-- comment tittle and rading   ----rading needs to be calculated acording to the comments evaluation calculation  -->     
+          <!-- comment tittle and rating   ----rating needs to be calculated acording to the comments evaluation calculation  -->     
           <v-row  justify="space-between" align="center" >
               <v-col cols="7" class="title" >
                   <p>Avaliações do restaurante</p>
               </v-col>
               <v-col cols="2" sm="1" class=" title font-weight-bold" >
                   <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
-                  {{totalrate()}}/5 <!-- Will need to turn this in to a {{Totalrate}}-->
+                  {{restaurant.evaluation}}/5 <!-- Will need to turn this in to a {{Totalrate}}-->
               </v-col>  
 
           </v-row>

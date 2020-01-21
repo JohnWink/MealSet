@@ -55,6 +55,16 @@
           type="password"
           color="#5C6BC0"
         ></v-text-field>
+
+        <!--Imagem de perfil-->
+          <v-text-field
+          prepend-icon="fas fa-link"
+          v-model="userAvatar"
+          label="Link de Avatar(opcional)"
+          required
+          clearable   
+          color="#5C6BC0"
+        ></v-text-field>
       </v-form>
       <!--Botões-->
       <v-card-actions>
@@ -82,6 +92,7 @@ export default {
     username: "",
     password: "",
     email: "",
+    userAvatar:"",
     id: 0,
 
     nameRules: [
@@ -106,8 +117,12 @@ export default {
       if (this.$refs.form.validate()) {
         this.dialog = false;
 
+        if(this.userAvatar === ""){
+          this.userAvatar = "https://i.imgur.com/6txmFi3.png"
+        }
         this.$store.commit("ADD_USER", {
           id: this.$store.getters.getLastUserId,
+          avatar : this.userAvatar,
           username: this.username,
           password: this.password,
           email: this.email

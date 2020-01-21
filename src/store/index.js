@@ -44,6 +44,10 @@ export default new Vuex.Store({
       getLoggedUsername:(state) => {
         return state.loggedUser[0].username
       },
+
+      getLoggedUserAvatar:(state) =>{
+        return state.loggedUser[0].avatar
+      },
    
     
     getComments: state => state.comments,
@@ -61,7 +65,11 @@ export default new Vuex.Store({
         return 0;
       }
     },
-
+    getLastCommentId:(state)=>{
+      if(state.comments.length){
+        return state.comments[state.comments.length-1].id
+      }
+    },
     getLastReservationId:(state)=>{
       if (state.reservations.length) {
         return 1 + state.reservations[state.reservations.length-1].id;
@@ -96,6 +104,7 @@ export default new Vuex.Store({
           username: "admin",
           password:"AllHailAdmins666",
           email: "veryImportantAdmin@yourHouse.lol",
+          avatar: "https://i.imgur.com/t2Q8O9v.jpg",
           admin: true
         },
         {
@@ -103,6 +112,7 @@ export default new Vuex.Store({
           username: "123",
           password:"123",
           email: "123@123.123",
+          avatar: "https://i.imgur.com/6txmFi3.png",
           admin: false
         },
       ]
@@ -123,6 +133,7 @@ export default new Vuex.Store({
           rating: 4
         }
       ]
+      localStorage.setItem("comments", JSON.stringify(state.comments))
     }
 
     if(sessionStorage.getItem("loggedUser")){
@@ -146,7 +157,7 @@ export default new Vuex.Store({
           name:"Chimarrão",
           routerLink:"/restaurant",
           coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
-          evaluation: 5,
+          evaluation: 0,
           description:"Chimarrão é mesmo bão",
           outDoor: true,
           parking: true,
@@ -160,7 +171,7 @@ export default new Vuex.Store({
           name:"Cascasta",
           routerLink:"/restaurant",
           coverImg: require("@/assets/tae-in-kim-jivmv9hE6bM-unsplash.jpg"),
-          evaluation: 6,
+          evaluation: 0,
           description:"Cascata é mesmo barata",
           outDoor: false,
           parking: false,
@@ -174,7 +185,7 @@ export default new Vuex.Store({
           name:"Rochedo",
           routerLink:"/restaurant",
           coverImg: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
-          evaluation: 2,
+          evaluation: 0,
           description:"Rochedo, sabe bem!",
           outDoor: false,
           parking: false,
@@ -188,7 +199,7 @@ export default new Vuex.Store({
           name:"Dona Maria",
           routerLink:"/restaurant",
           coverImg: require("@/assets/jason-leung-poI7DelFiVA-unsplash.jpg"),
-          evaluation: 2,
+          evaluation: 0,
           description:"Dona Maria, comer lá quem não queria!",
           outDoor: false,
           parking: false,
@@ -202,7 +213,7 @@ export default new Vuex.Store({
           name:"ESHT",
           routerLink:"/restaurant",
           coverImg: require("@/assets/daan-evers-tKN1WXrzQ3s-unsplash.jpg"),
-          evaluation: 7,
+          evaluation: 0,
           description:"Tão bom como o nome sugere",
           outDoor: false,
           parking: false,
@@ -216,7 +227,7 @@ export default new Vuex.Store({
           name:"Su",
           routerLink:"/restaurant",
           coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
-          evaluation: 4,
+          evaluation: 0,
           description:"Sempre Unidos",
           outDoor: false,
           parking: false,
@@ -302,6 +313,7 @@ export default new Vuex.Store({
         //adicionar novo user ao array
           state.users.push({
           id: payload.id,
+          avatar: payload.avatar,
           username: payload.username,
           password:payload.password,
           email: payload.email,
@@ -335,12 +347,30 @@ export default new Vuex.Store({
       id: payload.id,
       restaurantId: payload.restaurantId,
       name: payload.name,
+      img: payload.avatar,
       description: payload.description,
       date: payload.date,
       rating: payload.rating
     })
+    localStorage.setItem("comments" ,JSON.stringify(state.comments))
   },
+  CALCULATE_RESTAURANT_RATING(state,payload){
+    let averageRating = 0
+    let counter = 0
+    let restaurantId = payload.restaurantId
+   
+    for(let i = 0; i < state.comments.length; i++){
+      if(state.comments[i].restaurantId == restaurantId){
+        averageRating += state.comments[i].rating
+        counter += 1
+      }
+    }
 
+    averageRating = averageRating / counter
+    state.restaurants[restaurantId].evaluation = Math.round(averageRating)
+
+    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+  },
   ADD_RESERVATION(state,payload){
     state.reservations.push({
       id: payload.id,
@@ -364,7 +394,8 @@ export default new Vuex.Store({
       ) {
       state.loggedUser.push({
         id: user.id,
-        username: payload.username,
+        username: user.username,
+        avatar: user.avatar,
         admin: false
       })
       

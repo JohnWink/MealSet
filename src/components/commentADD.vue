@@ -2,7 +2,8 @@
     <v-container>
         <v-row  >
             
-            <v-col cols="12" >
+            <v-col cols="12"  >
+                <v-form ref="commentSection">
                 <v-textarea  outlined
                  name="input-7-4"
                  color="indigo darken-1"                 
@@ -10,12 +11,15 @@
                  :rules="commentRules"
                  v-model="commentText"
                 ></v-textarea>
+                </v-form>
                 
             </v-col>
             <v-col cols="12">
                 <v-row justify="space-between" >
                     <v-col cols="12" sm="3" >
-                        <v-rating v-model="rating"  background-color="orange lighten-3" color="orange" medium></v-rating>
+                
+                        <v-rating v-model="rating" :rules="ratingRules" background-color="orange lighten-3" color="orange" medium></v-rating>
+                     
                     </v-col>
                     
                     <v-col cols="12" sm="2">
@@ -46,15 +50,14 @@ export default {
   data: () => ({       
     checker: "border: solid red;",
     //default to show emphty
-
-    rating:0,
+    rating:3,
     commentText:"",
 
 
     //rules for comment/evaluation submitions
 
     commentRules:[
-        v => !!v || 'Por favor preencha escreva a sua expeciencia',
+        v => !!v || 'Por favor preencha escreva a sua experiencia',
         v => (v && v.length >= 50) || 'Tem de ter mais de 50 caracteres',
     ],
 
@@ -74,15 +77,26 @@ export default {
              let postDate = setDate.getDate() +"/"+ 1 + setDate.getMonth() +"/"+ setDate.getFullYear() +"  "+ setDate.getHours()+ ":" + setDate.getMinutes()
 
             
+                if (this.$refs.commentSection.validate()) {
+                    
+                        this.$store.commit("ADD_COMMENT",{
+                        id: 1 + this.$store.getters.getLastCommentId,
+                        restaurantId: parseInt(this.$route.params.id),
+                        name: this.$store.getters.getLoggedUsername,
+                        avatar: this.$store.getters.getLoggedUserAvatar,
+                        description: this.commentText,
+                        date:postDate,
+                        rating:this.rating
+                        });
 
-            this.$store.commit("ADD_COMMENT",{
-            id: this.$store.getters.getLastCommentId,
-            restaurantId: parseInt(this.$route.params.id),
-            name: this.$store.getters.getLoggedUsername,
-            description: this.commentText,
-            date:postDate,
-            rating:this.rating
-            });
+                    
+               
+                this.$store.commit("CALCULATE_RESTAURANT_RATING",{
+                    restaurantId: parseInt(this.$route.params.id)
+                })
+
+                location.reload();
+            }
 
             //this.$router.replace("/")
             

@@ -13,13 +13,7 @@
 
         <v-select v-model="parkingSelection" :items="parkingCheck" :rules="parkingCheckRules" label="Tem parque de estacionamento?"></v-select>
    
-        <v-file-input
-          label="File input"
-          filled
-          prepend-icon="mdi-camera"
-          accept="image/*"
-          v-model="choosenImg"
-        ></v-file-input>
+      
   
       <v-btn color="blue darken-1" text @click="dialog = false">Fechar Janela</v-btn>
  

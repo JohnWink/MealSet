@@ -6,8 +6,8 @@
 
                     <v-col cols="7"  class="mx-4">
                         <v-avatar size="60">
-                            <img :src="comment.img"
-                                alt="user">
+                            <v-img  :src="comment.img"
+                                alt="user"/>
                         </v-avatar>                
                         <span class="pl-2"><b>{{comment.name}}  </b>{{comment.date}}</span>
                     </v-col>
