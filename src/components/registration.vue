@@ -94,6 +94,7 @@ export default {
     email: "",
     userAvatar:"",
     id: 0,
+    restaurantUser: "",
 
     nameRules: [
       v => !!v || "Por favor preencha o Username",

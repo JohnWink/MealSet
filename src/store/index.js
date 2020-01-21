@@ -106,6 +106,7 @@ export default new Vuex.Store({
           email: "veryImportantAdmin@yourHouse.lol",
           avatar: "https://i.imgur.com/t2Q8O9v.jpg",
           admin: true
+          restaurantUser: true
         },
         {
           id:1,
@@ -113,7 +114,8 @@ export default new Vuex.Store({
           password:"123",
           email: "123@123.123",
           avatar: "https://i.imgur.com/6txmFi3.png",
-          admin: false
+          admin: false,
+          restaurantUser: false
         },
       ]
       localStorage.setItem("users", JSON.stringify(state.users))

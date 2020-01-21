@@ -11,31 +11,25 @@
         <!-- ++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
         <v-row align="start" justify="center">
           <v-col md="1">
-            <navBar />
-          </v-col>
-          <!--Search Text Field   !-->
-          <v-col md="2" offset-sm="7">
-            <v-text-field
-              prepend-inner-icon="fas fa-search"
-              height="2px"
-              background-color="#FFFFFF"
-              filled
-              rounded
-              dense
-            ></v-text-field>
+            <navBar/>
           </v-col>
 
-          <v-col md="2">
-            <logout />
+          <v-col md="1" offset-sm="8">
+            <perfil/>
           </v-col>
+          <v-col md="1">
+            <logout/>
+          </v-col>
+
         </v-row>
         <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
         <v-row class="pl-12 ml-12">
           <!--add a mustache data to identify the size-->
           <p
             id="header-text1"
-            class="display-3 font-weight-bold white--text text-center"
-          >Restaurantes</p>
+            class="font-weight-bold white--text text-center"
+            :style="fontsize" >
+          Restaurantes</p>
         </v-row>
       </v-img>
     </v-row>
@@ -56,7 +50,18 @@
         <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" label="Filtros"></v-overflow-btn>
       </v-col>
     </v-row>
-    <RestaurantCards />
+      
+    <!--RECOMENDAÇÃO DE RESTAURANTES-->
+    <br><br>
+
+    <v-row class="mx-2" justify="center" align="center">
+      <v-col class="mb-2" cols="12" sm="6" md="4" v-for="restaurant in restaurants" :key="restaurant.id" >
+        <RestaurantCards v-bind:restaurant="restaurant"  />
+      </v-col>
+    </v-row>
+
+    
+
     <footerVue />
   </div>
 </template>
@@ -74,15 +79,17 @@ import NavBar from "@/components/navBar.vue";
 import footerVue from "@/components/footerVue.vue";
 import RestaurantCards from "@/components/RestaurantCards.vue";
 import Logout from "@/components/logout.vue";
+import perfil from "@/components/perfil.vue";
 
 export default {
   name: "landingPage",
-  props: [],
+  
   components: {
     NavBar,
     footerVue,
     RestaurantCards,
-    Logout
+    Logout,
+    perfil
   },
   data: () => ({
     filters: [
@@ -91,7 +98,32 @@ export default {
       "Peixe",
       "Carne",
       "Vegetariano"
-    ]
-  })
+    ],
+    restaurants:[],
+    fontsize: " "
+  }),
+  beforeMount() {
+    this.restaurants = this.$store.getters.getRestaurants;
+  },
+  created() {
+    window.addEventListener('resize', this.mobileAjust)
+    this.mobileAjust();
+  },
+  methods:{
+    mobileAjust(){
+      let cssLine = "font-size:400%;"
+      if(window.innerWidth < 600){
+        cssLine += "font-size:280%;"
+        
+        
+        if(window.innerWidth < 400){
+          cssLine = "font-size:230%;"
+        }
+        
+      }
+
+      this.fontsize = cssLine;
+    },
+  }
 };
 </script>
