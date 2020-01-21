@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-12 ml-12">    
+  <div class="pl-12 ml-12 mr-2">    
       <router-link :to="{name:'restaurant', params:{id: restaurant.id}}" >
         <v-hover v-slot:default="{ hover }" open-delay="200">
           <v-card id="cards" class="mx-auto" max-height="350" max-width="500" :elevation="hover ? 16 : 2" >
