@@ -83,6 +83,7 @@ export default {
     password: "",
     email: "",
     id: 0,
+    restaurantUser: "",
 
     nameRules: [
       v => !!v || "Por favor preencha o Username",
