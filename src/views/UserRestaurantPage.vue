@@ -38,21 +38,28 @@
                     show-select
                     class="elevation-1"
                     >
-                    <template v-slot:item.action="{ item }">
-                        <v-btn class="mr-2"
-                        @click="editItem(item)"
-                        rounded color="warning lighten-1"
-                        light="true">
-                        Confirmar
-                        </v-btn>
-                    </template>
 
                     
                     </v-data-table>
 
                 </v-col>
+                
+                
+                <v-row class="mr-6"  align="center" justify="end">
+                   
+                        <v-btn large rounded color="#f7c23e" dark v-on="on">Mudar estado da Reserva</v-btn>
+                    
+                    
 
-            </v-row>
+                </v-row>
+
+
+
+                
+
+            </v-row >
+
+            
 
         </v-row>
 
@@ -101,14 +108,25 @@ export default {
             { text: 'Hora', value: 'hour' },
             { text: 'Numero de Pessoas', value: 'seats' },
             { text: 'Estado da Reserva', value: 'status' },
-            { text: 'Ações', value: 'action', sortable: false },
+            
         ],
         restaurants: [],
+        
+        editedIndex: -1,
+        editedItem: {
+            nameReservation: '',
+            date: 0,
+            hour: 0,
+            seats: 0,
+            status: '',
+            },
+
         }
+      
     },
     
     created(){
-    this.restaurants  = this.$store.getters.getRestaurants 
+    //this.restaurants  = this.$store.getters.getRestaurants 
     },
     }
 </script>

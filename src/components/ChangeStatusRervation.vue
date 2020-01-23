@@ -8,13 +8,23 @@
     </template>
     <v-card>
       <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
-        <v-text-field v-model="name" :counter="20" :rules="nameRules" label="Nome do Restaurante" required></v-text-field>
+        <v-select
+          v-model="select"
+          :items="status"
+          :rules="[v => !!v || 'status is required']"
+          label="status"
+          required
+        ></v-select>
 
-        <v-text-field v-model="description" :counter="500" :rules="descriptionRules" label="Descrição" required></v-text-field>
+        <v-textarea  outlined
+          name="input-7-4"
+          color="indigo darken-1"                 
+          placeholder="Escreva alguma notação..."
+          :rules="commentRules"
+          v-model="commentText"
+        ></v-textarea>
 
-        <v-select v-model="outDoorSelection" :items="outDoorCheck" :rules="outDoorCheckRules" label="Tem esplanada?" ></v-select>
-
-        <v-select v-model="parkingSelection" :items="parkingCheck" :rules="parkingCheckRules" label="Tem parque de estacionamento?"></v-select>
+        
    
       
   
