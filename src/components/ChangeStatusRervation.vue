@@ -32,7 +32,7 @@
 
 <script>
 export default {
- name: "addRestaurant",
+ name: "ChangeStatusRes",
 
 data: () => ({
     choosenImg: null,

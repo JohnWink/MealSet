@@ -1,7 +1,7 @@
 <template>
     <div class="userRestaurantPage">
         
-        <v-row class="mr-2" align="center" justify="center">
+        <v-row class="mr-2 mb-6 mt-6" align="center" justify="center">
         
             <!-- ++++++++++++++++++++++++++++++++++navbar logout profile+++++++++++++++++++++++++++++++-->
             <v-row class="ml-12 pl-12" align="center" justify="space-between">
@@ -38,28 +38,21 @@
                     show-select
                     class="elevation-1"
                     >
+                    <template v-slot:item.action="{ item }">
+                        <v-btn class="mr-2"
+                        @click="editItem(item)"
+                        rounded color="warning lighten-1"
+                        light="true">
+                        Confirmar
+                        </v-btn>
+                    </template>
 
                     
                     </v-data-table>
 
                 </v-col>
-                
-                <v-row align="start" justify="end">
-       
-                    <v-col sm="3">
-                        <v-btn large rounded color="warning" dark>Mudar estado da Reserva</v-btn>
-                        <!--Change the status trough a  modal component where you set accepted or not and other options -->
-                    </v-col>
-                </v-row>
-
-
 
             </v-row>
-           
-
-
-
-
 
         </v-row>
 
@@ -78,6 +71,7 @@
     import footerVue from "@/components/footerVue.vue";
     import Logout from "@/components/logout.vue";
     import perfil from "@/components/perfil.vue";
+    //import ChangeStatusRes from "@/components/ChangeStatusRervation.vue"
 
 export default {
 
@@ -88,25 +82,26 @@ export default {
         NavBar,
         footerVue,    
         Logout,
-        perfil
+        perfil,
+        //ChangeStatusRes
     },
     data () {
         
         return {
-        singleSelect: false,
+        singleSelect: true,
         selected: [],
         headers: [
             {
             text: 'Reservas',
-            align: 'left',
-            sortable: false,
+            align: 'left',            
             value: 'name',
             },
             { text: 'Nome', value: 'nameReservation' },
             { text: 'Data', value: 'date' },
             { text: 'Hora', value: 'hour' },
             { text: 'Numero de Pessoas', value: 'seats' },
-            { text: 'Estado da Reserva', value: 'status' }
+            { text: 'Estado da Reserva', value: 'status' },
+            { text: 'Ações', value: 'action', sortable: false },
         ],
         restaurants: [],
         }
