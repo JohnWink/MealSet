@@ -7,12 +7,26 @@
        <v-btn large rounded color="#f7c23e" dark v-on="on">Mudar estado da Reserva</v-btn>
     </template>
     <v-card>
+      <!--Fechar-->
+      <v-toolbar color="#f7c23e">
+        <v-row>
+          <v-col class="text-left mt-2 ml-6">
+            <v-toolbar-title id="text">Estado da Reserva </v-toolbar-title>
+          </v-col>
+          <v-col class="text-right mt-2">
+            <v-btn color="#ffffff" text right @click="dialog = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-toolbar>
+
       <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
         <v-select
           v-model="select"
           :items="status"
-          :rules="[v => !!v || 'status is required']"
-          label="status"
+          :rules="[v => !!v || 'Selecione o estado da reserva!']"
+          label="Estado da Reserva"
           required
         ></v-select>
 
@@ -22,17 +36,9 @@
           placeholder="Escreva alguma notação..."
           :rules="commentRules"
           v-model="commentText"
-        ></v-textarea>
+        ></v-textarea> 
 
-        
-   
-      
-  
-      <v-btn color="blue darken-1" text @click="dialog = false">Fechar Janela</v-btn>
- 
-      <v-btn color="primary" text @click="reset">Limpar Informação </v-btn>
-
-      <v-btn color="primary" text @click="submit">Adicionar Restaurante</v-btn>
+      <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
      
      </v-form>
     </v-card>
@@ -45,34 +51,15 @@ export default {
  name: "ChangeStatusRes",
 
 data: () => ({
-    choosenImg: null,
-    Imgdata: null,
+    
+    
     dialog: false,
-    name: '',
-    description:'',
-    outDoor:false,
-    parking:false,
-    location:'',
-    outDoorCheck:['Sim','Não'],
-    parkingCheck:['Sim','Não'],
 
-    nameRules: [
-      v => !!v || 'Por favor preencha o Username',
-      v => (v && v.length <= 20) || 'Tem de ter menos de 20 caracteres',
-    ],
+    status:['Aceite', 'Recusado'],
 
-    descriptionRules:[
-      v =>!!v || 'Por favor preencha a Descrição',
-      v => (v.length >=50 || 'A descrição tem de ter no mínimo 50 caracteres'),
-      password => (password.length <=500 || 'A descrição não pode ter mais que 500 caracteres'),
-    ],
-
-    outDoorCheckRules:[
-      v =>!!v || 'Por favor selecione uma das opções',
-    ],
-
-    parkingCheckRules:[
-      v =>!!v || 'Por favor selecione uma das opções',
+    commentRules:[
+        v => !!v || 'Por favor preencha escreva a sua experiencia',
+        v => (v && v.length >= 30) || 'Tem de ter mais de 30 caracteres',
     ],
   
   }),

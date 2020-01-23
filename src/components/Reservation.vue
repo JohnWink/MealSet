@@ -123,6 +123,7 @@ export default {
   name: "reservation",
 
   data: () => ({
+    dialog: false,
     fromDateMenu: false,
     fromDateVal: null,
     name: "",

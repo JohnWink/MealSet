@@ -32,7 +32,7 @@
                     <v-data-table
                     v-model="selected"
                     :headers="headers"
-                    :items="restaurants"
+                    :items="reservations"
                     :single-select="singleSelect"
                     item-key="name"
                     show-select
@@ -46,15 +46,10 @@
                 
                 
                 <v-row class="mr-6"  align="center" justify="end">
-                   
-                        <v-btn large rounded color="#f7c23e" dark v-on="on">Mudar estado da Reserva</v-btn>
-                    
-                    
+                   <!--need to figure out how to bind selected items-->
+                    <ChangeStatusRes  />
 
                 </v-row>
-
-
-
                 
 
             </v-row >
@@ -78,7 +73,7 @@
     import footerVue from "@/components/footerVue.vue";
     import Logout from "@/components/logout.vue";
     import perfil from "@/components/perfil.vue";
-    //import ChangeStatusRes from "@/components/ChangeStatusRervation.vue"
+    import ChangeStatusRes from "@/components/ChangeStatusRervation.vue"
 
 export default {
 
@@ -90,7 +85,7 @@ export default {
         footerVue,    
         Logout,
         perfil,
-        //ChangeStatusRes
+        ChangeStatusRes
     },
     data () {
         
@@ -98,11 +93,7 @@ export default {
         singleSelect: true,
         selected: [],
         headers: [
-            {
-            text: 'Reservas',
-            align: 'left',            
-            value: 'name',
-            },
+            
             { text: 'Nome', value: 'nameReservation' },
             { text: 'Data', value: 'date' },
             { text: 'Hora', value: 'hour' },
@@ -110,7 +101,7 @@ export default {
             { text: 'Estado da Reserva', value: 'status' },
             
         ],
-        restaurants: [],
+        reservations: [],
         
         editedIndex: -1,
         editedItem: {
