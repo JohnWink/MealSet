@@ -90,15 +90,17 @@ export default {
     data () {
         
         return {
+            
         singleSelect: true,
         selected: [],
+        statusStr: "",
         headers: [
             
-            { text: 'Nome', value: 'nameReservation' },
-            { text: 'Data', value: 'date' },
-            { text: 'Hora', value: 'hour' },
-            { text: 'Numero de Pessoas', value: 'seats' },
-            { text: 'Estado da Reserva', value: 'status' },
+            { text: 'Nome', value: 'name' },
+            { text: 'Data', value: 'mealDate' },
+            { text: 'Hora', value: 'mealTime' },
+            { text: 'Numero de Pessoas', value: 'peopleNumber' },
+            { text: 'Estado da Reserva', value: '' },
             
         ],
         reservations: [],
@@ -117,7 +119,24 @@ export default {
     },
     
     created(){
-    //this.restaurants  = this.$store.getters.getRestaurants 
+    this.reservations  = this.$store.getters.getReservations 
     },
+
+    methods:{
+        statusRead(){
+            let statusStr = ""
+            if(this.reservations.status == true){
+                this.statusStr = "Reserva Comfirmada";
+                return this.statusstr
+                
+            }
+            else{
+                this.statusStr = "A ser Comfirmado...";
+                return statusstr
+            }
+        }
     }
+
+
+}
 </script>

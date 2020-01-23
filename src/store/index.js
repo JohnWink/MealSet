@@ -56,6 +56,8 @@ export default new Vuex.Store({
     
 
     getRestaurants: state => state.restaurants,
+
+    getReservations: state => state.reservations,
     
     //get last user Id in array
     getLastUserId: (state)=>{
@@ -381,7 +383,8 @@ export default new Vuex.Store({
       name: payload.name,
       peopleNumber: payload.peopleNumber,
       mealTime: payload.mealTime,
-      mealDate: payload.mealDate
+      mealDate: payload.mealDate,
+      status: payload.status
     })
 
     localStorage.setItem("reservations", JSON.stringify(state.reservations))

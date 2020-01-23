@@ -130,6 +130,7 @@ export default {
     peopleNumber: "",
     mealTime: ["Almoço", "Jantar"],
     mealTimeValue: "",
+    status: false,
 
     nameRules: [v => !!v || "Por favor preencha o nome"],
 
@@ -158,7 +159,8 @@ export default {
           name: this.name,
           peopleNumber: this.peopleNumber,
           mealTime: this.mealTimeSelection,
-          mealDate: this.fromDateVal
+          mealDate: this.fromDateVal,
+          status: this.status
         });
       }
     },
