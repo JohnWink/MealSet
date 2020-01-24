@@ -25,19 +25,19 @@
 
       <v-form class="pa-10" ref="form" lazy-validation>
         <v-select
-          
-          :items="status"
+          v-model="statusChange"
+          :items="statusSlc"
           :rules="[v => !!v || 'Selecione o estado da reserva!']"
           label="Estado da Reserva"
           required
         ></v-select>
 
         <v-textarea  outlined
+          v-model="notificationText"
           name="input-7-4"
           color="indigo darken-1"                 
           placeholder="Escreva alguma notação..."
-          :rules="commentRules"
-          v-model="commentText"
+          :rules="commentRules"          
         ></v-textarea> 
 
       <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
@@ -57,14 +57,17 @@ data: () => ({
     
     dialog: false,
 
-    status:['Aceite', 'Recusado'],
+    statusSlc:['Aceite', 'Recusado'],
+
+    statusChange:"",
+    notificationText:"",
     
 
     commentRules:[
         v => !!v || 'Por favor preencha escreva a sua experiencia',
         v => (v && v.length >= 30) || 'Tem de ter mais de 30 caracteres',
     ],
-    commentText: ""
+    
   }),
   
 
@@ -77,17 +80,18 @@ methods: {
 
         this.dialog=false
 
-        if(this.outDoorSelection === 'Sim'){
-          this.outDoor = true
-        }else{
-          this.outDoor = false
-        }
+        //conditions for the status change , if true then it will go to the storage and change that data
 
-        if(this.parkingSelection === 'Sim'){
-          this.parking = true
-        }else{
-          this.parking = false
-        }
+        if(this.statusChange ==='Aceite' ){
+          this.selected.status = true
+        }        
+        // if false it will get eliminated from the storage
+        /* 
+        if(this.statusChange === 'Recusado'){
+          
+        }*/
+
+        /* for this you will CHANGE the data of already existing data, use select to find the data of the reservation
 
         this.$store.commit("ADD_RESTAURANT",{
           id: this.$store.getters.getLastRestaurantId,
@@ -98,7 +102,7 @@ methods: {
           location: this.location,
           outDoorCheck: this.outDoorCheck,
           parkingCheck: this.parkingCheck
-        })
+        })*/
 
 
 
@@ -114,6 +118,7 @@ methods: {
   computed: {
     form(){
       return{
+        // search about this part
         name: this.name,
         description: this.description,
         outDoor: this.outDoor,
