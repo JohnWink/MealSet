@@ -51,11 +51,10 @@ export default new Vuex.Store({
    
     
     getComments: state => state.comments,
-    
-    
-    
 
     getRestaurants: state => state.restaurants,
+
+    getDishes: state => state.dishes,
 
     getReservations: state => state.reservations,
     
@@ -107,6 +106,7 @@ export default new Vuex.Store({
           password:"AllHailAdmins666",
           email: "veryImportantAdmin@yourHouse.lol",
           avatar: "https://i.imgur.com/t2Q8O9v.jpg",
+          bio: "Sou admin.",
           admin: true,
           restaurantUser: true
         },
@@ -116,6 +116,7 @@ export default new Vuex.Store({
           password:"123",
           email: "123@123.123",
           avatar: "https://i.imgur.com/6txmFi3.png",
+          bio: "Sou random.",
           admin: false,
           restaurantUser: false
         },

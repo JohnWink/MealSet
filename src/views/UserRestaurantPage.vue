@@ -67,7 +67,7 @@
 </template>
 
 <script>
-
+/*
     
     import NavBar from "@/components/navBar.vue";
     import footerVue from "@/components/footerVue.vue";
@@ -138,5 +138,5 @@ export default {
     }
 
 
-}
+}*/
 </script>

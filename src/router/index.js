@@ -57,6 +57,12 @@ const routes = [
     component:()=>
       import("../views/UserRestaurantPage.vue")
   },
+  {
+    path:"/DishesPage",
+    name:"DishesPage",
+    component:()=>
+      import("../views/DishesPage.vue")
+  },
 
  
 ];

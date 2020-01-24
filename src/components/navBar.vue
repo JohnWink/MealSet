@@ -13,14 +13,12 @@
       <template v-slot:prepend>
         <v-list>
           <v-list-item class="logoColor">
-            <router-link to="/landingPage"> 
-            <v-img
-              max-height="49"
-              max-width="49"
-              position="center"
-              src="../assets/icon_V2_logo2_white.png"
-            ></v-img>
-            </router-link>
+              <v-img
+                max-height="49"
+                max-width="49"
+                position="center"
+                src="../assets/icon_V2_logo2_white.png"
+              ></v-img>
           </v-list-item>
         </v-list>
       </template>
@@ -30,7 +28,7 @@
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
-                <router-link to="/restaurantList">
+                <router-link to="/landingPage">
                   <v-icon>fas fa-store</v-icon>
                 </router-link>
               </v-list-item-icon>
@@ -45,7 +43,9 @@
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
-                <v-icon>fas fa-utensils</v-icon>
+                <router-link to="/DishesPage">
+                  <v-icon>fas fa-utensils</v-icon>
+                </router-link>
               </v-list-item-icon>
               <v-list-item-title>Pratos</v-list-item-title>
             </v-list-item>
@@ -53,13 +53,13 @@
           <span>Pratos</span>
         </v-tooltip>
 
-          <v-tooltip right>
-          <template v-slot:activator="{ on }" >
+        <v-tooltip right>
+          <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
-                 <router-link to="/restaurantManager">
-                <v-icon>fas fa-user-shield</v-icon>
-                 </router-link>
+                <router-link to="/restaurantManager">
+                  <v-icon>fas fa-user-shield</v-icon>
+                </router-link>
               </v-list-item-icon>
               <v-list-item-title>Manager de restaurantes</v-list-item-title>
             </v-list-item>
@@ -68,7 +68,6 @@
         </v-tooltip>
       </v-list>
     </v-navigation-drawer>
-
   </div>
 </template>
 
