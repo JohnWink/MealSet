@@ -38,6 +38,10 @@
                     show-select
                     class="elevation-1"
                     >
+                    <!--Condition to change status to a string and give color chips -->
+                    <template v-slot:item.status="{ item }">
+                        <v-chip :color="getColor(item.status)" dark> {{ getStatus(item.status) }}</v-chip>
+                    </template>
 
                     
                     </v-data-table>
@@ -100,7 +104,10 @@ export default {
             { text: 'Data', value: 'mealDate' },
             { text: 'Hora', value: 'mealTime' },
             { text: 'Numero de Pessoas', value: 'peopleNumber' },
-            { text: 'Estado da Reserva', value: '' },
+            { 
+                text: 'Estado da Reserva', 
+                value:'status' ,
+                },
             
         ],
         reservations: [],
@@ -123,17 +130,13 @@ export default {
     },
 
     methods:{
-        statusRead(){
-            let statusStr = ""
-            if(this.reservations.status == true){
-                this.statusStr = "Reserva Comfirmada";
-                return this.statusstr
-                
-            }
-            else{
-                this.statusStr = "A ser Comfirmado...";
-                return statusstr
-            }
+        getStatus(status){
+            if(status == true){ return 'Reserva Comfirmada';}
+            else{ return 'A ser Comfirmado...';}
+        },
+        getColor(status){
+            if (status == false) return 'orange'        
+            else return 'green'
         }
     }
 
