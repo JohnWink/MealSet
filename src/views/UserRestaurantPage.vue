@@ -49,20 +49,24 @@
                 </v-col>
                 
                 
-                <v-row class="mr-6"  align="center" justify="end">
+                <v-row class="mr-6 mt-3"  align="center" justify="end">
                    <!--need to figure out how to bind selected items-->
-                    <ChangeStatusRes  />
+                    <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected" />
+                    <v-btn v-else large rounded  disabled>Mudar estado da Reserva</v-btn>
+                    
+                    
 
                 </v-row>
+
+                
+
                 
 
             </v-row >
 
-            
-
         </v-row>
 
-        <footerVue/>
+    <footerVue/>
 
 
          
@@ -104,24 +108,12 @@ export default {
             { text: 'Data', value: 'mealDate' },
             { text: 'Hora', value: 'mealTime' },
             { text: 'Numero de Pessoas', value: 'peopleNumber' },
-            { 
-                text: 'Estado da Reserva', 
-                value:'status' ,
-                },
+            { text: 'Estado da Reserva', value:'status' },
             
         ],
-        reservations: [],
+        reservations: [],}
         
-        editedIndex: -1,
-        editedItem: {
-            nameReservation: '',
-            date: 0,
-            hour: 0,
-            seats: 0,
-            status: '',
-            },
-
-        }
+        
       
     },
     
@@ -135,8 +127,8 @@ export default {
             else{ return 'A ser Comfirmado...';}
         },
         getColor(status){
-            if (status == false) return 'orange'        
-            else return 'green'
+            if (status == false) return 'orange lighten-1'        
+            else return 'green lighten-1'
         }
     }
 

@@ -20,10 +20,12 @@
           </v-col>
         </v-row>
       </v-toolbar>
+      <!-- looks like the sellected data gets trough
+      <pre>{{this.selected}}</pre>      -->
 
-      <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
+      <v-form class="pa-10" ref="form" lazy-validation>
         <v-select
-          v-model="select"
+          
           :items="status"
           :rules="[v => !!v || 'Selecione o estado da reserva!']"
           label="Estado da Reserva"
@@ -49,39 +51,27 @@
 <script>
 export default {
  name: "ChangeStatusRes",
-
+props:["selected"],
 data: () => ({
     
     
     dialog: false,
 
     status:['Aceite', 'Recusado'],
+    
 
     commentRules:[
         v => !!v || 'Por favor preencha escreva a sua experiencia',
         v => (v && v.length >= 30) || 'Tem de ter mais de 30 caracteres',
     ],
-  
+    commentText: ""
   }),
   
 
 methods: {
     submit () {
 
-/* TO upload images
- 
-      if (!this.chosenFile) {this.data = "No File Chosen"}
-      var reader = new FileReader();
-      
-      // Use the javascript reader object to load the contents
-      // of the file in the v-model prop
-      reader.readAsDataURL(this.chosenFile);
-     
-      reader.onload = () => {
-        
-        this.data = reader.result;
-      }
-*/
+
   
       if (this.$refs.form.validate()) {
 
@@ -118,32 +108,7 @@ methods: {
     },
     reset() {
       this.$refs.form.reset();
-    },
-
-
-    	onFilePicked (e) {
-			const files = e.target.files
-			if(files[0] !== undefined) {
-				this.imageName = files[0].name
-				if(this.imageName.lastIndexOf('.') <= 0) {
-					return
-				}
-				const fr = new FileReader ()
-				fr.readAsDataURL(files[0])
-				fr.addEventListener('load', () => {
-					this.imageUrl = fr.result
-          this.imageFile = files[0] // this is an image file that can be sent to server...
-        
-        })
-        
-          
-          localStorage.setItem("coverImg" , JSON.stringify(this.imageFile))
-			} else {
-				this.imageName = ''
-				this.imageFile = ''
-				this.imageUrl = ''
-			}
-		}
+    }
   },
 
   computed: {
