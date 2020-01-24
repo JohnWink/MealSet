@@ -20,22 +20,24 @@
           </v-col>
         </v-row>
       </v-toolbar>
+      <!-- looks like the sellected data gets trough
+      <pre>{{this.selected}}</pre>      -->
 
-      <v-form class="pa-10" ref="form" v-model="valid" lazy-validation>
+      <v-form class="pa-10" ref="form" lazy-validation>
         <v-select
-          v-model="select"
-          :items="status"
+          v-model="statusChange"
+          :items="statusSlc"
           :rules="[v => !!v || 'Selecione o estado da reserva!']"
           label="Estado da Reserva"
           required
         ></v-select>
 
         <v-textarea  outlined
+          v-model="notificationText"
           name="input-7-4"
           color="indigo darken-1"                 
           placeholder="Escreva alguma notação..."
-          :rules="commentRules"
-          v-model="commentText"
+          :rules="commentRules"          
         ></v-textarea> 
 
       <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
@@ -49,55 +51,47 @@
 <script>
 export default {
  name: "ChangeStatusRes",
-
+props:["selected"],
 data: () => ({
     
     
     dialog: false,
 
-    status:['Aceite', 'Recusado'],
+    statusSlc:['Aceite', 'Recusado'],
+
+    statusChange:"",
+    notificationText:"",
+    
 
     commentRules:[
         v => !!v || 'Por favor preencha escreva a sua experiencia',
         v => (v && v.length >= 30) || 'Tem de ter mais de 30 caracteres',
     ],
-  
+    
   }),
   
 
 methods: {
     submit () {
 
-/* TO upload images
- 
-      if (!this.chosenFile) {this.data = "No File Chosen"}
-      var reader = new FileReader();
-      
-      // Use the javascript reader object to load the contents
-      // of the file in the v-model prop
-      reader.readAsDataURL(this.chosenFile);
-     
-      reader.onload = () => {
-        
-        this.data = reader.result;
-      }
-*/
+
   
       if (this.$refs.form.validate()) {
 
         this.dialog=false
 
-        if(this.outDoorSelection === 'Sim'){
-          this.outDoor = true
-        }else{
-          this.outDoor = false
-        }
+        //conditions for the status change , if true then it will go to the storage and change that data
 
-        if(this.parkingSelection === 'Sim'){
-          this.parking = true
-        }else{
-          this.parking = false
-        }
+        if(this.statusChange ==='Aceite' ){
+          this.selected.status = true
+        }        
+        // if false it will get eliminated from the storage
+        /* 
+        if(this.statusChange === 'Recusado'){
+          
+        }*/
+
+        /* for this you will CHANGE the data of already existing data, use select to find the data of the reservation
 
         this.$store.commit("ADD_RESTAURANT",{
           id: this.$store.getters.getLastRestaurantId,
@@ -108,7 +102,7 @@ methods: {
           location: this.location,
           outDoorCheck: this.outDoorCheck,
           parkingCheck: this.parkingCheck
-        })
+        })*/
 
 
 
@@ -118,37 +112,13 @@ methods: {
     },
     reset() {
       this.$refs.form.reset();
-    },
-
-
-    	onFilePicked (e) {
-			const files = e.target.files
-			if(files[0] !== undefined) {
-				this.imageName = files[0].name
-				if(this.imageName.lastIndexOf('.') <= 0) {
-					return
-				}
-				const fr = new FileReader ()
-				fr.readAsDataURL(files[0])
-				fr.addEventListener('load', () => {
-					this.imageUrl = fr.result
-          this.imageFile = files[0] // this is an image file that can be sent to server...
-        
-        })
-        
-          
-          localStorage.setItem("coverImg" , JSON.stringify(this.imageFile))
-			} else {
-				this.imageName = ''
-				this.imageFile = ''
-				this.imageUrl = ''
-			}
-		}
+    }
   },
 
   computed: {
     form(){
       return{
+        // search about this part
         name: this.name,
         description: this.description,
         outDoor: this.outDoor,
