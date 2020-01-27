@@ -78,8 +78,9 @@
             <!--Google Maps API box-->        
             <v-col cols="12" md="6" >
               <p class="headline font-weight-bold ">Localização do restaurante</p><br>
+            
               <!--temp place holder for the actually thing-->
-              <div id="googleMap" style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
+              <div id="googleMap"  style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
 
             </v-col>
           </v-row>
@@ -171,8 +172,8 @@
     <footerVue />
   </div>
 </template>
-<!--google maps script-->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+
+
 <style>
 #header-text{
   text-shadow: 2px 2px 3px black ;
@@ -193,6 +194,9 @@ import Logout from "@/components/logout.vue";
 import restaurantMenu from"@/components/RestaurantMenu.vue"
 import reservation from "@/components/Reservation.vue"
 
+ 
+
+
 
 export default {
   name: "restaurantPage",
@@ -210,6 +214,7 @@ export default {
     checker:"border: solid indigo",
     fontsize: " ",
     restaurants: [],
+    map:"",
     return:{
           dialog: false
       },
@@ -285,15 +290,18 @@ export default {
   }
   },
   methods:{
+
     // this is a place holder for google maps api
-    myMap() {
-      var mapProp= {
-        center:new google.maps.LatLng(51.508742,-0.120850),
-        zoom:5,
-      };
-      var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+      iniMap(){
+      this.map = new google.maps.Map(document.querySelector("#googleMap"),{
+        center:{lat: -34.397, lng: 150.644},
+        zoom:8,
+        disableDefaultUI: true,
+      });
+     
  
     },
+ 
     //method to ajust the css font size for xs devices, handset
     mobileAjust(){
       let cssLine = "font-size:400%;"
@@ -326,13 +334,17 @@ export default {
 
  
   created() {
-    window.addEventListener('resize', this.mobileAjust)
+    window.addEventListener('resize', this.mobileAjust);
     this.mobileAjust();
-    this.restaurants  = this.$store.getters.getRestaurants
-
+    this.restaurants  = this.$store.getters.getRestaurants;
+  
   },
   destroyed() {
     window.removeEventListener('resize', this.mobileAjust)
+  },
+
+  mounted(){
+  this.iniMap();
   },
 
   beforeMount() {
@@ -340,4 +352,8 @@ export default {
   }
    
 };
+
 </script>
+
+
+
