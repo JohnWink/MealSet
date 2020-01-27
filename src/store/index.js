@@ -18,6 +18,8 @@ export default new Vuex.Store({
 
     comments:[],
 
+    historic:[],
+
     //variável para a função login
     existUser: false,
 
@@ -51,11 +53,14 @@ export default new Vuex.Store({
    
     
     getComments: state => state.comments,
-    
-    
-    
 
     getRestaurants: state => state.restaurants,
+
+    getDishes: state => state.dishes,
+
+    getReservations: state => state.reservations,
+
+    getHistoric: state => state.historic,
     
     //get last user Id in array
     getLastUserId: (state)=>{
@@ -86,6 +91,17 @@ export default new Vuex.Store({
         return 0;
       }
     },
+
+
+    getLastHistoricId:(state)=>{
+      if(state.historic.length){
+        return 1 + state.historic[state.historic.length-1].id;
+      }else{
+        return 0;
+      }
+    },
+
+
    
     userInfo: state => state.users,
   },
@@ -105,6 +121,7 @@ export default new Vuex.Store({
           password:"AllHailAdmins666",
           email: "veryImportantAdmin@yourHouse.lol",
           avatar: "https://i.imgur.com/t2Q8O9v.jpg",
+          bio: "Sou admin.",
           admin: true,
           restaurantUser: true
         },
@@ -114,6 +131,7 @@ export default new Vuex.Store({
           password:"123",
           email: "123@123.123",
           avatar: "https://i.imgur.com/6txmFi3.png",
+          bio: "Sou random.",
           admin: false,
           restaurantUser: false
         },
@@ -147,6 +165,10 @@ export default new Vuex.Store({
  //+++++++++++++++++++++++++++++++++++++++++++++Initialize Reservations+++++++++++++++++++++++++++++++++++++++++++++
     if(localStorage.getItem('reservations')){
       state.reservations = JSON.parse(localStorage.getItem("reservations"))
+    }
+    //+++++++++++++++++++++++++++++++++++++++++++++Initialize Historic+++++++++++++++++++++++++++++++++++++++++++++
+    if(localStorage.getItem('historic')){
+      state.historic = JSON.parse(localStorage.getItem("historic"))
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++Initialize Restaurants+++++++++++++++++++++++++++++++++++++++++++++
@@ -381,7 +403,8 @@ export default new Vuex.Store({
       name: payload.name,
       peopleNumber: payload.peopleNumber,
       mealTime: payload.mealTime,
-      mealDate: payload.mealDate
+      mealDate: payload.mealDate,
+      status: payload.status
     })
 
     localStorage.setItem("reservations", JSON.stringify(state.reservations))
@@ -427,6 +450,47 @@ export default new Vuex.Store({
     state.logged = false;
     sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
   },
+
+  //rEsevations changes and removal 
+  ACCEPT_RESERVATION(state,payload){
+    for (let reservation of state.reservations) {
+      if (reservation.id === payload.id){
+        reservation.status = payload.status
+      }
+    }
+    localStorage.setItem("reservations", JSON.stringify(state.reservations))
+  },
+
+  
+
+  REFUSE_RESERVATION(state,payload){
+    let indexRes = 0;
+    for (let reservation of state.reservations) {
+      
+      if (reservation.id === payload.id){
+        state.reservations.splice(indexRes,1);
+        
+      }
+      indexRes++;
+    }
+    localStorage.setItem("reservations", JSON.stringify(state.reservations))
+
+  },
+
+  ADD_HISTORY(state,payload){
+    state.historic.push({
+      id: payload.id,
+      userId: payload.userId,
+      restaurantId: payload.restaurantId,
+      status: payload.status,
+      notification: payload.notification,
+      date: payload.date
+    })
+    localStorage.setItem("historic", JSON.stringify(state.historic))
+    
+  }
+
+
   
  
 },

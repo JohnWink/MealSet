@@ -10,17 +10,7 @@
             <v-col md="1">
               <navBar />
             </v-col>
-            <!--Search Text Field   !-->
-            <v-col md="2" offset-sm="7">
-              <v-text-field
-                prepend-inner-icon="fas fa-search"
-                height="2px"
-                background-color="#FFFFFF"
-                filled
-                rounded
-                dense
-              ></v-text-field>
-            </v-col>
+            
             
             <v-col md="2">
               <logout/>

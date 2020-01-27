@@ -49,7 +49,21 @@ const routes = [
     name:"restaurantManager",
     component:()=>
       import("../views/RestaurantManager.vue")
-  }
+  },
+
+  {
+    path:"/userRestaurantPage",
+    name:"userRestaurantPage",
+    component:()=>
+      import("../views/UserRestaurantPage.vue")
+  },
+  {
+    path:"/DishesPage",
+    name:"DishesPage",
+    component:()=>
+      import("../views/DishesPage.vue")
+  },
+
  
 ];
 
