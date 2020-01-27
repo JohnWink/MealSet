@@ -302,36 +302,54 @@ export default new Vuex.Store({
       state.dishes = [{
         id:0,
         name: "Polvo",
-        img: "",
+        img: require("@/assets/purple-and-brown-food-on-white-surface-921361.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Polvo com batata assada gostosa.",
         restaurantId: 0,
         evaluation: 4
       },
       {
         id:1,
-        name: "Bacalhau",
-        img: "",
+        name: "Salmão",
+        img: require("@/assets/salmon-518032_1920.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Salmão é que é bom.",
           restaurantId: 0,
         evaluation: 5
       },
       {
         id:2,
         name: "Legumes Salteados",
-        img: "",
+        img: require("@/assets/sliced-vegetable-and-cooked-food-on-white-ceramic-plate-1234535.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Legumes salteados são fixolas.",
           restaurantId: 2,
         evaluation: 3
       },
       {
         id:3,
         name: "Novilho",
-        img: "",
+        img: require("@/assets/asparagus-2169305_1920.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Novilho é noice.",
+        restaurantId: 2,
+        evaluation: 2
+      },
+      {
+        id:4,
+        name: "Cheeseburger",
+        img: require("@/assets/cheeseburger-on-table-2089717.jpg"),
+        description:
+          "Cheeseburger é okay para quem gosta.",
+        restaurantId: 2,
+        evaluation: 2
+      },
+      {
+        id:5,
+        name: "Bife",
+        img: require("@/assets/selective-focus-photography-of-beef-steak-with-sauce-675951.jpg"),
+        description:
+          "Batata a murro é fine, bife é que já na vai.",
         restaurantId: 2,
         evaluation: 2
       }
@@ -451,7 +469,10 @@ export default new Vuex.Store({
         avatar: user.avatar,
         admin: user.admin,
         restaurantUser: user.restaurantUser,
-        restaurantId: user.restaurantId
+        restaurantId: user.restaurantId,
+        email: user.email,
+        password: user.password,
+        admin: false
       })
       
         sessionStorage.setItem(

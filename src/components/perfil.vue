@@ -1,8 +1,9 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600" max-height="600">
+  <v-dialog v-model="dialog" persistent max-width="400" max-height="600">
     <template v-slot:activator="{ on }">
-      <v-btn large rounded color="#5C6BC0" elevation="7" dark v-on="on">Perfil</v-btn>
+      <v-btn large rounded color="#f7c23e" elevation="7" dark v-on="on">Perfil</v-btn>
     </template>
+    
     <!--MODAL DE PERFIL-->
     <v-card>
       <!--Fechar-->
@@ -18,29 +19,54 @@
           </v-col>
         </v-row>
       </v-toolbar>
-      <v-container>
-        <v-col class="text-left mt-2 ml-6">
-          <v-img id="avatar" :src="this.$store.state.loggedUser[0].avatar" width="200px" height="200px"></v-img>
-          </v-col>
-          <v-col class="text-left">
-          <v-title id="text">
-            Username:
-            <span>{{this.$store.state.loggedUser[0].username}}</span>
-          </v-title>
-          
-          <p id="text">
-            Email:
-            <span>{{this.$store.state.loggedUser[0].email}}</span>
-          </p>
-          <p id="text">
-            Password:
-            <span>{{this.$store.state.loggedUser[0].password}}</span>
-          </p>
+      <v-container class="text-center">
+        <v-col align="center" justify="center">
+          <v-img
+            id="avatar"
+            :src="this.$store.state.loggedUser[0].avatar"
+            width="200px"
+            height="200px"
+          ></v-img>
+        </v-col>
+        <v-col class="text-left">
+          <v-text-field
+            label="Username"
+            color="#5C6BC0"
+            placeholder
+            :value="this.$store.state.loggedUser[0].username"
+            outlined
+            disabled
+          ></v-text-field>
+          <v-text-field
+            label="Email"
+            color="#5C6BC0"
+            placeholder
+            :value="this.$store.state.loggedUser[0].email"
+            outlined
+            disabled
+          ></v-text-field>
+          <v-text-field
+            label="Password Anterior"
+            value="Password"
+            color="#5C6BC0"
+            placeholder
+            outlined
+            disabled
+          ></v-text-field>
+          <v-text-field
+            label="Nova Password"
+            value="Password"
+            color="#5C6BC0"
+            placeholder
+            outlined
+            disabled
+          ></v-text-field>
         </v-col>
       </v-container>
       <!--Botões-->
       <v-card-actions>
         <v-col class="text-right mr-3">
+          <v-btn color="#f7c23e" disabled dark @click="submit">Guardar</v-btn>
           <v-btn color="#5C6BC0" dark @click="submit">Alterar Informações</v-btn>
         </v-col>
       </v-card-actions>
@@ -54,8 +80,21 @@
   color: white;
   text-shadow: 0px 0px 5px gray;
 }
-#text {
+
+#text1 {
   color: black;
+  font-weight: 500;
+  margin-left: 15%;
+}
+
+#text2 {
+  color: black;
+  font-weight: 300;
+}
+
+#avatar {
+  border-radius: 100%;
+  margin-bottom: 5%;
 }
 </style>
 
@@ -70,9 +109,6 @@ export default {
 
   methods: {},
 
-  created(){
-   
-  }
+  created() {}
 };
-
 </script>

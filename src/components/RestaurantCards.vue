@@ -8,7 +8,7 @@
           max-width="500"
           :elevation="hover ? 16 : 2"
         ><router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
-          <v-img class="cardsImg" :src="restaurant.coverImg"></v-img></router-link>
+          <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img></router-link>
           <v-row class="mb-6 mx-2">
             <v-col class="text-left">
               <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
@@ -35,10 +35,11 @@
   border-radius: 20px;
 }
 
-.cardsImg {
+/*#cardsImg {
   max-width: 500px;
   max-height: 250px;
 }
+*/
 
 .nameTitle {
   font-size: 20px;
