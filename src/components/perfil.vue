@@ -18,20 +18,23 @@
           </v-col>
         </v-row>
       </v-toolbar>
-      <v-container v-for="user in users" :key="user.id">
-        <v-col class="text-center">
-          <v-img id="avatar" :src="user.avatar"></v-img>
+      <v-container>
+        <v-col class="text-left mt-2 ml-6">
+          <v-img id="avatar" :src="this.$store.state.loggedUser[0].avatar" width="200px" height="200px"></v-img>
+          </v-col>
+          <v-col class="text-left">
           <v-title id="text">
-            Username: <span>{{user.username}}</span>
+            Username:
+            <span>{{this.$store.state.loggedUser[0].username}}</span>
           </v-title>
+          
           <p id="text">
-            Descrição: <span>{{user.bio}}</span>
+            Email:
+            <span>{{this.$store.state.loggedUser[0].email}}</span>
           </p>
           <p id="text">
-            Password: <span>{{user.password}}</span>
-          </p>
-          <p id="text">
-            Email: <span>{{user.email}}</span>
+            Password:
+            <span>{{this.$store.state.loggedUser[0].password}}</span>
           </p>
         </v-col>
       </v-container>
@@ -52,7 +55,7 @@
   text-shadow: 0px 0px 5px gray;
 }
 #text {
-  
+  color: black;
 }
 </style>
 
@@ -62,21 +65,14 @@ export default {
   name: "perfil",
 
   data: () => ({
-    dialog: false,
-    users: [
-      {
-        id: 1,
-        username: "123",
-        password: "123",
-        email: "123@123.123",
-        avatar: "https://i.imgur.com/6txmFi3.png",
-        bio: "bnvgelfemkod",
-        admin: false,
-        restaurantUser: false
-      }
-    ]
+    dialog: false
   }),
 
-  methods: {}
+  methods: {},
+
+  created(){
+   
+  }
 };
+
 </script>
