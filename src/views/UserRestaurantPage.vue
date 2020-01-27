@@ -51,7 +51,7 @@
                 
                 <v-row class="mr-6 mt-3"  align="center" justify="end">
                    <!--need to figure out how to bind selected items-->
-                    <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected" />
+                    <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />
                     <v-btn v-else large rounded  disabled>Mudar estado da Reserva</v-btn>
                     
                     
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-/*
+
     
     import NavBar from "@/components/navBar.vue";
     import footerVue from "@/components/footerVue.vue";
@@ -133,5 +133,5 @@ export default {
     }
 
 
-}*/
+}
 </script>

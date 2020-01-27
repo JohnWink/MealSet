@@ -40,6 +40,8 @@
           :rules="commentRules"          
         ></v-textarea> 
 
+         
+
       <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
      
      </v-form>
@@ -51,7 +53,16 @@
 <script>
 export default {
  name: "ChangeStatusRes",
-props:["selected"],
+props:{
+  selected:{
+    type: Object,
+    default: function () {
+        return { message: 'default on' }
+      }
+  }
+
+},
+
 data: () => ({
     
     
@@ -60,6 +71,7 @@ data: () => ({
     statusSlc:['Aceite', 'Recusado'],
 
     statusChange:"",
+    
     notificationText:"",
     
 
@@ -79,34 +91,61 @@ methods: {
       if (this.$refs.form.validate()) {
 
         this.dialog=false
+        let noteText = this.notificationText        
+        let setDate = new Date()
+        let postDate = setDate.getDate() +"/"+ 1 + setDate.getMonth() +"/"+ setDate.getFullYear() +"  "+ setDate.getHours()+ ":" + setDate.getMinutes()
 
         //conditions for the status change , if true then it will go to the storage and change that data
+        //also making sure that if we are changing a status true to true again, not to send to the historic again 
+        if(this.selected.status != true){
 
-        if(this.statusChange ==='Aceite' ){
-          this.selected.status = true
-        }        
+          if(this.statusChange ==='Aceite' ){
+            let statusValue = true
+
+            
+            
+
+            this.$store.commit("ACCEPT_RESERVATION",{
+              id: this.selected.id,            
+              status: statusValue
+            })
+
+            //sending the notification
+
+            this.$store.commit("ADD_HISTORY",{
+              id: this.$store.getters.getLastHistoricId,
+              userId: this.selected.userId,
+              restaurantId: this.selected.restaurantId,
+              status: this.selected.status,
+              notification: noteText,
+              date: postDate
+            })
+
+
+          }
+
+        }
+        else{alert("A reserva já foi aceite!")} 
+
+                
         // if false it will get eliminated from the storage
-        /* 
+         
         if(this.statusChange === 'Recusado'){
-          
-        }*/
 
-        /* for this you will CHANGE the data of already existing data, use select to find the data of the reservation
+          this.$store.commit("REFUSE_RESERVATION",{
+            id: this.selected.id 
+          })
+          //sending the notification
 
-        this.$store.commit("ADD_RESTAURANT",{
-          id: this.$store.getters.getLastRestaurantId,
-          name: this.name,
-          description: this.description,
-          outDoor: this.outDoor,
-          parking: this.parking,
-          location: this.location,
-          outDoorCheck: this.outDoorCheck,
-          parkingCheck: this.parkingCheck
-        })*/
-
-
-
-    
+          this.$store.commit("ADD_HISTORY",{
+            id: this.$store.getters.getLastHistoricId,
+            userId: this.selected.userId,
+            restaurantId: this.selected.restaurantId,
+            status: this.selected.status,
+            notification: noteText,
+            date: postDate
+          })
+        }
         
       }
     },
@@ -115,19 +154,6 @@ methods: {
     }
   },
 
-  computed: {
-    form(){
-      return{
-        // search about this part
-        name: this.name,
-        description: this.description,
-        outDoor: this.outDoor,
-        parking: this.parking,
-        location: this.location
-
-      }
-    }
-   
-  }
+  
 }
 </script>
