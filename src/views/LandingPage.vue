@@ -15,12 +15,12 @@
           </v-col>
 
           <v-col md="1" offset-sm="8">
-            <perfil/>
+              <perfil/> 
           </v-col>
+
           <v-col md="1">
             <logout/>
           </v-col>
-
         </v-row>
         <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
         <v-row class="pl-12 ml-12">
@@ -28,8 +28,8 @@
           <p
             id="header-text1"
             class="font-weight-bold white--text text-center"
-            :style="fontsize" >
-          Restaurantes</p>
+            :style="fontsize"
+          >Restaurantes</p>
         </v-row>
       </v-img>
     </v-row>
@@ -50,19 +50,25 @@
         <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" label="Filtros"></v-overflow-btn>
       </v-col>
     </v-row>
-      
+
     <!--RECOMENDAÇÃO DE RESTAURANTES-->
-    <br><br>
+    <br>
+    <br>
 
     <v-row class="mx-2" justify="center" align="center">
-      <v-col class="mb-2" cols="12" sm="6" md="4" v-for="restaurant in restaurants" :key="restaurant.id" >
-        <RestaurantCards v-bind:restaurant="restaurant"  />
+      <v-col
+        class="mb-2"
+        cols="12"
+        sm="6"
+        md="4"
+        v-for="restaurant in restaurants"
+        :key="restaurant.id"
+      >
+        <RestaurantCards v-bind:restaurant="restaurant"/>
       </v-col>
     </v-row>
 
-    
-
-    <footerVue />
+    <footerVue/>
   </div>
 </template>
 
@@ -83,7 +89,7 @@ import perfil from "@/components/perfil.vue";
 
 export default {
   name: "landingPage",
-  
+
   components: {
     NavBar,
     footerVue,
@@ -92,38 +98,30 @@ export default {
     perfil
   },
   data: () => ({
-    filters: [
-      "Mais Popular",
-      "Mais Perto",
-      "Peixe",
-      "Carne",
-      "Vegetariano"
-    ],
-    restaurants:[],
+    filters: ["Mais Popular", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
+    restaurants: [],
     fontsize: " "
   }),
   beforeMount() {
     this.restaurants = this.$store.getters.getRestaurants;
   },
   created() {
-    window.addEventListener('resize', this.mobileAjust)
+    window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
   },
-  methods:{
-    mobileAjust(){
-      let cssLine = "font-size:400%;"
-      if(window.innerWidth < 600){
-        cssLine += "font-size:280%;"
-        
-        
-        if(window.innerWidth < 400){
-          cssLine = "font-size:230%;"
+  methods: {
+    mobileAjust() {
+      let cssLine = "font-size:400%;";
+      if (window.innerWidth < 600) {
+        cssLine += "font-size:280%;";
+
+        if (window.innerWidth < 400) {
+          cssLine = "font-size:230%;";
         }
-        
       }
 
       this.fontsize = cssLine;
-    },
+    }
   }
 };
 </script>

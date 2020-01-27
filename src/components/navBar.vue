@@ -47,6 +47,7 @@
                   <v-icon>fas fa-utensils</v-icon>
                 </router-link>
               </v-list-item-icon>
+
               <v-list-item-title>Pratos</v-list-item-title>
             </v-list-item>
           </template>

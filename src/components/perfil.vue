@@ -1,8 +1,9 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="400" max-height="600">
     <template v-slot:activator="{ on }">
-      <v-btn large rounded color="#5C6BC0" elevation="7" dark v-on="on">Perfil</v-btn>
+      <v-btn large rounded color="#f7c23e" elevation="7" dark v-on="on">Perfil</v-btn>
     </template>
+    
     <!--MODAL DE PERFIL-->
     <v-card>
       <!--Fechar-->
@@ -28,17 +29,44 @@
           ></v-img>
         </v-col>
         <v-col class="text-left">
-          <p id="text1">Username:
-          <span id="text2">{{this.$store.state.loggedUser[0].username}}</span></p>
-          <p id="text1">Email:
-          <span id="text2">{{this.$store.state.loggedUser[0].email}}</span></p>
-          <p id="text1">Password:
-          <span id="text2">{{this.$store.state.loggedUser[0].password}}</span></p>
+          <v-text-field
+            label="Username"
+            color="#5C6BC0"
+            placeholder
+            :value="this.$store.state.loggedUser[0].username"
+            outlined
+            disabled
+          ></v-text-field>
+          <v-text-field
+            label="Email"
+            color="#5C6BC0"
+            placeholder
+            :value="this.$store.state.loggedUser[0].email"
+            outlined
+            disabled
+          ></v-text-field>
+          <v-text-field
+            label="Password Anterior"
+            value="Password"
+            color="#5C6BC0"
+            placeholder
+            outlined
+            disabled
+          ></v-text-field>
+          <v-text-field
+            label="Nova Password"
+            value="Password"
+            color="#5C6BC0"
+            placeholder
+            outlined
+            disabled
+          ></v-text-field>
         </v-col>
       </v-container>
       <!--Botões-->
       <v-card-actions>
         <v-col class="text-right mr-3">
+          <v-btn color="#f7c23e" disabled dark @click="submit">Guardar</v-btn>
           <v-btn color="#5C6BC0" dark @click="submit">Alterar Informações</v-btn>
         </v-col>
       </v-card-actions>
@@ -60,8 +88,8 @@
 }
 
 #text2 {
-color:black;
-font-weight: 300;
+  color: black;
+  font-weight: 300;
 }
 
 #avatar {
