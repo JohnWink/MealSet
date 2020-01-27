@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600" max-height="600">
+  <v-dialog v-model="dialog" persistent max-width="400" max-height="600">
     <template v-slot:activator="{ on }">
       <v-btn large rounded color="#5C6BC0" elevation="7" dark v-on="on">Perfil</v-btn>
     </template>
@@ -18,24 +18,22 @@
           </v-col>
         </v-row>
       </v-toolbar>
-      <v-container>
-        <v-col class="text-left mt-2 ml-6">
-          <v-img id="avatar" :src="this.$store.state.loggedUser[0].avatar" width="200px" height="200px"></v-img>
-          </v-col>
-          <v-col class="text-left">
-          <v-title id="text">
-            Username:
-            <span>{{this.$store.state.loggedUser[0].username}}</span>
-          </v-title>
-          
-          <p id="text">
-            Email:
-            <span>{{this.$store.state.loggedUser[0].email}}</span>
-          </p>
-          <p id="text">
-            Password:
-            <span>{{this.$store.state.loggedUser[0].password}}</span>
-          </p>
+      <v-container class="text-center">
+        <v-col align="center" justify="center">
+          <v-img
+            id="avatar"
+            :src="this.$store.state.loggedUser[0].avatar"
+            width="200px"
+            height="200px"
+          ></v-img>
+        </v-col>
+        <v-col class="text-left">
+          <p id="text1">Username:
+          <span id="text2">{{this.$store.state.loggedUser[0].username}}</span></p>
+          <p id="text1">Email:
+          <span id="text2">{{this.$store.state.loggedUser[0].email}}</span></p>
+          <p id="text1">Password:
+          <span id="text2">{{this.$store.state.loggedUser[0].password}}</span></p>
         </v-col>
       </v-container>
       <!--Botões-->
@@ -54,8 +52,21 @@
   color: white;
   text-shadow: 0px 0px 5px gray;
 }
-#text {
+
+#text1 {
   color: black;
+  font-weight: 500;
+  margin-left: 15%;
+}
+
+#text2 {
+color:black;
+font-weight: 300;
+}
+
+#avatar {
+  border-radius: 100%;
+  margin-bottom: 5%;
 }
 </style>
 
@@ -70,9 +81,6 @@ export default {
 
   methods: {},
 
-  created(){
-   
-  }
+  created() {}
 };
-
 </script>
