@@ -66,6 +66,24 @@
           </template>
           <span>Manager de restaurantes</span>
         </v-tooltip>
+
+        <!--------UserRestanrant page-->
+        <v-tooltip right>
+          <template v-slot:activator="{ on }">
+            <v-list-item link v-on="on">
+              <v-list-item-icon>
+                
+                <router-link to="/userRestaurantPage" >
+                  <v-icon>fas fa-th-list</v-icon> 
+                </router-link>
+              </v-list-item-icon>
+              <v-list-item-title>Manager de Reservas</v-list-item-title>
+            </v-list-item>
+          </template>
+          <span>Manager de Reservas</span>
+        </v-tooltip>
+
+
       </v-list>
     </v-navigation-drawer>
   </div>

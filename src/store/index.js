@@ -35,6 +35,7 @@ export default new Vuex.Store({
     restaurantInfo: state => id => {
       return state.restaurants.find(restaurant =>restaurant.id === id);
     },
+    
 
     checkLogged: state => state.logged,
 
@@ -59,6 +60,8 @@ export default new Vuex.Store({
     getDishes: state => state.dishes,
 
     getReservations: state => state.reservations,
+
+    
 
     getHistoric: state => state.historic,
     
@@ -101,6 +104,19 @@ export default new Vuex.Store({
       }
     },
 
+    getRestaurantReservations: (state) =>{
+      let reservationList = []
+      for (const reservation of state.reservations) {
+        if (reservation.restaurantId === state.loggedUser[0].restaurantId) {
+          reservationList.push(reservation)        
+        }
+      }
+
+      return reservationList
+
+
+    },
+
 
    
     userInfo: state => state.users,
@@ -134,6 +150,18 @@ export default new Vuex.Store({
           bio: "Sou random.",
           admin: false,
           restaurantUser: false
+        },
+        //Test userRestaurant to test entering the respective restaurant user page
+        {
+          id:2,
+          username: "joaquim",
+          password:"chimarao123",
+          email: "chimaraorestaurante@yourHouse.lol",
+          avatar: "https://i.imgur.com/t2Q8O9v.jpg",
+          bio: "Sou o gestor do restaurante de chimarão ",
+          admin: false,
+          restaurantUser: true,
+          restaurantId: 0
         },
       ]
       localStorage.setItem("users", JSON.stringify(state.users))
@@ -421,7 +449,9 @@ export default new Vuex.Store({
         id: user.id,
         username: user.username,
         avatar: user.avatar,
-        admin: false
+        admin: user.admin,
+        restaurantUser: user.restaurantUser,
+        restaurantId: user.restaurantId
       })
       
         sessionStorage.setItem(

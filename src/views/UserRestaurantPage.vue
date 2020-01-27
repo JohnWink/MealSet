@@ -27,14 +27,16 @@
 
             </v-row>
             <!--++++++++++++++++table and set up so it doesnt clip the table by the navbar++++++++++++++++++++++++++++++++ -->
-            <v-row class="pl-12 ml-12">
+
+            <!--reservation table-->
+            <v-row class="pl-12 ml-12" v-if="this.tableMode == true">
                 <v-col cols="12" >
                     <v-data-table
                     v-model="selected"
-                    :headers="headers"
-                    :items="reservations"
+                    :headers="headersReservation"                    
+                    :items="reservations"                    
                     :single-select="singleSelect"
-                    item-key="name"
+                    item-key="id"
                     show-select
                     class="elevation-1"
                     >
@@ -51,18 +53,45 @@
                 
                 <v-row class="mr-6 mt-3"  align="center" justify="end">
                    <!--need to figure out how to bind selected items-->
+                   <v-btn v-on:click="tableMode = false">Pratos</v-btn>
                     <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />
                     <v-btn v-else large rounded  disabled>Mudar estado da Reserva</v-btn>
-                    
-                    
 
                 </v-row>
 
-                
+            </v-row >
 
+            <!--dishes table-->
+            <v-row class="pl-12 ml-12" v-if="this.tableMode == false">
+                <v-col cols="12" >
+                    <v-data-table
+                        v-model="selected"
+                        :headers="headersDishes"                    
+                        :items="dishes"                    
+                        :single-select="singleSelect"
+                        item-key="id"
+                        show-select
+                        class="elevation-1"
+                    >
+                    </v-data-table>
+
+                </v-col>
                 
+                
+                <v-row class="mr-6 mt-3"  align="center" justify="end">
+                   <!--need to figure out how to bind selected items-->
+                    <!--<ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />-->
+                    <v-btn v-on:click="tableMode = true">Reservas</v-btn>
+                    <v-btn  large rounded  >Adicionar prato</v-btn>
+                    <v-btn  large rounded  >Remover prato</v-btn>
+
+                </v-row>
 
             </v-row >
+
+            
+
+
 
         </v-row>
 
@@ -98,28 +127,50 @@ export default {
     data () {
         
         return {
+
+            tableMode: true, // this will be the switch that allows it to change from reservation table to plate table  
+            singleSelect: true,
+            selected: [],
+            restaurants: [],
             
-        singleSelect: true,
-        selected: [],
-        statusStr: "",
-        headers: [
-            
-            { text: 'Nome', value: 'name' },
-            { text: 'Data', value: 'mealDate' },
-            { text: 'Hora', value: 'mealTime' },
-            { text: 'Numero de Pessoas', value: 'peopleNumber' },
-            { text: 'Estado da Reserva', value:'status' },
-            
-        ],
-        reservations: [],}
+            statusStr: "",
+            headersReservation: [
+                
+                { text: 'Nome', value: 'name' },
+                { text: 'Data', value: 'mealDate' },
+                { text: 'Hora', value: 'mealTime' },
+                { text: 'Numero de Pessoas', value: 'peopleNumber' },
+                { text: 'Estado da Reserva', value:'status' },
+                
+            ],
+            reservations: [],
+            dishes: [],
+
+            headersDishes: [
+                
+                { text: 'Nome', value: 'name' },
+                { text: 'Data', value: 'mealDate' },
+                { text: 'Hora', value: 'mealTime' },
+                { text: 'Numero de Pessoas', value: 'peopleNumber' },
+                { text: 'Estado da Reserva', value:'status' },
+                
+            ],
+
+
+        }
         
         
       
     },
+
+    
     
     created(){
-    this.reservations  = this.$store.getters.getReservations 
+        this.reservations  = this.$store.getters.getRestaurantReservations
+        this.dishes = this.$store.getters.getDishes    
     },
+
+    
 
     methods:{
         getStatus(status){
