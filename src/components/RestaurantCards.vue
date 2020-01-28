@@ -14,7 +14,10 @@
               <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
               <p class="ps">
                 <i class="fas fa-map-marker-alt" color="yellow darken-1"></i>
-                a {{ restaurant.distance }} Km de si
+                A {{distance}} de si
+              </p>
+              <p>
+                Viagem de {{travelDuration}}
               </p>
             </v-col>
             <v-col class="text-right">
@@ -70,7 +73,55 @@ export default {
   name: "RecomendedCards",
   props: ["restaurant"],
   data: () => ({
-    checker: "border: solid red"
-  })
+    checker: "border: solid red",
+    distance:'',
+    travelDuration:'',
+    map:"",
+    myPos:''
+ 
+  }),
+
+  methods:{
+    
+    calcDistance(){
+       
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+
+   
+      
+   
+
+
+      let restaurant = this.$store.getters.restaurantInfo(this.restaurant.id);
+   
+      let myPos = this.$store.getters.getLoggedUserLocation;
+
+      const request = {
+        origin: myPos,
+        destination: restaurant.location,
+        travelMode:google.maps.TravelMode["DRIVING"]
+      }
+      directionsService.route(request,(result,status)=>{
+        if(status =='OK'){
+          directionsRenderer.setDirections(result);
+          const directionsData = result.routes[0].legs[0];
+          if(directionsData){
+            this.distance = directionsData.distance.text
+            this.travelDuration = directionsData.duration.text
+          }else{
+            alert('error on directions data')
+          }
+        }else{
+           alert('Geocode was not successful for the following reason: ' + status);
+        }
+      })
+    }
+    
+  },
+  
+  mounted(){
+    this.calcDistance()
+  }
 };
 </script>

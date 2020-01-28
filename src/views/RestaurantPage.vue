@@ -285,12 +285,36 @@ export default {
       iniMap(){
       this.map = new google.maps.Map(document.querySelector("#googleMap"),{
         center:{lat: -34.397, lng: 150.644},
-        zoom:8,
+        zoom:15,
         disableDefaultUI: true,
       });
+
+
+      const geocoder = new google.maps.Geocoder();
+
+      //this.geocodeAdress(geocoder,this.map)
      
- 
+
+      let restaurant = this.$store.getters.restaurantInfo(parseInt(this.$route.params.id));
+      const address = restaurant.location;
+
+      geocoder.geocode({'address': address},
+      (results,status)=>{
+        if(status ==='OK'){
+          this.map.setCenter(results[0].geometry.location);
+            const marker = new google.maps.Marker({
+            map:this.map,
+            position:results[0].geometry.location
+          });
+          marker.setMap(this.map);
+        }else{
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      })
+
     },
+
+    
  
     //method to ajust the css font size for xs devices, handset
     mobileAjust(){

@@ -103,6 +103,9 @@ export default new Vuex.Store({
         return 0;
       }
     },
+    getLoggedUserLocation:(state)=>{
+      return state.loggedUser[0].location
+    },
 
     getRestaurantReservations: (state) =>{
       let reservationList = []
@@ -214,7 +217,7 @@ export default new Vuex.Store({
           outDoor: true,
           parking: true,
           mediumWaitingTime: 20,
-          location:"Vila do Conde",
+          location:"R. Sara Afonso, 4460-284 Sra. da Hora",
           distance:"5",
           comments: ""
         },
@@ -228,7 +231,7 @@ export default new Vuex.Store({
           outDoor: false,
           parking: false,
           mediumWaitingTime: 20,
-          location:"Vila do Conde",
+          location:"Avenida Fonte Cova, Modivas, 4485-592 Vila do Conde",
           distance:"8",
           comments: ""
         },
@@ -242,7 +245,7 @@ export default new Vuex.Store({
           outDoor: false,
           parking: false,
           mediumWaitingTime: 20,
-          location:"Vila do Conde",
+          location:"R. de Almeiriga Norte 1878, 4455-417 Perafita",
           distance:"10",
           comments: ""
         },
@@ -467,6 +470,7 @@ export default new Vuex.Store({
         id: user.id,
         username: user.username,
         avatar: user.avatar,
+        location:[],
         admin: user.admin,
         restaurantUser: user.restaurantUser,
         restaurantId: user.restaurantId,
@@ -555,7 +559,11 @@ export default new Vuex.Store({
     }
     localStorage.setItem("dishes", JSON.stringify(state.dishes))
 
-
+  },
+  
+  ADD_CURRENT_LOCATION(state,payload){
+    state.loggedUser[0].location = payload.location
+    sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
   }
 
 

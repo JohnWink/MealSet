@@ -108,6 +108,7 @@ export default {
   created() {
     window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
+    this.getCurrentLocation();
   },
   methods: {
     mobileAjust() {
@@ -121,7 +122,25 @@ export default {
       }
 
       this.fontsize = cssLine;
+    },
+    getCurrentLocation(){
+       
+      if(navigator.geolocation){
+
+        navigator.geolocation.watchPosition(
+          position =>{
+            const myPos = {lat: position.coords.latitude, lng: position.coords.longitude}
+            this.$store.commit("ADD_CURRENT_LOCATION",{
+              location: myPos
+            })
+          }
+        )
+      }else{
+        alert('error on navigator')
+      }
     }
-  }
+
+  },
+
 };
 </script>
