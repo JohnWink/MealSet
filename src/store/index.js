@@ -35,6 +35,7 @@ export default new Vuex.Store({
     restaurantInfo: state => id => {
       return state.restaurants.find(restaurant =>restaurant.id === id);
     },
+    
 
     checkLogged: state => state.logged,
 
@@ -59,6 +60,8 @@ export default new Vuex.Store({
     getDishes: state => state.dishes,
 
     getReservations: state => state.reservations,
+
+    
 
     getHistoric: state => state.historic,
     
@@ -104,6 +107,19 @@ export default new Vuex.Store({
       return state.loggedUser[0].location
     },
 
+    getRestaurantReservations: (state) =>{
+      let reservationList = []
+      for (const reservation of state.reservations) {
+        if (reservation.restaurantId === state.loggedUser[0].restaurantId) {
+          reservationList.push(reservation)        
+        }
+      }
+
+      return reservationList
+
+
+    },
+
 
    
     userInfo: state => state.users,
@@ -137,6 +153,18 @@ export default new Vuex.Store({
           bio: "Sou random.",
           admin: false,
           restaurantUser: false
+        },
+        //Test userRestaurant to test entering the respective restaurant user page
+        {
+          id:2,
+          username: "joaquim",
+          password:"chimarao123",
+          email: "chimaraorestaurante@yourHouse.lol",
+          avatar: "https://i.imgur.com/t2Q8O9v.jpg",
+          bio: "Sou o gestor do restaurante de chimarão ",
+          admin: false,
+          restaurantUser: true,
+          restaurantId: 0
         },
       ]
       localStorage.setItem("users", JSON.stringify(state.users))
@@ -277,36 +305,54 @@ export default new Vuex.Store({
       state.dishes = [{
         id:0,
         name: "Polvo",
-        img: "",
+        img: require("@/assets/purple-and-brown-food-on-white-surface-921361.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Polvo com batata assada gostosa.",
         restaurantId: 0,
         evaluation: 4
       },
       {
         id:1,
-        name: "Bacalhau",
-        img: "",
+        name: "Salmão",
+        img: require("@/assets/salmon-518032_1920.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Salmão é que é bom.",
           restaurantId: 0,
         evaluation: 5
       },
       {
         id:2,
         name: "Legumes Salteados",
-        img: "",
+        img: require("@/assets/sliced-vegetable-and-cooked-food-on-white-ceramic-plate-1234535.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Legumes salteados são fixolas.",
           restaurantId: 2,
         evaluation: 3
       },
       {
         id:3,
         name: "Novilho",
-        img: "",
+        img: require("@/assets/asparagus-2169305_1920.jpg"),
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Novilho é noice.",
+        restaurantId: 2,
+        evaluation: 2
+      },
+      {
+        id:4,
+        name: "Cheeseburger",
+        img: require("@/assets/cheeseburger-on-table-2089717.jpg"),
+        description:
+          "Cheeseburger é okay para quem gosta.",
+        restaurantId: 2,
+        evaluation: 2
+      },
+      {
+        id:5,
+        name: "Bife",
+        img: require("@/assets/selective-focus-photography-of-beef-steak-with-sauce-675951.jpg"),
+        description:
+          "Batata a murro é fine, bife é que já na vai.",
         restaurantId: 2,
         evaluation: 2
       }
@@ -425,7 +471,12 @@ export default new Vuex.Store({
         username: user.username,
         avatar: user.avatar,
         location:[],
-        admin: false
+        admin: user.admin,
+        restaurantUser: user.restaurantUser,
+        restaurantId: user.restaurantId,
+        email: user.email,
+        password: user.password,
+  
       })
       
         sessionStorage.setItem(

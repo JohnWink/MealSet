@@ -1,15 +1,3 @@
-
-    <!--{
-        id:1,
-        name: "Bacalhau",
-        img: "",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          restaurantId: 0,
-        evaluation: 5
-      },
--->  
-
 <template>
   <div class="pl-12 ml-12 mr-2">
     <v-hover v-slot:default="{ hover }" open-delay="200">
@@ -80,7 +68,7 @@
 <script>
 export default {
   name: "DishesCards",
-  props: ["dishes"],
+  props: ["dish"],
   data: () => ({
     checker: "border: solid red"
   })
