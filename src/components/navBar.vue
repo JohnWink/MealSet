@@ -54,7 +54,7 @@
           <span>Pratos</span>
         </v-tooltip>
 
-        <v-tooltip right>
+        <v-tooltip v-if="this.adminView == true" right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
@@ -69,7 +69,7 @@
         </v-tooltip>
 
         <!--------UserRestanrant page-->
-        <v-tooltip right>
+        <v-tooltip v-if="this.restauView == true"  right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
@@ -78,10 +78,10 @@
                   <v-icon>fas fa-th-list</v-icon> 
                 </router-link>
               </v-list-item-icon>
-              <v-list-item-title>Manager de Reservas</v-list-item-title>
+              <v-list-item-title>Manager de Reservas e Pratos</v-list-item-title>
             </v-list-item>
           </template>
-          <span>Manager de Reservas</span>
+          <span>Manager de Reservas e Pratos</span>
         </v-tooltip>
 
 
@@ -101,8 +101,22 @@ export default {
       { title: "My Account", icon: "mdi-account" },
       { title: "Users", icon: "mdi-account-group-outline" }
     ],
-    mini: true
-  })
+    mini: true,
+    adminView: false ,
+    restauView: false
+
+
+
+
+  }),
+
+  created(){
+    this.adminView = this.$store.getters.getLoggedAdmin
+    this.restauView = this.$store.getters.getLoggedUserRestaurantType
+  }
+
+
+
 };
 </script>
 

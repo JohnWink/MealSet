@@ -145,6 +145,18 @@ export default new Vuex.Store({
       return state.loggedUser[0].restaurantId
     },
 
+    getLoggedUserRestaurantType: (state) =>{
+      return state.loggedUser[0].restaurantUser
+    },
+
+    getLoggedAdmin: (state) =>{
+      return state.loggedUser[0].admin
+    },
+
+
+
+
+
 
    
     userInfo: state => state.users,
