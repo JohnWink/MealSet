@@ -1,20 +1,26 @@
 <template>
   
-  <div>
-    <v-row align="center" justify="space-between">
+  <div class="mx-3">
 
-      <v-col cols="8"  sm="3" class="title font-weight-bold" >
+    <v-row align="center" justify="space-between"  >
+
+      <v-col cols="12" class="title font-weight-bold">
         {{dish.name}}
       </v-col>
-      <v-col cols="2">
-        {{dish.tag}}
-      </v-col>
 
-      <v-col cols="3" sm="3">
+      <v-col cols="4" sm="3" >
         {{ dish.evaluation }}
         <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
       </v-col>
 
+      <v-col cols="4" sm="3">
+        <v-chip color="#f7c23e" dark> {{dish.tag}} </v-chip>
+      </v-col>
+
+    </v-row>
+    
+    <v-row class="ml-1"  justify-sm="start" justify="center">
+      <v-img max-width="350px" max-height="200px" :src="dish.img"></v-img>
     </v-row>
 
     <v-row>

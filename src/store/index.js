@@ -256,7 +256,8 @@ export default new Vuex.Store({
           mediumWaitingTime: 20,
           location:"R. Sara Afonso, 4460-284 Sra. da Hora",
           distance:"5",
-          comments: ""
+          comments: "",
+          logo: "https://i.pinimg.com/originals/c1/0a/05/c10a05948ce933f3f92c75f52c489508.png"
         },
         {
           id:1,
@@ -270,7 +271,8 @@ export default new Vuex.Store({
           mediumWaitingTime: 20,
           location:"Avenida Fonte Cova, Modivas, 4485-592 Vila do Conde",
           distance:"8",
-          comments: ""
+          comments: "",
+          logo: "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
         {
           id:2,
@@ -284,7 +286,8 @@ export default new Vuex.Store({
           mediumWaitingTime: 20,
           location:"R. de Almeiriga Norte 1878, 4455-417 Perafita",
           distance:"10",
-          comments: ""
+          comments: "",
+          logo:"https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
         {
           id:3,
@@ -298,7 +301,8 @@ export default new Vuex.Store({
           mediumWaitingTime: 4,
           location:"Vila do Conde",
           distance:"20",
-          comments: ""
+          comments:"",
+          logo: "https://www.hotelsaintgeorge.com/resources/img/dona-maria.png"
         },
         {
           id:4,
@@ -312,7 +316,8 @@ export default new Vuex.Store({
           mediumWaitingTime: 4,
           location:"Vila do Conde",
           distance:"30",
-          comments: ""
+          comments: "",
+          logo:"https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
         {
           id:5,
@@ -326,7 +331,8 @@ export default new Vuex.Store({
           mediumWaitingTime: 4,
           location:"Vila do Conde",
           distance:"40",
-          comments: ""
+          comments:"",
+          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png"
         }
 
       ]

@@ -49,7 +49,7 @@
 
             <v-col cols="12" md="6"  class="text-left">
             
-              <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
+              <v-img contain=true max-height="150px" :src="restaurant.logo" ></v-img>
               <br><br>
               <p class="headline font-weight-bold ">Informação</p><br>
 
@@ -97,8 +97,9 @@
 
             <!--CARd of the menus v-for cycle-->
             <v-container class="white darken-2">
-                <v-row align="center">
-                    <v-col cols="12" class="headline">Menu</v-col>
+              <v-row justify="center" class="headline font-weight-bold">Menu</v-row>
+                <v-row align="center" justify="center">
+                    
                     <v-col cols="12"  v-for="dish in menu" :key="dish">
                       
                       <restaurantMenu v-if="dish.restaurantId === restaurant.id" v-bind:dish="dish" />
@@ -119,9 +120,12 @@
           <v-col cols="10" > 
             <!--RECOMENDAÇÃO DE PRATOS-->
             <v-carousel hide-delimiters :height="this.compHeight">
-              <v-carousel-item v-for="dish in menu" :key="dish" >
-                  <RestaurantCards v-if="dish.restaurantId === restaurant.id" v-bind:dish="dish" />
-              </v-carousel-item>
+              <div v-for="dish in menu" :key="dish">
+                <v-carousel-item v-if="dish.restaurantId === restaurant.id">
+                  <RestaurantCards v-bind:dish="dish" />
+                </v-carousel-item>
+              </div>
+              
             </v-carousel>     
                   
           </v-col>    
