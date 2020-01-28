@@ -133,11 +133,6 @@ methods: {
         })
 
         alert("Prato Adicionado")
-          
-        
-
-        
-        
       }
     },
     reset() {
