@@ -52,7 +52,7 @@
                 
                 
                 <v-row class="pl-6 ml-6 mr-6 mt-3"  align="center" justify="center" justify-sm="space-between">
-                   <!--need to figure out how to bind selected items-->
+                   
                    <v-col cols="12" sm="2">
                        <v-btn v-on:click="tableMode = false" large rounded color="indigo lighten-1" class="white--text">Pratos</v-btn>
                    </v-col>
@@ -79,6 +79,9 @@
                         show-select
                         class="elevation-1"
                     >
+                        <template v-slot:item.img="{ item }">
+                            <a :href="item.img" target="_blank">Link do prato: {{item.name}}</a>
+                        </template>
 
                     <!--add a v-slot item on img sence we will be sing new window link to imgur-->
                     </v-data-table>
@@ -95,7 +98,7 @@
                    </v-col>
 
                    <v-col cols="12" sm="4"> 
-                       <v-btn  large rounded  >Adicionar prato</v-btn>
+                       <addDish />
                    </v-col> 
 
                    <v-col cols="12" sm="4">
@@ -130,6 +133,7 @@
     import Logout from "@/components/logout.vue";
     import perfil from "@/components/perfil.vue";
     import ChangeStatusRes from "@/components/ChangeStatusRervation.vue"
+    import addDish from "@/components/AddDish.vue";
 
 export default {
 
@@ -141,7 +145,8 @@ export default {
         footerVue,    
         Logout,
         perfil,
-        ChangeStatusRes
+        ChangeStatusRes,
+        addDish
     },
     data () {
         
@@ -162,18 +167,20 @@ export default {
                 { text: 'Estado da Reserva', value:'status' },
                 
             ],
-            reservations: [],
-            dishes: [],
+            
 
             headersDishes: [
                 
                 { text: 'Prato', value: 'name' },
                 { text: 'Imagem', value: 'img' },
+                { text: 'Tipo de Prato', value: 'tag' },
                 { text: 'Descrição', value: 'description' },
                 { text: 'Avaliação', value: 'evaluation' },
                 
                 
             ],
+            reservations: [],
+            dishes: [],
 
 
         }
@@ -186,11 +193,13 @@ export default {
     
     created(){
         this.reservations  = this.$store.getters.getRestaurantReservations
-        this.dishes = this.$store.getters.getDishes    
+        this.dishes = this.$store.getters.getRestaurantDishes
+
+        //adding a listener for when ever theres a new item set it will update these arraus on the table         
     },
 
     
-
+    
     methods:{
         getStatus(status){
             if(status == true){ return 'Reserva Comfirmada';}
@@ -207,7 +216,10 @@ export default {
             this.$store.commit("REMOVE_DISH",{
             id: this.selected[0].id
           })
+          //update List 
+          this.dishes = this.$store.getters.getRestaurantDishes
         }
+        
     }
 
 

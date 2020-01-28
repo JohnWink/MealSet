@@ -11,7 +11,7 @@
       <v-toolbar color="#f7c23e">
         <v-row>
           <v-col class="text-left mt-2 ml-6">
-            <v-toolbar-title id="text">Estado da Reserva </v-toolbar-title>
+            <v-toolbar-title >Estado da Reserva </v-toolbar-title>
           </v-col>
           <v-col class="text-right mt-2">
             <v-btn color="#ffffff" text right @click="dialog = false">
@@ -146,13 +146,12 @@ methods: {
             date: postDate
           })
         }
+
+        location.reload();
         
       }
-    },
-    reset() {
-      this.$refs.form.reset();
     }
-  },
+  }
 
   
 }
