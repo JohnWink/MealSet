@@ -52,7 +52,7 @@
                 
                 
                 <v-row class="pl-6 ml-6 mr-6 mt-3"  align="center" justify="center" justify-sm="space-between">
-                   <!--need to figure out how to bind selected items-->
+                   
                    <v-col cols="12" sm="2">
                        <v-btn v-on:click="tableMode = false" large rounded color="indigo lighten-1" class="white--text">Pratos</v-btn>
                    </v-col>
@@ -79,6 +79,9 @@
                         show-select
                         class="elevation-1"
                     >
+                        <template v-slot:item.img="{ item }">
+                            <a :href="item.img" target="_blank">Link do prato: {{item.name}}</a>
+                        </template>
 
                     <!--add a v-slot item on img sence we will be sing new window link to imgur-->
                     </v-data-table>
@@ -171,6 +174,7 @@ export default {
                 
                 { text: 'Prato', value: 'name' },
                 { text: 'Imagem', value: 'img' },
+                { text: 'Tipo de Prato', value: 'tag' },
                 { text: 'Descrição', value: 'description' },
                 { text: 'Avaliação', value: 'evaluation' },
                 
@@ -188,7 +192,7 @@ export default {
     
     created(){
         this.reservations  = this.$store.getters.getRestaurantReservations
-        this.dishes = this.$store.getters.getDishes    
+        this.dishes = this.$store.getters.getRestaurantDishes   
     },
 
     

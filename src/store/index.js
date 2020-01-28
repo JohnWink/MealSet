@@ -130,6 +130,21 @@ export default new Vuex.Store({
 
     },
 
+    getRestaurantDishes: (state) =>{
+      let dishList = []
+      for (const dish of state.dishes) {
+        if (dish.restaurantId === state.loggedUser[0].restaurantId) {
+          dishList.push(dish) 
+
+      }
+      
+    }return dishList
+  },
+
+    getLoggedUserRestaurant: (state) =>{
+      return state.loggedUser[0].restaurantId
+    },
+
 
    
     userInfo: state => state.users,
@@ -319,7 +334,8 @@ export default new Vuex.Store({
         description:
           "Polvo com batata assada gostosa.",
         restaurantId: 0,
-        evaluation: 4
+        evaluation: 4,
+        tag: "Peixe"
       },
       {
         id:1,
@@ -328,7 +344,8 @@ export default new Vuex.Store({
         description:
           "Salmão é que é bom.",
           restaurantId: 0,
-        evaluation: 5
+        evaluation: 5,
+        tag: "Peixe"
       },
       {
         id:2,
@@ -337,7 +354,8 @@ export default new Vuex.Store({
         description:
           "Legumes salteados são fixolas.",
           restaurantId: 2,
-        evaluation: 3
+        evaluation: 3,
+        tag: "Vegetariano"
       },
       {
         id:3,
@@ -346,7 +364,8 @@ export default new Vuex.Store({
         description:
           "Novilho é noice.",
         restaurantId: 2,
-        evaluation: 2
+        evaluation: 2,
+        tag: "Carne"
       },
       {
         id:4,
@@ -355,7 +374,8 @@ export default new Vuex.Store({
         description:
           "Cheeseburger é okay para quem gosta.",
         restaurantId: 2,
-        evaluation: 2
+        evaluation: 2,
+        tag: "Carne"
       },
       {
         id:5,
@@ -364,7 +384,8 @@ export default new Vuex.Store({
         description:
           "Batata a murro é fine, bife é que já na vai.",
         restaurantId: 2,
-        evaluation: 2
+        evaluation: 2,
+        tag: "Carne"
       }
       ]
       localStorage.setItem("dishes",JSON.stringify(state.dishes))
@@ -581,9 +602,10 @@ export default new Vuex.Store({
       id: payload.id, 
       name: payload.name,
       img: payload.img,
-      restaurantId: payload.restaurantId,
       description: payload.description,
-      evaluation: payload.evaluation
+      restaurantId: payload.restaurantId,      
+      evaluation: payload.evaluation,
+      tag: payload.tag
     })
 
     localStorage.setItem("dishes", JSON.stringify(state.dishes))
