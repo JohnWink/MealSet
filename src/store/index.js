@@ -471,8 +471,7 @@ export default new Vuex.Store({
         restaurantUser: user.restaurantUser,
         restaurantId: user.restaurantId,
         email: user.email,
-        password: user.password,
-        admin: false
+        password: user.password
       })
       
         sessionStorage.setItem(
@@ -539,6 +538,24 @@ export default new Vuex.Store({
     })
     localStorage.setItem("historic", JSON.stringify(state.historic))
     
+  },
+
+
+  ///-----add and remove dishes commits
+  REMOVE_DISH(state,payload){
+
+    let indexDish = 0;
+    for (let dish of state.dishes) {
+      
+      if (dish.id === payload.id){
+        state.dishes.splice(indexDish,1);
+        
+      }
+      indexDish++;
+    }
+    localStorage.setItem("dishes", JSON.stringify(state.dishes))
+
+
   }
 
 

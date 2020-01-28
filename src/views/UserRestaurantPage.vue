@@ -51,11 +51,17 @@
                 </v-col>
                 
                 
-                <v-row class="mr-6 mt-3"  align="center" justify="end">
+                <v-row class="pl-6 ml-6 mr-6 mt-3"  align="center" justify="center" justify-sm="space-between">
                    <!--need to figure out how to bind selected items-->
-                   <v-btn v-on:click="tableMode = false">Pratos</v-btn>
-                    <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />
-                    <v-btn v-else large rounded  disabled>Mudar estado da Reserva</v-btn>
+                   <v-col cols="12" sm="2">
+                       <v-btn v-on:click="tableMode = false" large rounded color="indigo lighten-1" class="white--text">Pratos</v-btn>
+                   </v-col>
+
+                   <v-col cols="12" sm="6">
+                        <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />
+                        <v-btn v-else large rounded  disabled>Mudar estado da Reserva</v-btn>
+                   </v-col>
+                   
 
                 </v-row>
 
@@ -73,17 +79,30 @@
                         show-select
                         class="elevation-1"
                     >
+
+                    <!--add a v-slot item on img sence we will be sing new window link to imgur-->
                     </v-data-table>
 
                 </v-col>
                 
                 
-                <v-row class="mr-6 mt-3"  align="center" justify="end">
+                <v-row class=" pl-6 ml-6 mr-6 mt-3"  align="center" justify="center" justify-sm="space-between">
                    <!--need to figure out how to bind selected items-->
                     <!--<ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />-->
-                    <v-btn v-on:click="tableMode = true">Reservas</v-btn>
-                    <v-btn  large rounded  >Adicionar prato</v-btn>
-                    <v-btn  large rounded  >Remover prato</v-btn>
+                    
+                    <v-col cols="12" sm="3">
+                       <v-btn v-on:click="tableMode = true" large rounded color="indigo lighten-1" class="white--text">Reservas</v-btn>
+                   </v-col>
+
+                   <v-col cols="12" sm="4"> 
+                       <v-btn  large rounded  >Adicionar prato</v-btn>
+                   </v-col> 
+
+                   <v-col cols="12" sm="4">
+                       <v-btn v-if="this.selected.length!== 0" large rounded color="red lighten-1" class="white--text" @click="deleteItem()" >Remover prato</v-btn>
+                       <v-btn v-else large rounded disabled>Remover prato</v-btn>
+                   </v-col>
+                   
 
                 </v-row>
 
@@ -148,11 +167,11 @@ export default {
 
             headersDishes: [
                 
-                { text: 'Nome', value: 'name' },
-                { text: 'Data', value: 'mealDate' },
-                { text: 'Hora', value: 'mealTime' },
-                { text: 'Numero de Pessoas', value: 'peopleNumber' },
-                { text: 'Estado da Reserva', value:'status' },
+                { text: 'Prato', value: 'name' },
+                { text: 'Imagem', value: 'img' },
+                { text: 'Descrição', value: 'description' },
+                { text: 'Avaliação', value: 'evaluation' },
+                
                 
             ],
 
@@ -180,6 +199,14 @@ export default {
         getColor(status){
             if (status == false) return 'orange lighten-1'        
             else return 'green lighten-1'
+        },
+
+        // delete dish method
+        deleteItem(){
+            confirm('Tem acertza que deseja remover este prato?') &&
+            this.$store.commit("REMOVE_DISH",{
+            id: this.selected[0].id
+          })
         }
     }
 
