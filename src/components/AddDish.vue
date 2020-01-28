@@ -91,7 +91,7 @@ data: () => ({
     imgLink: "",
     description: "",
     tag:"",
-    tagSlc:['Carne', 'Peixe', 'Vegestariano', 'Sobremesa'],
+    tagSlc:['Carne', 'Peixe', 'Vegetariano', 'Sobremesa'],
     
 
     //----------- dish submition rules----------------
@@ -117,7 +117,6 @@ data: () => ({
 methods: {
     submit () {
 
-
   
       if (this.$refs.form.validate()) {
 
@@ -132,13 +131,12 @@ methods: {
             tag: this.tag
         })
 
-        alert("Prato Adicionado")
+        alert("Prato Adicionado!")
+        location.reload();
       }
-    },
-    reset() {
-      this.$refs.form.reset();
+      
     }
-  },
+  }
 
   
 }

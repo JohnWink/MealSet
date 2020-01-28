@@ -167,8 +167,7 @@ export default {
                 { text: 'Estado da Reserva', value:'status' },
                 
             ],
-            reservations: [],
-            dishes: [],
+            
 
             headersDishes: [
                 
@@ -180,6 +179,8 @@ export default {
                 
                 
             ],
+            reservations: [],
+            dishes: [],
 
 
         }
@@ -192,11 +193,13 @@ export default {
     
     created(){
         this.reservations  = this.$store.getters.getRestaurantReservations
-        this.dishes = this.$store.getters.getRestaurantDishes   
+        this.dishes = this.$store.getters.getRestaurantDishes
+
+        //adding a listener for when ever theres a new item set it will update these arraus on the table         
     },
 
     
-
+    
     methods:{
         getStatus(status){
             if(status == true){ return 'Reserva Comfirmada';}
@@ -213,7 +216,10 @@ export default {
             this.$store.commit("REMOVE_DISH",{
             id: this.selected[0].id
           })
+          //update List 
+          this.dishes = this.$store.getters.getRestaurantDishes
         }
+        
     }
 
 

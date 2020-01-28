@@ -146,13 +146,12 @@ methods: {
             date: postDate
           })
         }
+
+        location.reload();
         
       }
-    },
-    reset() {
-      this.$refs.form.reset();
     }
-  },
+  }
 
   
 }
