@@ -82,8 +82,7 @@ data: () => ({
     name: "",
     imgLink: "",
     description: "",
-    evaluation: 0,
-    restaurantId: "" ,
+    
 
     //----------- dish submition rules----------------
 
@@ -113,12 +112,22 @@ methods: {
       if (this.$refs.form.validate()) {
 
         this.dialog=false
-        let noteText = this.notificationText        
+        this.$store.commit("ADD_HISTORY",{
+            id: this.$store.getters.getLastDishId, 
+            name: this.name,
+            img: this.imgLink,
+            restaurantId: this.selected.restaurantId,
+            description: this.description,
+            evaluation: 0
+        })
+          
         
 
         //conditions for the status change , if true then it will go to the storage and change that data
         //also making sure that if we are changing a status true to true again, not to send to the historic again 
-        if(this.selected.status != true){
+        /* if(this.selected.status != true){
+
+           
 
           if(this.statusChange ==='Aceite' ){
             let statusValue = true
@@ -166,7 +175,7 @@ methods: {
             notification: noteText,
             date: postDate
           })
-        }
+        }*/
         
       }
     },

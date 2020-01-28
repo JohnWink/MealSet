@@ -86,6 +86,16 @@ export default new Vuex.Store({
       }
     },
 
+    getLastDishId:(state)=>{
+      if (state.dishes.length) {
+        return 1 + state.dishes[state.dishes.length-1].id;
+      } else {
+        return 0;
+      }
+    },
+
+
+
 
     getLastRestaurantId:(state)=>{
       if(state.restaurants.length){
@@ -560,11 +570,27 @@ export default new Vuex.Store({
     localStorage.setItem("dishes", JSON.stringify(state.dishes))
 
   },
-  
+
   ADD_CURRENT_LOCATION(state,payload){
     state.loggedUser[0].location = payload.location
     sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
+  },
+
+  ADD_DISH(state,payload){
+    state.dishes.push({
+      id: payload.id, 
+      name: payload.name,
+      img: payload.img,
+      restaurantId: payload.restaurantId,
+      description: payload.description,
+      evaluation: payload.evaluation
+    })
+
+    localStorage.setItem("dishes", JSON.stringify(state.dishes))
+
   }
+
+
 
 
   

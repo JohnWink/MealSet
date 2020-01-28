@@ -95,8 +95,7 @@
                    </v-col>
 
                    <v-col cols="12" sm="4"> 
-                       <addDish v-if="this.selected.length!== 0" :selected="this.selected[0]"/>
-                       <v-btn v-else large rounded  disabled>Adicionar prato</v-btn>
+                       <addDish />
                    </v-col> 
 
                    <v-col cols="12" sm="4">
