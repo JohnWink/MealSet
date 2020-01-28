@@ -2,14 +2,14 @@
 <template>
    <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on }">
-       <v-btn large rounded color="green lighten-1"  dark v-on="on">Mudar estado da Reserva</v-btn>
+       <v-btn large rounded color="green lighten-1"  dark v-on="on">Adicionar prato</v-btn>
     </template>
     <v-card>
       <!--Fechar-->
-      <v-toolbar color="#f7c23e">
+      <v-toolbar color="green lighten-1" dark>
         <v-row>
           <v-col class="text-left mt-2 ml-6">
-            <v-toolbar-title id="text">Estado da Reserva </v-toolbar-title>
+            <v-toolbar-title >Adicionar prato</v-toolbar-title>
           </v-col>
           <v-col class="text-right mt-2">
             <v-btn color="#ffffff" text right @click="dialog = false">
@@ -22,25 +22,37 @@
       <pre>{{this.selected}}</pre>      -->
 
       <v-form class="pa-10" ref="form" lazy-validation>
-        <v-select
-          v-model="statusChange"
-          :items="statusSlc"
-          :rules="[v => !!v || 'Selecione o estado da reserva!']"
-          label="Estado da Reserva"
-          required
-        ></v-select>
+        
 
-        <v-textarea  outlined
-          v-model="notificationText"
-          name="input-7-4"
-          color="indigo darken-1"                 
-          placeholder="Escreva alguma notação..."
-          :rules="commentRules"          
+        <v-text-field
+            v-model="name"            
+            :rules="nameRules"
+            label="Nome do prato"
+            color="green darken-1"                 
+            placeholder="Nome do Prato..."
+            required
+        ></v-text-field>
+
+        <v-text-field
+            v-model="imgLink"            
+            :rules="linkRules"
+            label="Imagem URL"
+            color="green darken-1"                 
+            placeholder="Link do Prato..."
+            required
+        ></v-text-field>
+
+        <v-textarea  outlined 
+            v-model="description"            
+            :rules="descripRules"            
+            color="green darken-1"
+            label="Descrição do Prato"                 
+            placeholder="Descrição do Prato..."                    
         ></v-textarea> 
 
          
 
-      <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
+      <v-btn color="green lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
      
      </v-form>
     </v-card>
@@ -50,7 +62,7 @@
 
 <script>
 export default {
- name: "ChangeStatusRes",
+ name: "addDish",
 props:{
   selected:{
     type: Object,
@@ -66,16 +78,28 @@ data: () => ({
     
     dialog: false,
 
-    statusSlc:['Aceite', 'Recusado'],
+    //---------new dish data-------------
+    name: "",
+    imgLink: "",
+    description: "",
+    evaluation: 0,
+    restaurantId: "" ,
 
-    statusChange:"",
-    
-    notificationText:"",
-    
+    //----------- dish submition rules----------------
 
-    commentRules:[
-        v => !!v || 'Por favor preencha escreva a sua experiencia',
-        v => (v && v.length >= 30) || 'Tem de ter mais de 30 caracteres',
+    descripRules:[
+        v => !!v || 'Por favor preencha a Descrição do Prato.',
+        v => (v && v.length >= 15) || 'Tem de ter mais de 15 caracteres',
+    ],
+
+    nameRules:[
+        v => !!v || 'Por favor preencha o nome.',
+        v => (v && v.length >= 5) || 'Tem de ter mais de 5 caracteres',
+    ],
+
+    linkRules:[
+        v => !!v || 'Por favor preencha o link.',
+        v => (v && v.length >= 15) || 'Tem de ter mais de 15 caracteres',
     ],
     
   }),
@@ -90,8 +114,7 @@ methods: {
 
         this.dialog=false
         let noteText = this.notificationText        
-        let setDate = new Date()
-        let postDate = setDate.getDate() +"/"+ 1 + setDate.getMonth() +"/"+ setDate.getFullYear() +"  "+ setDate.getHours()+ ":" + setDate.getMinutes()
+        
 
         //conditions for the status change , if true then it will go to the storage and change that data
         //also making sure that if we are changing a status true to true again, not to send to the historic again 

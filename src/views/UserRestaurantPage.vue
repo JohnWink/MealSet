@@ -95,7 +95,8 @@
                    </v-col>
 
                    <v-col cols="12" sm="4"> 
-                       <v-btn  large rounded  >Adicionar prato</v-btn>
+                       <addDish v-if="this.selected.length!== 0" :selected="this.selected[0]"/>
+                       <v-btn v-else large rounded  disabled>Adicionar prato</v-btn>
                    </v-col> 
 
                    <v-col cols="12" sm="4">
@@ -130,6 +131,7 @@
     import Logout from "@/components/logout.vue";
     import perfil from "@/components/perfil.vue";
     import ChangeStatusRes from "@/components/ChangeStatusRervation.vue"
+    import addDish from "@/components/AddDish.vue";
 
 export default {
 
@@ -141,7 +143,8 @@ export default {
         footerVue,    
         Logout,
         perfil,
-        ChangeStatusRes
+        ChangeStatusRes,
+        addDish
     },
     data () {
         
