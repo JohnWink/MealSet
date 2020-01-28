@@ -610,7 +610,8 @@ export default new Vuex.Store({
 
     localStorage.setItem("dishes", JSON.stringify(state.dishes))
 
-  }
+  },
+  
 
 
 

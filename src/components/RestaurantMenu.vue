@@ -3,11 +3,14 @@
   <div>
     <v-row align="center" justify="space-between">
 
-      <v-col cols="9"  sm="10" class="title font-weight-bold" >
-      {{dish.name}}
+      <v-col cols="8"  sm="3" class="title font-weight-bold" >
+        {{dish.name}}
+      </v-col>
+      <v-col cols="2">
+        {{dish.tag}}
       </v-col>
 
-      <v-col cols="3" sm="2">
+      <v-col cols="3" sm="3">
         {{ dish.evaluation }}
         <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
       </v-col>
@@ -18,7 +21,8 @@
       <v-col cols="12">
         {{dish.description}}
       </v-col>
-    </v-row> 
+    </v-row>
+     
 
     <br>
 
