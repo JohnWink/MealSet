@@ -56,8 +56,8 @@
     <!--RECOMENDAÇÃO DE RESTAURANTES-->
     <br>
     <br>
-<div 
-  v-if="search =='' && filterValue==''">
+ 
+<div>
     <v-row class="mx-2" justify="center" align="center">
       
       <v-col
@@ -65,48 +65,13 @@
         cols="12"
         sm="6"
         md="4"
-        v-for="restaurant in sortedRestaurantsById"
+        v-for="restaurant in sortedRestaurants"
         :key="restaurant.id"
       >
         <RestaurantCards v-bind:restaurant="restaurant"/>
       </v-col>
     </v-row>
   </div>
-<div 
-v-else-if="search=='' && filterValue=='Melhor Rating'">
-<v-row class="mx-2" justify="center" align="center">
-      
-      <v-col
-        class="mb-2"
-        cols="12"
-        sm="6"
-        md="4"
-        v-for="restaurant in sortedRestaurantsByRating"
-        :key="restaurant.evaluation"
-      >
-        <RestaurantCards v-bind:restaurant="restaurant"/>
-      </v-col>
-    </v-row>
-</div>
-<div
-v-else-if="search != ''">
-  <v-row class="mx-2" justify="center" align="center">
-      
-      <v-col
-        class="mb-2"
-        cols="12"
-        sm="6"
-        md="4"
-        v-for="restaurant in getSearchedRestaurants"
-        :key="restaurant.distance"
-      >
-        <RestaurantCards v-bind:restaurant="restaurant"/>
-      </v-col>
-    </v-row>
-
-
-</div>
-
     <footerVue/>
   </div>
 </template>
@@ -156,31 +121,26 @@ export default {
 
     window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
-
-  
-      
    
   },
 
 computed: {
 
-  getSearchedRestaurants(){
-  return this.restaurants.filter(restaurant => {
+sortedRestaurants(){
+  if(this.filterValue=="Melhor Rating"){
+      this.$store.getters.getRestaurantsByRating
+  }else{
+      this.$store.getters.getRestaurantsById
+  }
+  if(this.search != ""){
+    return this.restaurants.filter(restaurant => {
         return restaurant.name.toLowerCase().includes(this.search.toLowerCase())
   })
-},
-sortedRestaurantsById:function(){
-  return this.$store.getters.getRestaurantsById
+  }else{
+    return this.restaurants
+  }
  
 },
-sortedRestaurantsByRating:function(){
-  return this.$store.getters.getRestaurantsByRating
-  
-},
-
-sortedRestaurantsByDistance:function(){
-  return this.$store.getters.getRestaurantsByDistance
-}
 
 },
 methods: {

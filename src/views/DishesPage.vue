@@ -36,6 +36,7 @@
     <v-row class="pl-12 ml-12 mt-2">
       <v-col cols="10" sm="8">
         <v-textarea
+        v-model="search"
           class="mx-2 mt-10"
           prepend-icon="fas fa-search"
           label="Pesquisa"
@@ -47,17 +48,20 @@
         ></v-textarea>
       </v-col>
       <v-col cols="10" sm="3">
-        <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" label="Filtros"></v-overflow-btn>
+        <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" v-model="filterValue" label="Filtros"></v-overflow-btn>
       </v-col>
     </v-row>
 
     <!--RECOMENDAÇÃO DE PRATOS-->
+    <div>
+      <v-row class="mx-2" justify="center" align="center">
+        <v-col class="mb-2" cols="12" sm="6" md="4" v-for="dish in getSearchedDishes" :key="dish.id">
+          <DishesCards v-bind:dish="dish"/>
+        </v-col>
+      </v-row>
+    </div>
 
-    <v-row class="mx-2" justify="center" align="center">
-      <v-col class="mb-2" cols="12" sm="6" md="4" v-for="dish in dishes" :key="dish.id">
-        <DishesCards v-bind:dish="dish"/>
-      </v-col>
-    </v-row>
+    
 
     <footerVue/>
   </div>
@@ -90,9 +94,11 @@ export default {
     perfil
   },
   data: () => ({
-    filters: ["Mais Popular", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
+    filters: ["Peixe", "Carne", "Vegetariano"],
     dishes: [],
-    fontsize: " "
+    fontsize: " ",
+    search:"",
+    filterValue:''
   }),
   beforeMount() {
     this.dishes = this.$store.getters.getDishes;
@@ -100,6 +106,24 @@ export default {
   created() {
     window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
+  },
+
+  computed: {
+   
+    getSearchedDishes(){
+      if(this.filterValue!= ""){
+        return this.dishes.filter(dish =>{
+          if(dish.tag == this.filterValue){
+            return dish.name.toLowerCase().includes(this.search.toLowerCase())
+          }
+        })
+      }else{
+         return this.dishes.filter(dish => {
+          return dish.name.toLowerCase().includes(this.search.toLowerCase())
+        })
+      }
+     
+    }
   },
   methods: {
     mobileAjust() {
