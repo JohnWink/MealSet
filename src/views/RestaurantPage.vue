@@ -83,7 +83,7 @@
 
     <!-- ++++++++++++++++++++++++++++++ row card MENU +++++++++++++++++++++++++++++++++++++++++++++++-->
     <!-- make sure that from md to large it shows 3 cards; lower will only show a card-->
-    <v-container >      
+    <v-container v-if="this.menu.length >0">      
       <v-row class="pl-9 ml-9 py-2" justify="space-between" align="center" >
         <v-col cols="12" sm="5">
           <p class=" headline font-weight-bold " >Pratos Recomendados</p><br>
@@ -116,10 +116,10 @@
           </v-col>    
         </v-row>
 
-        <v-row class="pl-9 ml-9 py-6" justify="center" >
+        <v-row  class="pl-9 ml-9 py-6" justify="center" >
           <v-col cols="10" > 
             <!--RECOMENDAÇÃO DE PRATOS-->
-            <v-carousel hide-delimiters :height="this.compHeight">
+            <v-carousel  hide-delimiters :height="this.compHeight">
               <div v-for="dish in menu" :key="dish">
                 <v-carousel-item v-if="dish.restaurantId === restaurant.id">
                   <RestaurantCards v-bind:dish="dish" />
