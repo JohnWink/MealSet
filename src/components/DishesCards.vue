@@ -9,7 +9,8 @@
           <v-col class="text-left">
             <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
             <p class="ps">
-              <i class="fas fa-tag"></i> #tag
+              <i class="fas fa-tag"></i>
+              {{dish.tag}}
               <br>
               <i class="fas fa-edit"></i>
               {{ dish.description }}
