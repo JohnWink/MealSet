@@ -190,6 +190,8 @@ export default new Vuex.Store({
       return state.loggedUser[0].admin
     },
 
+    
+
 
 
 
@@ -406,7 +408,8 @@ export default new Vuex.Store({
           "Polvo com batata assada gostosa.",
         restaurantId: 0,
         evaluation: 4,
-        tag: "Peixe"
+        tag: "Peixe",
+        recommended: true
       },
       {
         id:1,
@@ -416,7 +419,8 @@ export default new Vuex.Store({
           "Salmão é que é bom.",
           restaurantId: 0,
         evaluation: 5,
-        tag: "Peixe"
+        tag: "Peixe",
+        recommended: false
       },
       {
         id:2,
@@ -426,7 +430,8 @@ export default new Vuex.Store({
           "Legumes salteados são fixolas.",
           restaurantId: 2,
         evaluation: 3,
-        tag: "Vegetariano"
+        tag: "Vegetariano",
+        recommended: true
       },
       {
         id:3,
@@ -436,7 +441,8 @@ export default new Vuex.Store({
           "Novilho é noice.",
         restaurantId: 2,
         evaluation: 2,
-        tag: "Carne"
+        tag: "Carne",
+        recommended: true
       },
       {
         id:4,
@@ -446,7 +452,8 @@ export default new Vuex.Store({
           "Cheeseburger é okay para quem gosta.",
         restaurantId: 2,
         evaluation: 2,
-        tag: "Carne"
+        tag: "Carne",
+        recommended: false
       },
       {
         id:5,
@@ -456,7 +463,8 @@ export default new Vuex.Store({
           "Batata a murro é fine, bife é que já na vai.",
         restaurantId: 2,
         evaluation: 2,
-        tag: "Carne"
+        tag: "Carne",
+        recommended: true
       }
       ]
       localStorage.setItem("dishes",JSON.stringify(state.dishes))
