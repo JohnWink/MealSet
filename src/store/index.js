@@ -629,6 +629,28 @@ export default new Vuex.Store({
     localStorage.setItem("dishes", JSON.stringify(state.dishes))
 
   },
+
+  PROFILE_EDIT(state,payload){
+
+    for (let user of state.users) {
+      if (user.id === payload.id){
+        //change the infor
+        user.email = payload.email
+        user.password = payload.password
+        user.avatar = payload.avatar
+
+        // change the looged stuff
+        state.loggedUser[0].email = payload.email
+        state.loggedUser[0].password = payload.password
+        state.loggedUser[0].avatar = payload.avatar
+
+        sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser));
+        
+      }
+    }
+
+    localStorage.setItem("users", JSON.stringify(state.users))
+  }
   
 
 
