@@ -1,10 +1,10 @@
 <template>
   <div class="pl-12 ml-12 mr-2">
     <v-hover v-slot:default="{ hover }" open-delay="200">
-      <v-card class="mx-auto cards" max-height="400" max-width="500" :elevation="hover ? 16 : 2">
-        <template v-slot:activator="{ on }">
-          <v-img class="cardsImg" :src="dish.img" @click="showModal = true"></v-img>
-        </template>
+      <v-card class="mx-auto cards" max-height="400" max-width="500" :elevation="hover ? 16 : 2" @click="showModal = true">
+        
+          <v-img class="cardsImg" :src="dish.img" ></v-img>
+        
         <v-row class="mb-6 mx-2">
           <v-col class="text-left">
             <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
@@ -24,7 +24,7 @@
         </v-row>
       </v-card>
     </v-hover>
-    <v-dialog v-model="dialog" persistent max-width="400">
+    <v-dialog v-model="dialog" persistent max-width="400" v-if="showModal = true">
       <v-card>
         <!--Fechar-->
         <v-toolbar color="#5C6BC0">
