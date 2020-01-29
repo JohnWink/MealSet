@@ -9,7 +9,7 @@
       <v-toolbar color="#5C6BC0">
         <v-row>
           <v-col class="text-left mt-2 ml-6">
-            <v-toolbar-title id="text" >Login</v-toolbar-title>
+            <v-toolbar-title id="text">Login</v-toolbar-title>
           </v-col>
           <v-col class="text-right mt-2">
             <v-btn color="#ffffff" text right @click="dialog = false">
@@ -49,7 +49,6 @@
           <v-btn color="#5C6BC0" dark @click="submit">Iniciar Sessão</v-btn>
         </v-col>
       </v-card-actions>
-
     </v-card>
   </v-dialog>
 </template>

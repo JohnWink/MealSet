@@ -54,8 +54,43 @@ export default new Vuex.Store({
    
     
     getComments: state => state.comments,
+    getRestaurants: state =>state.restaurants,
 
-    getRestaurants: state => state.restaurants,
+    getRestaurantsById: (state) =>{
+      return state.restaurants.sort(function(a,b){
+        const idA = a.id
+        const idB = b.id
+    
+        if(idA>idB) return 1;
+        if(idB>idA) return -1;
+
+        return 0
+      })
+    },
+
+    getRestaurantsByRating: (state) =>{
+      return state.restaurants.sort(function(a,b){
+        const ratingA = a.evaluation
+        const ratingB = b.evaluation
+    
+        if(ratingA>ratingB) return -1;
+        if(ratingB>ratingA) return 1;
+
+        return 0
+      })
+    },
+
+    getRestaurantsByDistance:(state) =>{
+      return state.restaurants.sort(function(a,b){
+        const distanceA = a.distance
+        const distanceB = b.distance
+    
+        if(distanceA>distanceB) return -1;
+        if(distanceB>distanceA) return 1;
+
+        return 0
+      })
+    },
 
     getDishes: state => state.dishes,
 
@@ -104,6 +139,8 @@ export default new Vuex.Store({
         return 0;
       }
     },
+
+   
 
 
     getLastHistoricId:(state)=>{
@@ -255,7 +292,9 @@ export default new Vuex.Store({
           parking: true,
           mediumWaitingTime: 20,
           location:"R. Sara Afonso, 4460-284 Sra. da Hora",
-          distance:"5",
+
+          distance:"",
+          travelDuration:"",
           comments: "",
           logo: "https://i.pinimg.com/originals/c1/0a/05/c10a05948ce933f3f92c75f52c489508.png"
         },
@@ -270,7 +309,9 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 20,
           location:"Avenida Fonte Cova, Modivas, 4485-592 Vila do Conde",
-          distance:"8",
+
+          distance:"",
+          travelDuration:"",
           comments: "",
           logo: "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
@@ -285,7 +326,9 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 20,
           location:"R. de Almeiriga Norte 1878, 4455-417 Perafita",
-          distance:"10",
+
+          distance:"",
+          travelDuration:"",
           comments: "",
           logo:"https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
@@ -300,9 +343,13 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
-          distance:"20",
+          
+
+          distance:"",
+          travelDuration:"",
+    
           comments:"",
-          logo: "https://www.hotelsaintgeorge.com/resources/img/dona-maria.png"
+          logo: "https://www.hotelsaintgeorge.com/resources/img/dona-maria.png",
         },
         {
           id:4,
@@ -315,7 +362,10 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
-          distance:"30",
+ 
+          distance:"",
+          travelDuration:"",
+  
           comments: "",
           logo:"https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
@@ -330,10 +380,13 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
-          distance:"40",
+
+          distance:"",
+          travelDuration:"",
+ 
           comments:"",
-          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png"
-        }
+          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png",
+        },
 
       ]
 
@@ -421,11 +474,17 @@ export default new Vuex.Store({
         parking: payload.parking,
         location: payload.location,
         coverImg: '../assets/lily-banse--YHSwy6uqvk-unsplash.jpg',
+        distance:"",
+        travelDuration:"",
       });
       localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
      }
    },
-    
+    SET_RESTAURANT_DISTANCE(state,payload){
+      state.restaurants[payload.id].distance = payload.distance;
+      state.restaurants[payload.id].travelDuration = payload.travelDuration;
+      localStorage.setItem("restaurants",JSON.stringify(state.restaurants))
+    },
     ADD_USER(state, payload) {
     //check se email já está registado
     if (!state.users.some(user => user.email === payload.email)) {
@@ -623,7 +682,7 @@ export default new Vuex.Store({
       description: payload.description,
       restaurantId: payload.restaurantId,      
       evaluation: payload.evaluation,
-      tag: payload.tag
+      tag: payload.tag,
     })
 
     localStorage.setItem("dishes", JSON.stringify(state.dishes))

@@ -35,8 +35,10 @@
     </v-row>
     <v-row class="pl-12 ml-12 mt-2">
       <v-col cols="10" sm="8">
+        <!--Barra de pesquisa de restaurantes-->
         <v-textarea
           class="mx-2 mt-10"
+          v-model="search"
           prepend-icon="fas fa-search"
           label="Pesquisa"
           rows="1"
@@ -47,26 +49,63 @@
         ></v-textarea>
       </v-col>
       <v-col cols="10" sm="3">
-        <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" label="Filtros"></v-overflow-btn>
+        <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" label="Filtros" v-model="filterValue"></v-overflow-btn>
       </v-col>
     </v-row>
 
     <!--RECOMENDAÇÃO DE RESTAURANTES-->
     <br>
     <br>
-
+<div 
+  v-if="search =='' && filterValue==''">
     <v-row class="mx-2" justify="center" align="center">
+      
       <v-col
         class="mb-2"
         cols="12"
         sm="6"
         md="4"
-        v-for="restaurant in restaurants"
+        v-for="restaurant in sortedRestaurantsById"
         :key="restaurant.id"
       >
         <RestaurantCards v-bind:restaurant="restaurant"/>
       </v-col>
     </v-row>
+  </div>
+<div 
+v-else-if="search=='' && filterValue=='Melhor Rating'">
+<v-row class="mx-2" justify="center" align="center">
+      
+      <v-col
+        class="mb-2"
+        cols="12"
+        sm="6"
+        md="4"
+        v-for="restaurant in sortedRestaurantsByRating"
+        :key="restaurant.evaluation"
+      >
+        <RestaurantCards v-bind:restaurant="restaurant"/>
+      </v-col>
+    </v-row>
+</div>
+<div
+v-else-if="search != ''">
+  <v-row class="mx-2" justify="center" align="center">
+      
+      <v-col
+        class="mb-2"
+        cols="12"
+        sm="6"
+        md="4"
+        v-for="restaurant in getSearchedRestaurants"
+        :key="restaurant.distance"
+      >
+        <RestaurantCards v-bind:restaurant="restaurant"/>
+      </v-col>
+    </v-row>
+
+
+</div>
 
     <footerVue/>
   </div>
@@ -98,19 +137,53 @@ export default {
     perfil
   },
   data: () => ({
-    filters: ["Mais Popular", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
+    //filters: ["Melhor Rating", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
+    filters:["Melhor Rating"],
     restaurants: [],
-    fontsize: " "
+    fontsize: " ",
+    searchValue:'',
+    filterValue:'',
+    search:'',
+    distance:'',
+    travelDuration:'',
+    currentRestaurantId:''
+    
   }),
-  beforeMount() {
-    this.restaurants = this.$store.getters.getRestaurants;
-  },
+ 
   created() {
+    this.restaurants = this.$store.getters.getRestaurants;
+    this.getCurrentLocation();
+
     window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
-    this.getCurrentLocation();
+
+  
+      
+   
   },
-  methods: {
+
+computed: {
+
+  getSearchedRestaurants(){
+  return this.restaurants.filter(restaurant => {
+        return restaurant.name.toLowerCase().includes(this.search.toLowerCase())
+  })
+},
+sortedRestaurantsById:function(){
+  return this.$store.getters.getRestaurantsById
+ 
+},
+sortedRestaurantsByRating:function(){
+  return this.$store.getters.getRestaurantsByRating
+  
+},
+
+sortedRestaurantsByDistance:function(){
+  return this.$store.getters.getRestaurantsByDistance
+}
+
+},
+methods: {
     mobileAjust() {
       let cssLine = "font-size:400%;";
       if (window.innerWidth < 600) {
@@ -123,6 +196,18 @@ export default {
 
       this.fontsize = cssLine;
     },
+    
+    sortRestaurantByRatingMethod(a,b){
+        const ratingA = a.evaluation
+        const ratingB = b.evaluation
+    
+        if(ratingA>ratingB) return -1;
+        if(ratingB>ratingA) return 1;
+
+        return 0
+      
+    },
+    
     getCurrentLocation(){
        
       if(navigator.geolocation){
@@ -138,9 +223,146 @@ export default {
       }else{
         alert('error on navigator')
       }
-    }
+    },
 
+    
+/*
+calcDistance(){
+
+    
+  this.restaurants = this.$store.getters.getRestaurants;
+  let destinationArray = []
+  this.distance = []
+  this.travelDuration = []
+
+  this.restaurants.forEach(restaurant => {
+    destinationArray.push(restaurant.location)
+  });
+
+  let myPos = this.$store.getters.getLoggedUserLocation;
+  
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [myPos],
+      destinations: destinationArray,
+      travelMode: 'DRIVING',
+    }, callback);
+
+    function callback(response, status) {
+      if (status == 'OK') {
+        var origins = response.originAddresses;
+        //var destinations = response.destinationAddresses;
+        for (var i = 0; i < origins.length; i++) {
+          var results = response.rows[i].elements;
+          for (var j = 0; j < results.length; j++) {
+
+            
+
+            var element = results[j];
+            var distance = element.distance.value
+            var travelDuration = element.duration.value
+           this.currentRestaurantId = j
+           this.distance = distance
+           this.travelDuration = travelDuration
+           //this.inputGeoData()
+          
+
+           
+      }
+    }
+  }else{
+     alert('Geocode was not successful for the following reason: ' + status);
+  }
+
+
+}
+
+alert(service.DistanceMatrixResponse.rows[0].elements[1] .distance.value)
+
+function afterCallBack(restaurantId,distanceValue,travelDurationValue){
+  this.$store.commit("SET_RESTAURANT_DISTANCE", {
+          id: restaurantId,
+          distance : distanceValue,
+          travelDuration: travelDurationValue,
+        });
+        
+}
+
+
+
+    
+  
+      -----------------------------Halted idea of single geolocation travel------------------------
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+ 
+      let myPos = this.$store.getters.getLoggedUserLocation;
+    this.restaurants.forEach(function(restaurant){
+
+    
+
+    
+          const request = {
+            origin: myPos,
+            destination: restaurant.location,
+            travelMode:google.maps.TravelMode["DRIVING"]
+          }
+
+          directionsService.route(request,(result,status)=>{
+
+            if(status =='OK'){
+
+              directionsRenderer.setDirections(result);
+              
+              const directionsData = result.routes[0].legs[0];
+
+              if(directionsData){
+                this.distance =  directionsData.distance.Value
+                //this.travelDuration = JSON.stringify(result.routes[0].legs[0].directionsData.duration.text)
+
+                this.$store.commit("SET_RESTAURANT_DISTANCE",{
+                  id: this.restaurant.id,
+                  distance: this.distance,
+                  travelDuration: this.travelDuration
+                })
+                }else{
+                alert('error on directions data')
+              }
+
+              
+            }else{
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+            
+          })
+
+        })
+
+        
+    
+  
+    },
+-------------------------------------Commit undefined---------------------------
+    inputGeoData(){
+      this.$store.commit("SET_RESTAURANT_DISTANCE", {
+          id: this.currentRestaurantId,
+          distance : this.distance,
+          travelDuration: this.travelDuration,
+        });
+
+    },
+  
+      
   },
 
-};
+  */
+
+  beforeMount(){
+    //this.calcDistance()
+  },
+
+
+}
+}
 </script>
