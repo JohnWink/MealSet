@@ -7,12 +7,12 @@
         <v-col cols="12">
           <v-row align="start" justify="center">
             
-            <v-col md="1">
+            <v-col cols="8" sm="10">
               <navBar />
             </v-col>
             
             
-            <v-col md="2">
+            <v-col cols="4" sm="2">
               <logout/>
             </v-col>
           </v-row>
