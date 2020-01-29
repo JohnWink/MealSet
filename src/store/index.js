@@ -218,7 +218,8 @@ export default new Vuex.Store({
           avatar: "https://i.imgur.com/t2Q8O9v.jpg",
           bio: "Sou admin.",
           admin: true,
-          restaurantUser: true
+          restaurantUser: true,
+          restaurantId: 0
         },
         {
           id:1,
@@ -228,7 +229,8 @@ export default new Vuex.Store({
           avatar: "https://i.imgur.com/6txmFi3.png",
           bio: "Sou random.",
           admin: false,
-          restaurantUser: false
+          restaurantUser: false,
+          restaurantId: 0
         },
         //Test userRestaurant to test entering the respective restaurant user page
         {
@@ -477,13 +479,18 @@ export default new Vuex.Store({
       state.restaurants.push({
         id: payload.id,
         name:payload.name,
+        routerLink:"/restaurant",
+        coverImg:payload.coverImg,
+        evaluation: 0,
         description:payload.description,
         outDoor: payload.outDoor,
         parking: payload.parking,
+        mediumWaitingTime: payload.mediumWaitingTime,
         location: payload.location,
-        coverImg: '../assets/lily-banse--YHSwy6uqvk-unsplash.jpg',
         distance:"",
-        travelDuration:"",
+        travelDuration:"",    
+        comments:"",
+        logo: payload.logo
       });
       localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
      }
@@ -506,7 +513,10 @@ export default new Vuex.Store({
           username: payload.username,
           password:payload.password,
           email: payload.email,
-          admin: false
+          admin: false,
+          restaurantUser: payload.restaurantUser,
+          restaurantId: payload.restaurantId
+
         });
 
         localStorage.setItem("users", JSON.stringify(state.users))
@@ -717,6 +727,46 @@ export default new Vuex.Store({
     }
 
     localStorage.setItem("users", JSON.stringify(state.users))
+  },
+  
+  ADD_USER_RESTAURANT(state,payload){
+
+    
+      //check se email já está registado
+      if (!state.users.some(user => user.email === payload.email)) {
+        if(!state.users.some(user =>user.username === payload.username )){
+  
+        
+          //adicionar novo user ao array
+            state.users.push({
+            id: payload.id,
+            avatar: payload.avatar,
+            username: payload.username,
+            password:payload.password,
+            email: payload.email,
+            admin: false
+          });
+  
+          localStorage.setItem("users", JSON.stringify(state.users))
+    /*
+          //user agora está registado e o login é feito
+          state.loggedUser.id = payload.id;
+          state.loggedUser.username = payload.username;
+          state.loggedUser.profilePic =
+            "https://i.ytimg.com/vi/zQ4LiyFF8RU/hqdefault.jpg";
+  
+          state.logged = true;
+    */
+          alert("Registado");
+  
+          //levar user pra pagina inicial?
+        }else{
+          alert("Username Já Utilizado")
+        }
+      }else {
+        alert("E-MAIL JÁ REGISTADO");
+      }
+
   }
   
 

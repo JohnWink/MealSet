@@ -229,7 +229,9 @@ export default {
    computed:{
     restaurant(){
       return this.$store.getters.restaurantInfo(parseInt(this.$route.params.id));
-  }
+    },
+    
+
   },
   methods:{
 
@@ -309,7 +311,8 @@ export default {
 
     this.menu = this.$store.getters.getDishes;
     
-    this.menuCount = this.MenuCounter();
+    
+    
   
   },
   destroyed() {

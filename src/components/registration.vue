@@ -65,6 +65,83 @@
           clearable   
           color="#5C6BC0"
         ></v-text-field>
+
+        <v-checkbox
+        v-model="checkbox"        
+        label="Registar como restaurante utilizador?"        
+        ></v-checkbox>
+        
+        <!--This section will apper when the user checks the box. the restaurant registration will apper -->
+
+        <div v-if="this.checkbox == true">
+
+          <v-text-field          
+          v-model="restautantName"
+          :counter="25"
+          :rules="RestaurantNameRules"
+          label="Nome do Restaurante"
+          required
+          clearable
+          color="#5C6BC0"
+          ></v-text-field>
+
+          <v-text-field          
+          v-model="restaurantCover"          
+          label="Link do Cover"
+          required
+          clearable
+          color="#5C6BC0"
+          ></v-text-field>
+
+          <v-text-field          
+          v-model="restaurantDescrip"          
+          label="Descrição do Restaurate"
+          :counter="40"
+          required
+          clearable
+          color="#5C6BC0"
+          ></v-text-field>
+
+          <v-checkbox
+          v-model="outDoor"
+          required        
+          label="Tem Esplanada?"        
+          ></v-checkbox>
+
+          <v-checkbox
+          v-model="parking" 
+          required       
+          label="Parque de Estacionamento?"        
+          ></v-checkbox>
+
+          <v-text-field          
+          v-model="restaurantWaitTime"          
+          label="Tempo media de espera"
+          required
+          clearable
+          color="#5C6BC0"
+          ></v-text-field>
+
+          <v-text-field          
+          v-model="restaurantLocation"          
+          label="Morada do Restaurante"
+          required
+          clearable
+          color="#5C6BC0"
+          ></v-text-field>
+
+          <v-text-field          
+          v-model="restaurantLogo"          
+          label="Link do Logo"
+          required
+          clearable
+          color="#5C6BC0"
+          ></v-text-field>
+
+        </div>
+
+
+
       </v-form>
       <!--Botões-->
       <v-card-actions>
@@ -95,6 +172,24 @@ export default {
     userAvatar:"",
     id: 0,
     restaurantUser: "",
+    checkbox: false, //checker for the user restaurant registration
+
+    //user restauntant data
+
+    restautantName: "",
+    restaurantCover: "",
+    restaurantDescrip: "",
+    outDoor: false,
+    parking: false,
+    restaurantWaitTime: 0,
+    restaurantLocation: "",
+    restaurantLogo: "",
+
+
+
+
+
+
 
     nameRules: [
       v => !!v || "Por favor preencha o Username",
@@ -110,7 +205,22 @@ export default {
         "A password não pode ter mais que 20 caracteres"
     ],
 
-    emailRules: [v => !!v || "Por favor introduza o seu email"]
+    emailRules: [v => !!v || "Por favor introduza o seu email"],
+
+    //rules on the restaurant user part
+
+    RestaurantNameRules: [
+      v => !!v || "Por favor preencha o nome do Restaurante",
+      v => (v && v.length <= 25) || "Tem de ter menos de 25 caracteres"
+    ],
+
+    DescriptionRules: [
+      v => !!v || "Por favor preencha a descrição",
+      v => (v && v.length <= 40) || "Tem de ter menos de 40 caracteres"
+    ],
+
+
+
   }),
 
   methods: {
@@ -118,20 +228,72 @@ export default {
       if (this.$refs.form.validate()) {
         this.dialog = false;
 
+        //some if conditions for missing pictures to give a default look
+
         if(this.userAvatar === ""){
           this.userAvatar = "https://i.imgur.com/6txmFi3.png"
         }
-        this.$store.commit("ADD_USER", {
+
+        if(this.restaurantCover === ""){
+          this.restaurantCover = "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/61/2016/05/05151505/Manotel-Geneve-Restaurants.jpg"
+        }
+
+        if(this.restaurantLogo ===""){
+          this.restaurantLogo = "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
+        }
+
+
+
+        // if the checker was off
+        if(this.checkbox === false ){
+          
+          this.$store.commit("ADD_USER", {
           id: this.$store.getters.getLastUserId,
           avatar : this.userAvatar,
           username: this.username,
           password: this.password,
-          email: this.email
-        });
+          email: this.email,
+          restaurantUser: false,
+          restaurantId: 0
+
+        });}
+
+        else{
+          // add has a userRestaurant
+          this.$store.commit("ADD_USER", {
+          id: this.$store.getters.getLastUserId,
+          avatar : this.userAvatar,
+          username: this.username,
+          password: this.password,
+          email: this.email,
+          restaurantUser: true,
+          restaurantId: this.$store.getters.getLastRestaurantId        
+          
+          })//then add the new restuarant
+
+          this.$store.commit("ADD_RESTAURANT",{
+          id: this.$store.getters.getLastRestaurantId,          
+          name:this.restautantName,
+          coverImg:this.restaurantCover,
+          description:this.restaurantDescrip,
+          outDoor: this.outDoor,
+          parking: this.parking,
+          mediumWaitingTime: this.restaurantWaitTime,
+          location: this.restaurantLocation,
+          logo: this.restaurantLogo
+        })
+
+          
+        }
+        
 
         this.$router.replace("/");
-      }
-    },
+
+        }
+      },
+        
+      
+    
     reset() {
       this.$refs.form.reset();
     }
