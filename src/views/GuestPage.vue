@@ -14,6 +14,7 @@
           <v-col md="2">
             <login/>
           </v-col>
+          
         </v-row>
         <v-row>
           <v-col>

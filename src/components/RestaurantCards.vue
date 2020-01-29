@@ -14,17 +14,18 @@
               <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
               <!--
               <p class="ps">
-                <i class="fas fa-map-marker-alt" color="yellow darken-1"></i>
-                A {{distance}} de si 
-              </p>
-              <p>
-                Viagem de {{travelDuration}}
+                <i class="fas fa-map-marker-alt" ></i>
+                {{distance}} de si 
+                <br>
+                <i class="fas fa-car"></i>
+                {{travelDuration}}
+
               </p>
               -->
             </v-col>
             <v-col class="text-right">
-              <p style="margin-right: 25px;" class="font-weight-bold">
-                {{restaurant.evaluation }}
+              <p style="margin-right: 25px; margin-top: 10%" class="font-weight-bold">
+                {{ restaurant.evaluation }}
                 <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
               </p>
             </v-col>

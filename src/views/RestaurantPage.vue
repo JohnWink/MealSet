@@ -49,7 +49,7 @@
 
             <v-col cols="12" md="6"  class="text-left">
             
-              <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png"></v-img>
+              <v-img contain=true max-height="150px" :src="restaurant.logo" ></v-img>
               <br><br>
               <p class="headline font-weight-bold ">Informação</p><br>
 
@@ -97,11 +97,12 @@
 
             <!--CARd of the menus v-for cycle-->
             <v-container class="white darken-2">
-                <v-row align="center">
-                    <v-col cols="12" class="headline">Menu</v-col>
+              <v-row justify="center" class="headline font-weight-bold">Menu</v-row>
+                <v-row align="center" justify="center">
+                    
                     <v-col cols="12"  v-for="dish in menu" :key="dish">
                       
-                      <restaurantMenu v-bind:dish="dish" />
+                      <restaurantMenu v-if="dish.restaurantId === restaurant.id" v-bind:dish="dish" />
 
                     </v-col>
                 </v-row>        
@@ -116,8 +117,17 @@
         </v-row>
 
         <v-row class="pl-9 ml-9 py-6" justify="center" >
-          <v-col cols="10" >          
-            <RestaurantCards />      
+          <v-col cols="10" > 
+            <!--RECOMENDAÇÃO DE PRATOS-->
+            <v-carousel hide-delimiters :height="this.compHeight">
+              <div v-for="dish in menu" :key="dish">
+                <v-carousel-item v-if="dish.restaurantId === restaurant.id">
+                  <RestaurantCards v-bind:dish="dish" />
+                </v-carousel-item>
+              </div>
+              
+            </v-carousel>     
+                  
           </v-col>    
         </v-row>
 
@@ -205,73 +215,14 @@ export default {
     fontsize: " ",
     restaurants: [],
     map:"",
+    compHeight: "",
     return:{
           dialog: false
       },
 
-      menu:[
-          {
-          name: "Polvo",
-          img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
-          evaluation: 4
-        },
-        {
-          name: "Bacalhau",
-          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
-          evaluation: 5
-        },
-        {
-          name: "Legumes Salteados",
-          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
-          evaluation: 3
-        },
-        {
-          name: "Novilho",
-          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
-          evaluation: 2
-        },
-        {
-          name: "rissoto",
-          img:  require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",          
-          evaluation: 5
-        },
-      ],
-
+      menu:[],
       comments: [],
-      /*
-      comments:[
-        {
-            id:0,
-            name: "username1sd",
-            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            date:"3/7/2020",
-            evaluation: 4
-        },
-        {
-            id:1,
-            name: "username2",
-            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            date:"3/7/2020",
-            evaluation: 3
-        },
-        {
-            id:2,
-            name: "username3",
-            img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            date:"3/7/2020",
-            evaluation: 1
-        },
-      ],
-    
-    */
+      
   }),
 
    computed:{
@@ -319,12 +270,15 @@ export default {
     //method to ajust the css font size for xs devices, handset
     mobileAjust(){
       let cssLine = "font-size:400%;"
+      let heightSize = "310px"
       if(window.innerWidth < 600){
         
         cssLine += "font-size:280%;"
+        heightSize = "470px"
         
       }
       this.fontsize = cssLine;
+      this.compHeight = heightSize;
     },
     totalrate: function(){
             let totalscore = 0
@@ -351,6 +305,8 @@ export default {
     window.addEventListener('resize', this.mobileAjust);
     this.mobileAjust();
     this.restaurants  = this.$store.getters.getRestaurants;
+
+    this.menu = this.$store.getters.getDishes;
   
   },
   destroyed() {

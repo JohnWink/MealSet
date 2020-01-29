@@ -121,6 +121,16 @@ export default new Vuex.Store({
       }
     },
 
+    getLastDishId:(state)=>{
+      if (state.dishes.length) {
+        return 1 + state.dishes[state.dishes.length-1].id;
+      } else {
+        return 0;
+      }
+    },
+
+
+
 
     getLastRestaurantId:(state)=>{
       if(state.restaurants.length){
@@ -156,6 +166,33 @@ export default new Vuex.Store({
 
 
     },
+
+    getRestaurantDishes: (state) =>{
+      let dishList = []
+      for (const dish of state.dishes) {
+        if (dish.restaurantId === state.loggedUser[0].restaurantId) {
+          dishList.push(dish) 
+
+      }
+      
+    }return dishList
+  },
+
+    getLoggedUserRestaurant: (state) =>{
+      return state.loggedUser[0].restaurantId
+    },
+
+    getLoggedUserRestaurantType: (state) =>{
+      return state.loggedUser[0].restaurantUser
+    },
+
+    getLoggedAdmin: (state) =>{
+      return state.loggedUser[0].admin
+    },
+
+
+
+
 
 
    
@@ -255,9 +292,11 @@ export default new Vuex.Store({
           parking: true,
           mediumWaitingTime: 20,
           location:"R. Sara Afonso, 4460-284 Sra. da Hora",
-          comments: "",
+
           distance:"",
           travelDuration:"",
+          comments: "",
+          logo: "https://i.pinimg.com/originals/c1/0a/05/c10a05948ce933f3f92c75f52c489508.png"
         },
         {
           id:1,
@@ -270,9 +309,11 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 20,
           location:"Avenida Fonte Cova, Modivas, 4485-592 Vila do Conde",
-          comments: "",
+
           distance:"",
           travelDuration:"",
+          comments: "",
+          logo: "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
         {
           id:2,
@@ -285,9 +326,11 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 20,
           location:"R. de Almeiriga Norte 1878, 4455-417 Perafita",
-          comments: "",
+
           distance:"",
           travelDuration:"",
+          comments: "",
+          logo:"https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
         {
           id:3,
@@ -300,9 +343,13 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
-          comments: "",
+          
+
           distance:"",
           travelDuration:"",
+    
+          comments:"",
+          logo: "https://www.hotelsaintgeorge.com/resources/img/dona-maria.png",
         },
         {
           id:4,
@@ -315,9 +362,12 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
-          comments: "",
+ 
           distance:"",
           travelDuration:"",
+  
+          comments: "",
+          logo:"https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         },
         {
           id:5,
@@ -330,10 +380,13 @@ export default new Vuex.Store({
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
-          comments: "",
+
           distance:"",
           travelDuration:"",
-        }
+ 
+          comments:"",
+          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png",
+        },
 
       ]
 
@@ -352,7 +405,8 @@ export default new Vuex.Store({
         description:
           "Polvo com batata assada gostosa.",
         restaurantId: 0,
-        evaluation: 4
+        evaluation: 4,
+        tag: "Peixe"
       },
       {
         id:1,
@@ -361,7 +415,8 @@ export default new Vuex.Store({
         description:
           "Salmão é que é bom.",
           restaurantId: 0,
-        evaluation: 5
+        evaluation: 5,
+        tag: "Peixe"
       },
       {
         id:2,
@@ -370,7 +425,8 @@ export default new Vuex.Store({
         description:
           "Legumes salteados são fixolas.",
           restaurantId: 2,
-        evaluation: 3
+        evaluation: 3,
+        tag: "Vegetariano"
       },
       {
         id:3,
@@ -379,7 +435,8 @@ export default new Vuex.Store({
         description:
           "Novilho é noice.",
         restaurantId: 2,
-        evaluation: 2
+        evaluation: 2,
+        tag: "Carne"
       },
       {
         id:4,
@@ -388,7 +445,8 @@ export default new Vuex.Store({
         description:
           "Cheeseburger é okay para quem gosta.",
         restaurantId: 2,
-        evaluation: 2
+        evaluation: 2,
+        tag: "Carne"
       },
       {
         id:5,
@@ -397,7 +455,8 @@ export default new Vuex.Store({
         description:
           "Batata a murro é fine, bife é que já na vai.",
         restaurantId: 2,
-        evaluation: 2
+        evaluation: 2,
+        tag: "Carne"
       }
       ]
       localStorage.setItem("dishes",JSON.stringify(state.dishes))
@@ -524,8 +583,7 @@ export default new Vuex.Store({
         restaurantUser: user.restaurantUser,
         restaurantId: user.restaurantId,
         email: user.email,
-        password: user.password,
-  
+        password: user.password
       })
       
         sessionStorage.setItem(
@@ -594,10 +652,45 @@ export default new Vuex.Store({
     
   },
 
+
+  ///-----add and remove dishes commits
+  REMOVE_DISH(state,payload){
+
+    let indexDish = 0;
+    for (let dish of state.dishes) {
+      
+      if (dish.id === payload.id){
+        state.dishes.splice(indexDish,1);
+        
+      }
+      indexDish++;
+    }
+    localStorage.setItem("dishes", JSON.stringify(state.dishes))
+
+  },
+
   ADD_CURRENT_LOCATION(state,payload){
     state.loggedUser[0].location = payload.location
     sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
-  }
+  },
+
+  ADD_DISH(state,payload){
+    state.dishes.push({
+      id: payload.id, 
+      name: payload.name,
+      img: payload.img,
+      description: payload.description,
+      restaurantId: payload.restaurantId,      
+      evaluation: payload.evaluation,
+      tag: payload.tag,
+    })
+
+    localStorage.setItem("dishes", JSON.stringify(state.dishes))
+
+  },
+  
+
+
 
 
   
