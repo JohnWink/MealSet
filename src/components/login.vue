@@ -89,7 +89,13 @@ export default {
 
         if (this.$store.getters.checkLogged === true) {
           // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher.
-          this.$router.push({ path: "/landingPage" });
+          if (this.$store.getters.getLoggedUserRestaurantType === true){
+            this.$router.push({ path: "/userRestaurantPage" });            
+          }
+          else{
+            this.$router.push({ path: "/landingPage" });
+          }
+          
         }
       }
     }

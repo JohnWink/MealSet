@@ -189,6 +189,8 @@ export default new Vuex.Store({
     getLoggedAdmin: (state) =>{
       return state.loggedUser[0].admin
     },
+    
+    
 
     
 
