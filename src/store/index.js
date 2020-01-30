@@ -197,7 +197,7 @@ export default new Vuex.Store({
       return state.loggedUser[0].admin
     },
 
-    getCoverLogo : (state) =>{
+    getCoverLogo: (state) =>{
       let cover = ""
       for (const rest  of state.restaurants) {
         if (rest.restaurantId === state.loggedUser[0].restaurantId) {
@@ -205,6 +205,46 @@ export default new Vuex.Store({
         }
       }
       return cover
+    },
+
+    getRestaurantName: (state) =>{
+      let name = ""
+      for (let rest of state.restaurants) {
+        if (rest.id === state.loggedUser[0].restaurantId){
+          name = rest.name
+
+        }
+      }
+      return name
+      
+
+    },
+    getNotificationRead: (state) =>{
+
+      let read = false
+      for (let note of state.historic) {
+        if (note.userId === state.loggedUser[0].id){
+          if(note.read === false){
+            read = true
+            break
+          }
+
+        }
+      }
+      return read
+
+    },
+
+    getUserHistoric: (state) =>{
+      let userHistorics = []
+      for (let note of state.historic) {
+        if (note.userId === state.loggedUser[0].id){
+          userHistorics.push(note)
+
+        }
+      }
+      return userHistorics
+
     },
     
     
@@ -683,7 +723,9 @@ export default new Vuex.Store({
       restaurantId: payload.restaurantId,
       status: payload.status,
       notification: payload.notification,
-      date: payload.date
+      date: payload.date,
+      read: false,
+      restaurantName: payload.restaurantName
     })
     localStorage.setItem("historic", JSON.stringify(state.historic))
     
@@ -786,6 +828,17 @@ export default new Vuex.Store({
       }else {
         alert("E-MAIL JÁ REGISTADO");
       }
+
+  },
+
+  CHANGE_READ_HISTORIC(state,payload){
+    for (let notification of state.historic) {
+      if (notification.id === payload.id){
+        notification.read = payload.read;
+        alert("entered!")
+      }
+    }
+    localStorage.setItem("historic", JSON.stringify(state.historic))
 
   }
   

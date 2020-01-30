@@ -130,7 +130,7 @@ export default {
     peopleNumber: "",
     mealTime: ["Almoço", "Jantar"],
     mealTimeValue: "",
-    status: false,
+    status: "A ser Comfirmado...",
 
     nameRules: [v => !!v || "Por favor preencha o nome"],
 

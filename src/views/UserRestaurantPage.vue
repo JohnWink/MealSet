@@ -42,7 +42,7 @@
                     >
                     <!--Condition to change status to a string and give color chips -->
                     <template v-slot:item.status="{ item }">
-                        <v-chip :color="getColor(item.status)" dark> {{ getStatus(item.status) }}</v-chip>
+                        <v-chip :color="getColor(item.status)" dark> {{ item.status }}</v-chip>
                     </template>
 
                     
@@ -209,13 +209,12 @@ export default {
     
     
     methods:{
-        getStatus(status){
-            if(status == true){ return 'Reserva Comfirmada';}
-            else{ return 'A ser Comfirmado...';}
-        },
+       
         getColor(status){
-            if (status == false) return 'orange lighten-1'        
-            else return 'green lighten-1'
+
+            if (status == "A ser Comfirmado...") return 'orange lighten-1'
+            else if(status =="Reserva Comfirmada!") return 'green lighten-1'       
+            else return 'red lighten-1' 
         },
 
         // delete dish method

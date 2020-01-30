@@ -97,10 +97,10 @@ methods: {
 
         //conditions for the status change , if true then it will go to the storage and change that data
         //also making sure that if we are changing a status true to true again, not to send to the historic again 
-        if(this.selected.status != true){
-
+        if(this.selected.status != "Reserva Comfirmada!"){
+           let statusValue =""
           if(this.statusChange ==='Aceite' ){
-            let statusValue = true
+             statusValue = "Reserva Comfirmada!"
 
             
             
@@ -116,36 +116,42 @@ methods: {
               id: this.$store.getters.getLastHistoricId,
               userId: this.selected.userId,
               restaurantId: this.selected.restaurantId,
-              status: this.selected.status,
+              status: statusValue,
               notification: noteText,
-              date: postDate
+              date: postDate,
+              restaurantName: this.$store.getters.getRestaurantName
             })
 
 
           }
+          // if false it will get eliminated from the storage
+         
+            if(this.statusChange === 'Recusado'){
+              statusValue = "Reserva Recusada"
+
+              this.$store.commit("REFUSE_RESERVATION",{
+                id: this.selected.id 
+              })
+              //sending the notification
+
+              this.$store.commit("ADD_HISTORY",{
+                id: this.$store.getters.getLastHistoricId,
+                userId: this.selected.userId,
+                restaurantId: this.selected.restaurantId,
+                status: statusValue,
+                notification: noteText,
+                date: postDate,
+                restaurantName: this.$store.getters.getRestaurantName
+              })
+
+            }
+
 
         }
         else{alert("A reserva já foi aceite!")} 
 
                 
-        // if false it will get eliminated from the storage
-         
-        if(this.statusChange === 'Recusado'){
-
-          this.$store.commit("REFUSE_RESERVATION",{
-            id: this.selected.id 
-          })
-          //sending the notification
-
-          this.$store.commit("ADD_HISTORY",{
-            id: this.$store.getters.getLastHistoricId,
-            userId: this.selected.userId,
-            restaurantId: this.selected.restaurantId,
-            status: this.selected.status,
-            notification: noteText,
-            date: postDate
-          })
-        }
+        
 
         location.reload();
         
