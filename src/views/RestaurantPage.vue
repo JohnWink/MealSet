@@ -68,6 +68,8 @@
             <!--Google Maps API box-->        
             <v-col cols="12" md="6" >
               <p class="headline font-weight-bold ">Localização do restaurante</p><br>
+              
+              <v-btn @click="distanceCalc()" large rounded color="#f7c23e" dark v-on="on">Calcular Distância </v-btn>
             
               <!--temp place holder for the actually thing-->
               <div id="googleMap"  style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
@@ -263,6 +265,7 @@ export default {
         zoom:15,
         disableDefaultUI: true,
       });
+      
 
 
       const geocoder = new google.maps.Geocoder();
@@ -288,6 +291,57 @@ export default {
       })
 
     },
+
+    distanceCalc(){
+    let restaurant = this.$store.getters.restaurantInfo(parseInt(this.$route.params.id));
+      
+
+          const directionsService = new google.maps.DirectionsService();
+          const directionsRenderer = new google.maps.DirectionsRenderer();
+        
+          let myPos = this.$store.getters.getLoggedUserLocation;
+        
+          directionsRenderer.setMap(this.map)
+           this.map.setCenter(myPos);
+           
+            const request = {
+              origin: myPos,
+              destination: restaurant.location,
+              travelMode:google.maps.TravelMode["DRIVING"]
+            }
+
+           
+
+            directionsService.route(request,(result,status)=>{
+
+              if(status =='OK'){
+
+                directionsRenderer.setDirections(result);
+                
+                const directionsData = result.routes[0].legs[0];
+
+                if(directionsData){
+
+                  this.distance = directionsData.distance.text,
+                  this.travelDuration = directionsData.duration.text
+
+                  
+
+                  }else{
+                  alert('error on directions data')
+                }
+
+                
+              }else{
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+              
+            })
+
+    },
+          
+        
+
 
     
  

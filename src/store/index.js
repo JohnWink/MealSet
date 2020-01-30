@@ -348,7 +348,7 @@ export default new Vuex.Store({
           id:0,
           name:"Chimarrão",
           routerLink:"/restaurant",
-          coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
+          coverImg: "https://i.imgur.com/RhoP4aZ.jpg",
           evaluation: 0,
           description:"Chimarrão é mesmo bão",
           outDoor: true,
@@ -365,7 +365,7 @@ export default new Vuex.Store({
           id:1,
           name:"Cascasta",
           routerLink:"/restaurant",
-          coverImg: require("@/assets/tae-in-kim-jivmv9hE6bM-unsplash.jpg"),
+          coverImg: "https://i.imgur.com/r2rLk3m.jpg",
           evaluation: 0,
           description:"Cascata é mesmo barata",
           outDoor: false,
@@ -382,7 +382,7 @@ export default new Vuex.Store({
           id:2,
           name:"Rochedo",
           routerLink:"/restaurant",
-          coverImg: require("@/assets/lily-banse--YHSwy6uqvk-unsplash.jpg"),
+          coverImg: "https://i.imgur.com/jD5zcux.jpg",
           evaluation: 0,
           description:"Rochedo, sabe bem!",
           outDoor: false,
@@ -399,7 +399,7 @@ export default new Vuex.Store({
           id:3,
           name:"Dona Maria",
           routerLink:"/restaurant",
-          coverImg: require("@/assets/jason-leung-poI7DelFiVA-unsplash.jpg"),
+          coverImg: "https://i.imgur.com/76ph5sb.jpg",
           evaluation: 0,
           description:"Dona Maria, comer lá quem não queria!",
           outDoor: false,
@@ -418,7 +418,7 @@ export default new Vuex.Store({
           id:4,
           name:"ESHT",
           routerLink:"/restaurant",
-          coverImg: require("@/assets/daan-evers-tKN1WXrzQ3s-unsplash.jpg"),
+          coverImg: "https://i.imgur.com/l9e8b8M.jpg",
           evaluation: 0,
           description:"Tão bom como o nome sugere",
           outDoor: false,
@@ -436,7 +436,7 @@ export default new Vuex.Store({
           id:5,
           name:"Su",
           routerLink:"/restaurant",
-          coverImg: require("@/assets/zakaria-zayane-0uAVsDcyD0M-unsplash.jpg"),
+          coverImg: "https://i.imgur.com/RhoP4aZ.jpg",
           evaluation: 0,
           description:"Sempre Unidos",
           outDoor: false,
@@ -464,7 +464,7 @@ export default new Vuex.Store({
       state.dishes = [{
         id:0,
         name: "Polvo",
-        img: require("@/assets/purple-and-brown-food-on-white-surface-921361.jpg"),
+        img: "https://i.imgur.com/UGmtMg9.jpg",
         description:
           "Polvo com batata assada gostosa.",
         restaurantId: 0,
@@ -475,7 +475,7 @@ export default new Vuex.Store({
       {
         id:1,
         name: "Salmão",
-        img: require("@/assets/salmon-518032_1920.jpg"),
+        img: "https://i.imgur.com/8sBV2Da.jpg",
         description:
           "Salmão é que é bom.",
           restaurantId: 0,
@@ -486,7 +486,7 @@ export default new Vuex.Store({
       {
         id:2,
         name: "Legumes Salteados",
-        img: require("@/assets/sliced-vegetable-and-cooked-food-on-white-ceramic-plate-1234535.jpg"),
+        img: "https://i.imgur.com/ADp7P6o.jpg",
         description:
           "Legumes salteados são fixolas.",
           restaurantId: 2,
@@ -497,7 +497,7 @@ export default new Vuex.Store({
       {
         id:3,
         name: "Novilho",
-        img: require("@/assets/asparagus-2169305_1920.jpg"),
+        img: "https://i.imgur.com/mBHmuXK.jpg",
         description:
           "Novilho é noice.",
         restaurantId: 2,
@@ -508,7 +508,7 @@ export default new Vuex.Store({
       {
         id:4,
         name: "Cheeseburger",
-        img: require("@/assets/cheeseburger-on-table-2089717.jpg"),
+        img: "https://i.imgur.com/daQj7jD.jpg",
         description:
           "Cheeseburger é okay para quem gosta.",
         restaurantId: 2,
@@ -519,7 +519,7 @@ export default new Vuex.Store({
       {
         id:5,
         name: "Bife",
-        img: require("@/assets/selective-focus-photography-of-beef-steak-with-sauce-675951.jpg"),
+        img: "https://i.imgur.com/QpUTw16.jpg",
         description:
           "Batata a murro é fine, bife é que já na vai.",
         restaurantId: 2,
