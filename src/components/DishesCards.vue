@@ -41,20 +41,30 @@
             <v-col cols="6">
               <v-img class="No" height="500" width="800" :src="dish.img"></v-img>
             </v-col>
-            <v-col cols="6">
-              <!--Fechar-->
-              <v-btn color="black" text @click="showModal = false">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
+        
+            <v-col cols="5">
+           
               <v-spacer></v-spacer>  
               <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
               <p> <i class="fas fa-tag"></i>Tags: {{dish.tag}} </p>
               <p> <i class="fas fa-edit"></i> Descrição: {{dish.description}} </p>
+              <!--
               <p>Avaliação: {{dish.evaluation}} <v-icon medium color="yellow darken-1">fas fa-star</v-icon></p>
+                  -->
+              
               <v-card-actions class="text-right mr-3">
+                <router-link :to="{name:'restaurant', params:{id: dish.restaurantId}}">
                 <v-btn  color="#f7c23e" dark @click="showModal = false">Visitar Restaurante</v-btn>
+                </router-link>
               </v-card-actions>
               
+              
+            </v-col>
+                <v-col cols="1">
+                 <!--Fechar-->
+              <v-btn  color="black" text @click="showModal = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
             </v-col>
           </v-row>
           
@@ -67,6 +77,11 @@
 </template>
 
 <style>
+
+ a{
+    text-decoration: none;
+  }
+
 .cards {
   border-radius: 20px;
 }
