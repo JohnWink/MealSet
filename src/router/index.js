@@ -63,6 +63,12 @@ const routes = [
     component:()=>
       import("../views/DishesPage.vue")
   },
+  {
+    path:"/notificationPage",
+    name:"notificationPage",
+    component:()=>
+      import("../views/NotificationPage.vue")
+  },
 
  
 ];

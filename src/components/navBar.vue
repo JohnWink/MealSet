@@ -101,6 +101,27 @@
           <span>Pagina do Restaurante</span>
         </v-tooltip>
 
+        <!----Notification/message page button---->
+
+        <v-tooltip v-if="this.restauView == false"  right>
+          <template v-slot:activator="{ on }">
+            <v-list-item link v-on="on">
+              <v-list-item-icon>
+                
+                <router-link to="/notificationPage" >
+                  <v-icon :color="messages" large>mdi-email</v-icon>
+                </router-link>
+
+              </v-list-item-icon>
+              <v-list-item-title>Manager de Reservas e Pratos</v-list-item-title>
+            </v-list-item>
+          </template>
+          <span>Manager de Reservas e Pratos</span>
+        </v-tooltip>
+
+
+        
+
 
       </v-list>
     </v-navigation-drawer>
@@ -121,7 +142,9 @@ export default {
     mini: true,
     adminView: false ,
     restauView: false,
-    idNumber: 0
+    idNumber: 0,
+    messages: "",
+    newMessages: false
     
 
 
@@ -137,6 +160,14 @@ export default {
 
   beforeMount(){
     this.idNumber = this.$store.getters.getLoggedUserRestaurant
+
+    //check if teres any non read notifications 
+    this.newMessages = this.$store.getters.getNotificationRead
+    if(this.newMessages === true){
+      this.messages ="white"
+    }
+
+
   }
 
 
