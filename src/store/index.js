@@ -92,6 +92,13 @@ export default new Vuex.Store({
       })
     },
 
+    getRestaurantByAlphOrder:(state) =>{
+      return state.restaurants.sort(function(a,b){
+        if(a.name > b.name) return 1;
+        if(b.name > a.name) return -1;
+      })
+    },
+
     getDishes: state => state.dishes,
 
     getReservations: state => state.reservations,

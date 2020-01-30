@@ -103,7 +103,7 @@ export default {
   },
   data: () => ({
     //filters: ["Melhor Rating", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
-    filters:["Melhor Rating"],
+    filters:["Melhor Rating", "De A a Z"],
     restaurants: [],
     fontsize: " ",
     searchValue:'',
@@ -129,6 +129,8 @@ computed: {
 sortedRestaurants(){
   if(this.filterValue=="Melhor Rating"){
       this.$store.getters.getRestaurantsByRating
+  }else if(this.filterValue=="De A a Z"){
+    this.$store.getters.getRestaurantByAlphOrder
   }else{
       this.$store.getters.getRestaurantsById
   }

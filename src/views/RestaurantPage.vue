@@ -115,19 +115,16 @@
 
           </v-col>    
         </v-row>
-
         <v-row  class="pl-9 ml-9 py-6" justify="center" >
           <v-col cols="10" > 
             <!--RECOMENDAÇÃO DE PRATOS-->
             <v-carousel  hide-delimiters :height="this.compHeight">
               <div v-for="dish in menu" :key="dish">
-                <v-carousel-item v-if="dish.restaurantId === restaurant.id && dish.recommended === true">
+                <v-carousel-item v-if="dish.restaurantId === restaurant.id && dish.recommended === True">
                   <RestaurantCards v-bind:dish="dish" />
                 </v-carousel-item>
               </div>
-              
             </v-carousel>     
-                  
           </v-col>    
         </v-row>
 
@@ -231,6 +228,7 @@ export default {
     restaurant(){
       return this.$store.getters.restaurantInfo(parseInt(this.$route.params.id));
     },
+  
     
 
   },

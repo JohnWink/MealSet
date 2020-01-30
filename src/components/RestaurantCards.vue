@@ -19,7 +19,6 @@
                 <br>
                 <i class="fas fa-car"></i>
                 {{travelDuration}}
-
               </p>
               -->
             </v-col>
@@ -73,8 +72,10 @@
 
 <script>
 export default {
-  name: "RecomendedCards",
+  name: "RestaurantCards",
+
   props: ["restaurant"],
+  
   data: () => ({
     checker: "border: solid red",
     distance:'',

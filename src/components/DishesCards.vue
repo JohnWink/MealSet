@@ -1,10 +1,14 @@
 <template>
   <div class="pl-12 ml-12 mr-2">
     <v-hover v-slot:default="{ hover }" open-delay="200">
-      <v-card class="mx-auto cards" max-height="400" max-width="500" :elevation="hover ? 16 : 2" @click="showModal = true">
-        
-          <v-img class="cardsImg" :src="dish.img" ></v-img>
-        
+      <v-card
+        class="mx-auto cards"
+        max-height="400"
+        max-width="500"
+        :elevation="hover ? 16 : 2"
+        @click="showModal = true"
+      >
+        <v-img class="cardsImg" :src="dish.img"></v-img>
         <v-row class="mb-6 mx-2">
           <v-col class="text-left">
             <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
@@ -17,29 +21,46 @@
             </p>
           </v-col>
           <v-col class="text-right">
+            <!--
             <p style="margin-right: 25px; margin-top: 15%" class="font-weight-bold">
               {{ dish.evaluation }}
               <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
             </p>
+            -->
           </v-col>
         </v-row>
       </v-card>
     </v-hover>
-    <v-dialog v-model="dialog" persistent max-width="400" v-if="showModal = true">
+
+    <v-dialog v-model="showModal" persistent width="800" height="500">
       <v-card>
-        <!--Fechar-->
-        <v-toolbar color="#5C6BC0">
-          <v-row>
-            <v-col class="text-left mt-2 ml-6">
-              <v-toolbar-title id="text">Dish</v-toolbar-title>
+        
+        <!--modal content-->
+        <v-container>
+          <v-row cols="12">
+            <v-col cols="6">
+              <v-img class="No" height="500" width="800" :src="dish.img"></v-img>
             </v-col>
-            <v-col class="text-right mt-2">
-              <v-btn color="#ffffff" text right @click="dialog = false">
+            <v-col cols="6">
+              <!--Fechar-->
+              <v-btn color="black" text @click="showModal = false">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
+              <v-spacer></v-spacer>  
+              <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
+              <p> <i class="fas fa-tag"></i>Tags: {{dish.tag}} </p>
+              <p> <i class="fas fa-edit"></i> Descrição: {{dish.description}} </p>
+              <p>Avaliação: {{dish.evaluation}} <v-icon medium color="yellow darken-1">fas fa-star</v-icon></p>
+              <v-card-actions class="text-right mr-3">
+                <v-btn  color="#f7c23e" dark @click="showModal = false">Visitar Restaurante</v-btn>
+              </v-card-actions>
+              
             </v-col>
           </v-row>
-        </v-toolbar>
+          
+        </v-container>
+          
+        
       </v-card>
     </v-dialog>
   </div>
@@ -70,11 +91,14 @@
 
 <script>
 export default {
-  showModal: false,
   name: "DishesCards",
+
   props: ["dish"],
+
   data: () => ({
-    checker: "border: solid red"
+    checker: "border: solid red",
+    dishes: [],
+    showModal: false
   })
 };
 </script>
