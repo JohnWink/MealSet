@@ -588,8 +588,7 @@ export default new Vuex.Store({
 
         state.logged = true;
   */
-        alert("Registado");
-
+        alert("Registado")
         //levar user pra pagina inicial?
       }else{
         alert("Username Já Utilizado")
@@ -809,7 +808,7 @@ export default new Vuex.Store({
             admin: false
           });
   
-          localStorage.setItem("users", JSON.stringify(state.users))
+          localStorage.setItem("users", JSON.stringify(state.users));
     /*
           //user agora está registado e o login é feito
           state.loggedUser.id = payload.id;
@@ -818,8 +817,12 @@ export default new Vuex.Store({
             "https://i.ytimg.com/vi/zQ4LiyFF8RU/hqdefault.jpg";
   
           state.logged = true;
+          
     */
-          alert("Registado");
+          
+
+          alert("Registado")
+
   
           //levar user pra pagina inicial?
         }else{
@@ -835,7 +838,7 @@ export default new Vuex.Store({
     for (let notification of state.historic) {
       if (notification.id === payload.id){
         notification.read = payload.read;
-        alert("entered!")
+        
       }
     }
     localStorage.setItem("historic", JSON.stringify(state.historic))
