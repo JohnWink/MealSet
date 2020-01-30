@@ -29,7 +29,7 @@
 
 
               <!--Make a conponent of this button-->
-                <reservation/>
+                <reservation v-if="this.userRest === false" />
             </v-col>
             
 
@@ -160,7 +160,7 @@
       </v-row>
 
       <v-row class="pl-12 ml-12 py-3" justify="start" align="center" >
-        <commentAdd />
+        <commentAdd v-if="this.userRest === false" />
       </v-row>
       
 
@@ -216,6 +216,7 @@ export default {
     restaurants: [],
     map:"",
     compHeight: "",
+    userRest: false,
     return:{
           dialog: false
       },
@@ -310,6 +311,7 @@ export default {
     this.restaurants  = this.$store.getters.getRestaurants;
 
     this.menu = this.$store.getters.getDishes;
+    this.userRest = this.$store.state.loggedUser[0].restaurantUser;
     
     
     

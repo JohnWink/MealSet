@@ -189,6 +189,16 @@ export default new Vuex.Store({
     getLoggedAdmin: (state) =>{
       return state.loggedUser[0].admin
     },
+
+    getCoverLogo : (state) =>{
+      for (let restaurant of state.restaurants) {
+        if (restaurant.restaurantId === state.loggedUser[0].restaurantId) {
+          return restaurant.logo
+
+        }
+
+      }
+    },
     
     
 
@@ -703,6 +713,7 @@ export default new Vuex.Store({
       restaurantId: payload.restaurantId,      
       evaluation: payload.evaluation,
       tag: payload.tag,
+      recommended: payload.recommended
     })
 
     localStorage.setItem("dishes", JSON.stringify(state.dishes))
