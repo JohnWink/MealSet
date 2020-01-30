@@ -11,7 +11,7 @@
                 
 
                 <v-col  cols="12" sm="3">
-                    <v-img contain=true max-height="150px" src="../assets/2009-09-12-01-38-20400487_lo_01 .png" style="border: solid indigo ;border-radius: 12px"></v-img>
+                    <v-img contain=true max-height="150px" :src="logoPage" style="border: solid indigo ;border-radius: 12px"></v-img>
                     <!--Inject the restaurants owners restaurant logo-->
 
                 </v-col>
@@ -28,7 +28,7 @@
             </v-row>
             <!--++++++++++++++++table and set up so it doesnt clip the table by the navbar++++++++++++++++++++++++++++++++ -->
 
-            <!--reservation table-->
+            <!-------------------------reservation table-------------------------------------------------------------------------------->
             <v-row class="pl-12 ml-12" v-if="this.tableMode == true">
                 <v-col cols="12" >
                     <v-data-table
@@ -67,7 +67,7 @@
 
             </v-row >
 
-            <!--dishes table-->
+            <!--------------------------dishes table---------------------------------------------------->
             <v-row class="pl-12 ml-12" v-if="this.tableMode == false">
                 <v-col cols="12" >
                     <v-data-table
@@ -81,6 +81,10 @@
                     >
                         <template v-slot:item.img="{ item }">
                             <a :href="item.img" target="_blank">Link do prato: {{item.name}}</a>
+                        </template>
+
+                        <template v-slot:item.recommended="{ item }">
+                            <v-chip :color="colorRecommended(item.recommended)" dark> {{ getRecommended(item.recommended) }}</v-chip>
                         </template>
 
                     <!--add a v-slot item on img sence we will be sing new window link to imgur-->
@@ -100,6 +104,8 @@
                    <v-col cols="12" sm="4"> 
                        <addDish />
                    </v-col> 
+
+                   
 
                    <v-col cols="12" sm="4">
                        <v-btn v-if="this.selected.length!== 0" large rounded color="red lighten-1" class="white--text" @click="deleteItem()" >Remover prato</v-btn>
@@ -156,6 +162,7 @@ export default {
             singleSelect: true,
             selected: [],
             restaurants: [],
+            logoPage: "https://elements-cover-images-0.imgix.net/6359eb8d-2d31-4bea-a137-92baa4b68eb2?auto=compress%2Cformat&fit=max&w=710&s=d7e84e77ccd12f5ab06926237b5ded0d",
             
             statusStr: "",
             headersReservation: [
@@ -165,6 +172,7 @@ export default {
                 { text: 'Hora', value: 'mealTime' },
                 { text: 'Numero de Pessoas', value: 'peopleNumber' },
                 { text: 'Estado da Reserva', value:'status' },
+                
                 
             ],
             
@@ -176,7 +184,7 @@ export default {
                 { text: 'Tipo de Prato', value: 'tag' },
                 { text: 'Descrição', value: 'description' },
                 { text: 'Avaliação', value: 'evaluation' },
-                
+                { text: 'Recomendado', value: 'recommended'}
                 
             ],
             reservations: [],
@@ -195,7 +203,7 @@ export default {
         this.reservations  = this.$store.getters.getRestaurantReservations
         this.dishes = this.$store.getters.getRestaurantDishes
 
-        //adding a listener for when ever theres a new item set it will update these arraus on the table         
+        //this.logoPage = this.$store.getters.getCoverLogo     somehow the getter isnt working?          
     },
 
     
@@ -218,7 +226,19 @@ export default {
           })
           //update List 
           this.dishes = this.$store.getters.getRestaurantDishes
+        },
+        // return recommended text
+        getRecommended(recommendedV){
+            if(recommendedV === true){ return 'Sim';}
+            else{ return 'Não';}
+
+        },
+
+        colorRecommended(recommendedV){
+            if (recommendedV == false) return 'orange lighten-1'        
+            else return 'green lighten-1'
         }
+
         
     }
 

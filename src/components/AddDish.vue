@@ -58,6 +58,12 @@
           required
         ></v-select>
 
+        <v-checkbox
+          v-model="recommended" 
+          required       
+          label="Prato para as Recomendaçôes"        
+        ></v-checkbox>
+
          
 
       <v-btn color="green lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
@@ -92,6 +98,7 @@ data: () => ({
     description: "",
     tag:"",
     tagSlc:['Carne', 'Peixe', 'Vegetariano', 'Sobremesa'],
+    recommended: false,
     
 
     //----------- dish submition rules----------------
@@ -121,6 +128,13 @@ methods: {
       if (this.$refs.form.validate()) {
 
         this.dialog=false
+
+        //if condtion if no img was added
+        if(this.imgLink === ""){
+          this.imgLink ="https://media.istockphoto.com/vectors/knife-fork-plate-drawing-vector-id1047553544"
+        }
+
+
         this.$store.commit("ADD_DISH",{
             id: this.$store.getters.getLastDishId, 
             name: this.name,
@@ -128,7 +142,8 @@ methods: {
             description: this.description,
             restaurantId: this.$store.getters.getLoggedUserRestaurant,
             evaluation: 0,
-            tag: this.tag
+            tag: this.tag,
+            recommended: this.recommended
         })
 
         alert("Prato Adicionado!")

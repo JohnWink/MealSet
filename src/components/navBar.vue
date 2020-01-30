@@ -24,7 +24,7 @@
       </template>
 
       <v-list>
-        <v-tooltip right>
+        <v-tooltip v-if="this.restauView == false" right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
@@ -39,7 +39,7 @@
           <span>Restaurantes</span>
         </v-tooltip>
 
-        <v-tooltip right>
+        <v-tooltip v-if="this.restauView == false " right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
@@ -84,6 +84,23 @@
           <span>Manager de Reservas e Pratos</span>
         </v-tooltip>
 
+        <!---the restaurants public page--->
+        <v-tooltip v-if="this.restauView == true"  right>
+          <template v-slot:activator="{ on }">
+            <v-list-item link v-on="on">
+              <v-list-item-icon>
+                
+                <router-link :to="{name:'restaurant', params:{id: idNumber  }}">
+                  
+                  <v-icon>fas fa-utensils</v-icon> 
+                </router-link>
+              </v-list-item-icon>
+              <v-list-item-title>Pagina do Restaurante</v-list-item-title>
+            </v-list-item>
+          </template>
+          <span>Pagina do Restaurante</span>
+        </v-tooltip>
+
 
       </v-list>
     </v-navigation-drawer>
@@ -103,7 +120,9 @@ export default {
     ],
     mini: true,
     adminView: false ,
-    restauView: false
+    restauView: false,
+    idNumber: 0
+    
 
 
 
@@ -113,7 +132,14 @@ export default {
   created(){
     this.adminView = this.$store.getters.getLoggedAdmin
     this.restauView = this.$store.getters.getLoggedUserRestaurantType
+    
+  },
+
+  beforeMount(){
+    this.idNumber = this.$store.getters.getLoggedUserRestaurant
   }
+
+
 
 
 
