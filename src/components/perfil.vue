@@ -1,7 +1,13 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="400" max-height="600">
     <template v-slot:activator="{ on }">
-      <v-btn large rounded color="#f7c23e" elevation="7" dark v-on="on">Perfil</v-btn>
+      <v-img
+              class="avatar"
+              :src="oldAvatar "
+              width="80"
+              height="80"
+              v-on="on"
+            ></v-img>
     </template>
     
     <!--MODAL DE PERFIL-->

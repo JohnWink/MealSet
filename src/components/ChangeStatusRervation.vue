@@ -36,13 +36,12 @@
           v-model="notificationText"
           name="input-7-4"
           color="indigo darken-1"                 
-          placeholder="Escreva alguma notação..."
-          :rules="commentRules"          
+          placeholder="Escreva alguma notação..."       
         ></v-textarea> 
 
          
 
-      <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Adicionar Restaurante</v-btn>
+      <v-btn color="indigo lighten" class="white--text" large rounded @click="submit">Confirmar</v-btn>
      
      </v-form>
     </v-card>
@@ -73,12 +72,7 @@ data: () => ({
     statusChange:"",
     
     notificationText:"",
-    
-
-    commentRules:[
-        v => !!v || 'Por favor preencha escreva a sua experiencia',
-        v => (v && v.length >= 30) || 'Tem de ter mais de 30 caracteres',
-    ],
+  
     
   }),
   
@@ -127,7 +121,9 @@ methods: {
           // if false it will get eliminated from the storage
          
             if(this.statusChange === 'Recusado'){
-              statusValue = "Reserva Recusada"
+              if(noteText !== ""){
+
+                statusValue = "Reserva Recusada"
 
               this.$store.commit("REFUSE_RESERVATION",{
                 id: this.selected.id 
@@ -143,6 +139,12 @@ methods: {
                 date: postDate,
                 restaurantName: this.$store.getters.getRestaurantName
               })
+
+              }else{
+                alert("Adicione uma justificação na área de notação")
+              }
+
+              
 
             }
 
