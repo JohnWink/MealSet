@@ -25,7 +25,7 @@
           </v-col>
         </v-row>
       </v-toolbar>
-      <v-form  ref="form" lazy-validation>
+      <v-form  ref="form" v-model="valid" lazy-validation>
         <v-container class="text-center">
           
           <v-col align="center" justify="center">
@@ -36,6 +36,7 @@
               height="200px"
             ></v-img>
           </v-col>
+
           <v-col class="text-left">
             <v-text-field
               label="Username"
@@ -45,6 +46,7 @@
               outlined
               disabled
             ></v-text-field>
+
             <v-text-field
               label="Email"
               color="#5C6BC0"
@@ -53,6 +55,7 @@
               outlined
               :disabled="alter"
             ></v-text-field>
+
             <v-text-field
               label="Password Anterior"
               v-model="oldPassword"
@@ -63,6 +66,7 @@
               :disabled="alter"
               type="password"
             ></v-text-field>
+
             <v-text-field
               label="Nova Password"
               v-model="newPassword"
@@ -73,6 +77,7 @@
               :disabled="alter"
               type="password"
             ></v-text-field>
+            
             <v-text-field
               label="Novo Avatar"
               v-model="newAvatar"
@@ -87,9 +92,8 @@
         <!--Botões-->
         <v-card-actions class="text-right mr-3">
           <v-col >
-            <v-btn color="#f7c23e" :disabled="alter" dark @click="submit">Guardar</v-btn>
-            <br><br>
-            <v-btn color="#5C6BC0" dark @click="alter=false">Alterar Informações</v-btn>          
+            <v-btn color="#f7c23e" v-if="show==true" dark @click="submit">Guardar</v-btn>            
+            <v-btn v-else color="#5C6BC0" dark :disabled="show" @click="change()">Alterar Informações</v-btn>          
           </v-col>         
           
         </v-card-actions>
@@ -136,12 +140,21 @@ export default {
     email:"",
     oldAvatar:"",
     oldPassword: "",
+    oldChecker: "",
     newPassword: "",
     newAvatar: "",
-    alter: true,
+    alter: true,   
+    show: false,
 
     //rules for old and newpassword, 
 
+    
+
+    oldPasswordRules: [
+      password => !!password || "Por favor preencha a Password",
+      
+    ],
+    
     NewpasswordRules: [
       password => !!password || "Por favor preencha a Password",
       password =>
@@ -151,12 +164,6 @@ export default {
         "A password não pode ter mais que 20 caracteres"
     ],
 
-    oldPasswordRules: [
-      password => !!password || "Por favor preencha a Password",
-      password =>
-        password == this.$state.loggedUser[0].password || "Password incorrecta!"
-    ]
-
 
   }),
 
@@ -164,52 +171,69 @@ export default {
     submit(){
       //aply the change of the information, in this case profle
       //first check if avatar are emphty , if emphty  it will send the old one
+      
 
             
       if (this.$refs.form.validate()){
 
+        if(this.oldPassword == this.oldChecker){
+
+          
+          if(this.newAvatar != ""){
+            this.$store.commit("PROFILE_EDIT",{
+              id:this.$store.state.loggedUser[0].id,
+              email: this.email,
+              password: this.newPassword,
+              avatar: this.newAvatar
+            })
+
+          }
+          else{
+            this.$store.commit("PROFILE_EDIT",{
+              id:this.$store.state.loggedUser[0].id,
+              email: this.email,
+              password: this.newPassword,
+              avatar: this.$store.state.loggedUser[0].avatar
+            })
+
+          }
+
+          // change the buttons disabled values
+
+          this.alter= true
+          this.show = false
+
+        }
+        else{alert("Password incorreta!")}
+
+
+        this.update()     
         
-        if(this.newAvatar != ""){
-          this.$store.commit("PROFILE_EDIT",{
-            id:this.$store.state.loggedUser[0].id,
-            email: this.email,
-            password: this.newPassword,
-            avatar: this.newAvatar
-          })
-
-        }
-        else{
-          this.$store.commit("PROFILE_EDIT",{
-            id:this.$store.state.loggedUser[0].id,
-            email: this.email,
-            password: this.newPassword,
-            avatar: this.$store.state.loggedUser[0].avatar
-          })
-
-        }
-
-
-        ///update after the state storage commit
-        this.email = this.$store.state.loggedUser[0].email
-        this.oldAvatar = this.$store.state.loggedUser[0].avatar
-
-
-
-
-        this.alter = true
       }
     },
 
     update(){
       this.email = this.$store.state.loggedUser[0].email
       this.oldAvatar = this.$store.state.loggedUser[0].avatar
+      this.oldChecker = this.$store.state.loggedUser[0].password
+      
+    },
+    change(){
+      this.show = true
+      this.alter = false
     }
+
+    
     
   },
 
   created() {
-    this.update()
+    this.email = this.$store.state.loggedUser[0].email
+    this.oldAvatar = this.$store.state.loggedUser[0].avatar
+    this.oldChecker = this.$store.state.loggedUser[0].password
+    
     
   }
+
 };
 </script>
