@@ -295,7 +295,7 @@ export default new Vuex.Store({
         {
           id:2,
           username: "joaquim",
-          password:"chimarao123",
+          password:"chimarrao123",
           email: "chimaraorestaurante@yourHouse.lol",
           avatar: "https://i.imgur.com/t2Q8O9v.jpg",
           bio: "Sou o gestor do restaurante de chimarão ",
