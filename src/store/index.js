@@ -191,13 +191,13 @@ export default new Vuex.Store({
     },
 
     getCoverLogo : (state) =>{
-      for (let restaurant of state.restaurants) {
-        if (restaurant.restaurantId === state.loggedUser[0].restaurantId) {
-          return restaurant.logo
-
+      let cover = ""
+      for (const rest  of state.restaurants) {
+        if (rest.restaurantId === state.loggedUser[0].restaurantId) {
+          cover = rest.logo
         }
-
       }
+      return cover
     },
     
     

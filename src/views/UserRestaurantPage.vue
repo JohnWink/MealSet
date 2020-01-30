@@ -162,7 +162,7 @@ export default {
             singleSelect: true,
             selected: [],
             restaurants: [],
-            logoPage: "",
+            logoPage: "https://elements-cover-images-0.imgix.net/6359eb8d-2d31-4bea-a137-92baa4b68eb2?auto=compress%2Cformat&fit=max&w=710&s=d7e84e77ccd12f5ab06926237b5ded0d",
             
             statusStr: "",
             headersReservation: [
@@ -203,7 +203,7 @@ export default {
         this.reservations  = this.$store.getters.getRestaurantReservations
         this.dishes = this.$store.getters.getRestaurantDishes
 
-        this.logoPage = this.$store.getters.getCoverLogo              
+        //this.logoPage = this.$store.getters.getCoverLogo     somehow the getter isnt working?          
     },
 
     
