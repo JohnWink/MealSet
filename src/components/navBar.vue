@@ -24,83 +24,95 @@
       </template>
 
       <v-list>
-        <v-tooltip v-if="this.restauView == false" right>
+        <div v-if="this.restauView == false">
+        <router-link to="/landingPage">
+        <v-tooltip  right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
+              
               <v-list-item-icon>
-                <router-link to="/landingPage">
                   <v-icon>fas fa-store</v-icon>
-                </router-link>
               </v-list-item-icon>
+              
 
               <v-list-item-title>Restaurantes</v-list-item-title>
             </v-list-item>
           </template>
           <span>Restaurantes</span>
         </v-tooltip>
+        </router-link>
+        </div>
 
-        <v-tooltip v-if="this.restauView == false " right>
+        <div v-if="this.restauView == false">
+        <router-link to="/DishesPage">
+        <v-tooltip   right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
+               
               <v-list-item-icon>
-                <router-link to="/DishesPage">
                   <v-icon>fas fa-utensils</v-icon>
-                </router-link>
               </v-list-item-icon>
+              
 
               <v-list-item-title>Pratos</v-list-item-title>
             </v-list-item>
           </template>
           <span>Pratos</span>
         </v-tooltip>
+        </router-link>
+        </div>
 
-        <v-tooltip v-if="this.adminView == true" right>
+        <div v-if="this.adminView == true">
+        <router-link to="/restaurantManager">
+        <v-tooltip  right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
-                <router-link to="/restaurantManager">
                   <v-icon>fas fa-user-shield</v-icon>
-                </router-link>
               </v-list-item-icon>
               <v-list-item-title>Manager de restaurantes</v-list-item-title>
             </v-list-item>
           </template>
           <span>Manager de restaurantes</span>
         </v-tooltip>
+        </router-link>
+        </div>
 
         <!--------UserRestanrant page-->
-        <v-tooltip v-if="this.restauView == true"  right>
+        <div v-if="this.restauView == true">
+        <router-link to="/userRestaurantPage" >
+        <v-tooltip   right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
                 
-                <router-link to="/userRestaurantPage" >
                   <v-icon>fas fa-th-list</v-icon> 
-                </router-link>
+               
               </v-list-item-icon>
               <v-list-item-title>Manager de Reservas e Pratos</v-list-item-title>
             </v-list-item>
           </template>
           <span>Manager de Reservas e Pratos</span>
         </v-tooltip>
+         </router-link>
+        </div>
 
         <!---the restaurants public page--->
-        <v-tooltip v-if="this.restauView == true"  right>
+        <div v-if="this.restauView == true">
+        <router-link :to="{name:'restaurant', params:{id: idNumber  }}">
+        <v-tooltip  right>
           <template v-slot:activator="{ on }">
             <v-list-item link v-on="on">
               <v-list-item-icon>
-                
-                <router-link :to="{name:'restaurant', params:{id: idNumber  }}">
-                  
                   <v-icon>fas fa-utensils</v-icon> 
-                </router-link>
               </v-list-item-icon>
               <v-list-item-title>Pagina do Restaurante</v-list-item-title>
             </v-list-item>
           </template>
           <span>Pagina do Restaurante</span>
         </v-tooltip>
-
+        </router-link>
+        </div>
 
       </v-list>
     </v-navigation-drawer>
