@@ -55,6 +55,7 @@
               placeholder="Password Anterior..."
               outlined
               :disabled="alter"
+              type="password"
             ></v-text-field>
             <v-text-field
               label="Nova Password"
@@ -64,6 +65,7 @@
               placeholder="Nova Password.."
               outlined
               :disabled="alter"
+              type="password"
             ></v-text-field>
             <v-text-field
               label="Novo Avatar"
