@@ -94,7 +94,7 @@ export default {
     perfil
   },
   data: () => ({
-    filters: ["Peixe", "Carne", "Vegetariano"],
+    filters: ["Peixe", "Carne", "Vegetariano","Todos"],
     dishes: [],
     fontsize: " ",
     search:"",
@@ -111,12 +111,19 @@ export default {
   computed: {
    
     getSearchedDishes(){
+      
       if(this.filterValue!= ""){
+        if(this.filterValue =="Todos"){
+          return this.dishes.filter(dish =>{
+            return dish.name.toLowerCase().includes(this.search.toLowerCase())
+             })
+        }else{
         return this.dishes.filter(dish =>{
           if(dish.tag == this.filterValue){
             return dish.name.toLowerCase().includes(this.search.toLowerCase())
           }
         })
+        }
       }else{
          return this.dishes.filter(dish => {
           return dish.name.toLowerCase().includes(this.search.toLowerCase())

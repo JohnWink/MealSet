@@ -17,10 +17,12 @@
             </p>
           </v-col>
           <v-col class="text-right">
+            <!--
             <p style="margin-right: 25px; margin-top: 15%" class="font-weight-bold">
               {{ dish.evaluation }}
               <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
             </p>
+            -->
           </v-col>
         </v-row>
       </v-card>
