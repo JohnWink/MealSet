@@ -289,7 +289,12 @@ export default {
           });
           marker.setMap(this.map);
         }else{
-          alert('Geocode was not successful for the following reason: ' + status);
+          //alert('Geocode was not successful for the following reason: ' + status);
+          this.$fire({
+            title: "Geocode was not successful for the following reason: " + status,          
+            type: "error",
+            confirmButtonText: "ok"
+          })
         }
       })
 
@@ -331,12 +336,23 @@ export default {
                   
 
                   }else{
-                  alert('error on directions data')
+                  //alert('error on directions data')
+                  this.$fire({
+                    title: "error on directions data ",          
+                    type: "error",
+                    confirmButtonText: "ok"
+                  })
+                  
                 }
 
                 
               }else{
-                alert('Geocode was not successful for the following reason: ' + status);
+                //alert('Geocode was not successful for the following reason: ' + status);
+                this.$fire({
+                    title: "Geocode was not successful for the following reason: " + status,          
+                    type: "error",
+                    confirmButtonText: "ok"
+                  })
               }
               
             })
