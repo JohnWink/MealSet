@@ -55,20 +55,7 @@
     </v-card>
   </v-dialog>
 
-  <v-dialog  v-model="alertDialog">
-    <v-alert
-        color="success"
-        dark
-        transition="slide-y-transition"
-      >
-      <v-row align="center">
-          <v-col class="grow">Login efetuado com sucesso</v-col>
-          <v-col class="shrink">
-            <v-btn @click="pushForward()">Entrar</v-btn>
-          </v-col>
-        </v-row>
-      </v-alert>
-  </v-dialog>
+
 </div>
 </template>
 
@@ -92,7 +79,7 @@ export default {
     username: "",
     password: "",
     dialog: false,
-    alertDialog: false,
+
 
     nameRules: [v => !!v || "Por favor preencha o Username"],
 
@@ -110,6 +97,7 @@ export default {
         });
 
         if (this.$store.getters.checkLogged === true) {
+         
           // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher.
           
        if (this.$store.getters.getLoggedUserRestaurantType === true){
@@ -119,6 +107,13 @@ export default {
             this.$router.push({ path: "/landingPage" });
           }
           
+        }else{
+          // Sweet alert error
+           this.$fire({
+            type: "error",
+            title: 'Oops...',
+            text: 'Credenciais inválidas!',
+          })
         }
       }
     },
