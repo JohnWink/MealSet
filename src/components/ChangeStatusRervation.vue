@@ -141,7 +141,12 @@ methods: {
               })
 
               }else{
-                alert("Adicione uma justificação na área de notação")
+
+                this.$fire({
+                  title: "Adicione uma justificação na área de notação!",          
+                  type: "success",
+                  confirmButtonText: "ok"
+                })
               }
 
               
@@ -150,7 +155,14 @@ methods: {
 
 
         }
-        else{alert("A reserva já foi aceite!")} 
+        else{
+          this.$fire({
+            title: "A reserva já foi aceite!",          
+            type: "warning",
+            confirmButtonText: "ok"
+          })
+          
+          } 
 
                 
         

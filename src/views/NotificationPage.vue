@@ -7,16 +7,15 @@
             <v-row class="ml-12 pl-12" align="center" justify="space-between">
                 <v-col cols="1">
                     <navBar/>
-                </v-col>        
-                
-                <v-col cols="12" sm="5" >
-                </v-col>       
+                </v-col>  
+
+                   
 
 
-                <v-col cols="7" sm="2" >
+                <v-col cols="7"  >
                     <perfil/>
                 </v-col>
-                <v-col cols="5" sm="2">
+                <v-col cols="4" >
                     <logout/>
                 </v-col>
 
@@ -181,7 +180,12 @@ export default {
                 id: this.selected[0].id,
                 read: true
             })
-            alert("Notificação marcada como lida!")
+
+        this.$fire({
+            title: "Marcado como Lido",          
+            type: "success",
+            confirmButtonText: "ok"
+        })
 
             //update the notification (needs to be filtered by this users id)
 

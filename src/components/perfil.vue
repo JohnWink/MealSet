@@ -203,8 +203,23 @@ export default {
           this.alter= true
           this.show = false
 
+          this.$fire({
+            title: "Prefil Editado!",          
+            type: "success",
+            confirmButtonText: "ok"
+          })
+
+
+
+
         }
-        else{alert("Password incorreta!")}
+        else{
+          this.$fire({
+            title: "Password Incoreta!",          
+            type: "error",
+            confirmButtonText: "ok"
+          })
+        }
 
 
         this.update()     
