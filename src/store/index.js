@@ -666,7 +666,7 @@ export default new Vuex.Store({
           "loggedUser",
           JSON.stringify(state.loggedUser)
         );
-        alert("LOGIN");
+        
 
         state.existUser = true;
        
