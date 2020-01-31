@@ -4,16 +4,16 @@
         <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
         <v-card          
           class="mx-auto cards"
-          max-height="350"
+          max-height="400"
           max-width="500"
           :elevation="hover ? 16 : 2"
         >
           <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>
-          <v-row class="mb-6 mx-2">
+          <v-row class="mb-7 mx-2">
             <v-col class="text-left">
               <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
 
-              <p> <i class="fas fa-edit mt-7"></i> {{restaurant.description}} </p>
+              <p> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} </p>
      
               <!--
               <p class="ps">
