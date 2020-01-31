@@ -11,15 +11,15 @@
         <!-- ++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
         <v-row align="start" justify="center">
           <v-col md="1">
-            <navBar/>
+            <navBar />
           </v-col>
 
           <v-col md="1" offset-sm="8">
-              <perfil/> 
+            <perfil />
           </v-col>
 
           <v-col md="1">
-            <logout/>
+            <logout />
           </v-col>
         </v-row>
         <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
@@ -49,30 +49,36 @@
         ></v-textarea>
       </v-col>
       <v-col cols="10" sm="3">
-        <v-overflow-btn class="mt-10 ml-4" color="#5C6BC0" block :items="filters" label="Filtros" v-model="filterValue"></v-overflow-btn>
+        <v-overflow-btn
+          class="mt-10 ml-4"
+          color="#5C6BC0"
+          block
+          :items="filters"
+          label="Filtros"
+          v-model="filterValue"
+        ></v-overflow-btn>
       </v-col>
     </v-row>
 
     <!--RECOMENDAÇÃO DE RESTAURANTES-->
-    <br>
-    <br>
- 
-<div>
-    <v-row class="mx-2" justify="center" align="center">
-      
-      <v-col
-        class="mb-2"
-        cols="12"
-        sm="6"
-        md="4"
-        v-for="restaurant in sortedRestaurants"
-        :key="restaurant.id"
-      >
-        <RestaurantCards v-bind:restaurant="restaurant"/>
-      </v-col>
-    </v-row>
-  </div>
-    <footerVue/>
+    <br />
+    <br />
+
+    <div>
+      <v-row class="mx-2" justify="center" align="center">
+        <v-col
+          class="mb-2"
+          cols="12"
+          sm="6"
+          md="4"
+          v-for="restaurant in sortedRestaurants"
+          :key="restaurant.id"
+        >
+          <RestaurantCards v-bind:restaurant="restaurant" />
+        </v-col>
+      </v-row>
+    </div>
+    <footerVue />
   </div>
 </template>
 
@@ -103,49 +109,46 @@ export default {
   },
   data: () => ({
     //filters: ["Melhor Rating", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
-    filters:["Melhor Rating", "De A a Z"],
+    filters: ["Melhor Rating", "De A a Z"],
     restaurants: [],
     fontsize: " ",
-    searchValue:'',
-    filterValue:'',
-    search:'',
-    distance:'',
-    travelDuration:'',
-    currentRestaurantId:''
-    
+    searchValue: "",
+    filterValue: "",
+    search: "",
+    distance: "",
+    travelDuration: "",
+    currentRestaurantId: ""
   }),
- 
+
   created() {
     this.restaurants = this.$store.getters.getRestaurants;
     this.getCurrentLocation();
 
     window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
-   
   },
 
-computed: {
-
-sortedRestaurants(){
-  if(this.filterValue=="Melhor Rating"){
-      this.$store.getters.getRestaurantsByRating
-  }else if(this.filterValue=="De A a Z"){
-    this.$store.getters.getRestaurantByAlphOrder
-  }else{
-      this.$store.getters.getRestaurantsById
-  }
-  if(this.search != ""){
-    return this.restaurants.filter(restaurant => {
-        return restaurant.name.toLowerCase().includes(this.search.toLowerCase())
-  })
-  }else{
-    return this.restaurants
-  }
- 
-},
-
-},
-methods: {
+  computed: {
+    sortedRestaurants() {
+      if (this.filterValue == "Melhor Rating") {
+        this.$store.getters.getRestaurantsByRating;
+      } else if (this.filterValue == "De A a Z") {
+        this.$store.getters.getRestaurantByAlphOrder;
+      } else {
+        this.$store.getters.getRestaurantsById;
+      }
+      if (this.search != "") {
+        return this.restaurants.filter(restaurant => {
+          return restaurant.name
+            .toLowerCase()
+            .includes(this.search.toLowerCase());
+        });
+      } else {
+        return this.restaurants;
+      }
+    }
+  },
+  methods: {
     mobileAjust() {
       let cssLine = "font-size:400%;";
       if (window.innerWidth < 600) {
@@ -158,37 +161,34 @@ methods: {
 
       this.fontsize = cssLine;
     },
-    
-    sortRestaurantByRatingMethod(a,b){
-        const ratingA = a.evaluation
-        const ratingB = b.evaluation
-    
-        if(ratingA>ratingB) return -1;
-        if(ratingB>ratingA) return 1;
 
-        return 0
-      
+    sortRestaurantByRatingMethod(a, b) {
+      const ratingA = a.evaluation;
+      const ratingB = b.evaluation;
+
+      if (ratingA > ratingB) return -1;
+      if (ratingB > ratingA) return 1;
+
+      return 0;
     },
-    
-    getCurrentLocation(){
-       
-      if(navigator.geolocation){
 
-        navigator.geolocation.watchPosition(
-          position =>{
-            const myPos = {lat: position.coords.latitude, lng: position.coords.longitude}
-            this.$store.commit("ADD_CURRENT_LOCATION",{
-              location: myPos
-            })
-          }
-        )
-      }else{
-        alert('error on navigator')
+    getCurrentLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(position => {
+          const myPos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          this.$store.commit("ADD_CURRENT_LOCATION", {
+            location: myPos
+          });
+        });
+      } else {
+        alert("error on navigator");
       }
     },
 
-    
-/*
+    /*
 calcDistance(){
 
     
@@ -320,11 +320,9 @@ function afterCallBack(restaurantId,distanceValue,travelDurationValue){
 
   */
 
-  beforeMount(){
-    //this.calcDistance()
-  },
-
-
-}
-}
+    beforeMount() {
+      //this.calcDistance()
+    }
+  }
+};
 </script>

@@ -367,9 +367,9 @@ export default new Vuex.Store({
         },
         {
           id:1,
-          name:"Cascasta",
+          name:"Cascata",
           routerLink:"/restaurant",
-          coverImg: "https://i.imgur.com/r2rLk3m.jpg",
+          coverImg: "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/32/2019/10/16141503/Novo-Restaurante-Varanda-de-Lisboa-HOTEL-MUNDIAL-6.jpg",
           evaluation: 0,
           description:"Cascata é mesmo barata",
           outDoor: false,
@@ -386,7 +386,7 @@ export default new Vuex.Store({
           id:2,
           name:"Rochedo",
           routerLink:"/restaurant",
-          coverImg: "https://i.imgur.com/jD5zcux.jpg",
+          coverImg: "https://imprensafalsa.com/wp-content/uploads/2017/03/scandic-sundsvall-city-restaurant-verket-10.jpg",
           evaluation: 0,
           description:"Rochedo, sabe bem!",
           outDoor: false,
@@ -440,13 +440,67 @@ export default new Vuex.Store({
           id:5,
           name:"Su",
           routerLink:"/restaurant",
-          coverImg: "https://i.imgur.com/RhoP4aZ.jpg",
+          coverImg: "https://www.ahstatic.com/photos/5555_rsr001_01_p_1024x768.jpg",
           evaluation: 0,
           description:"Sempre Unidos",
           outDoor: false,
           parking: false,
           mediumWaitingTime: 4,
           location:"Vila do Conde",
+
+          distance:"",
+          travelDuration:"",
+ 
+          comments:"",
+          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png",
+        },
+        {
+          id:6,
+          name:"Ponto X",
+          routerLink:"/restaurant",
+          coverImg: "https://restauranteocean.com/wp-content/uploads/2017/06/ocean-diningroom-131.jpg",
+          evaluation: 0,
+          description:"Encontra a melhor comida aqui.",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 4,
+          location:"Rua São Gens 3087, Senhora Da Hora, Porto, 4460-337 Porto",
+
+          distance:"",
+          travelDuration:"",
+ 
+          comments:"",
+          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png",
+        },
+        {
+          id:7,
+          name:"Magalhães",
+          routerLink:"/restaurant",
+          coverImg: "https://www.panorama-restaurante.com/pt/resourcefiles/chef-thumb-image/panorama-restaurant.jpg",
+          evaluation: 0,
+          description:"As melhores francesinhas.",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 4,
+          location:"Rua São Gens 3087, Senhora Da Hora, Porto, 4460-337 Porto",
+
+          distance:"",
+          travelDuration:"",
+ 
+          comments:"",
+          logo:"http://surestaurante.com.br/wp-content/uploads/2019/08/su-higienopolis-ouro-wide-01.png",
+        },
+        {
+          id:8,
+          name:"Passione",
+          routerLink:"/restaurant",
+          coverImg: "https://images.squarespace-cdn.com/content/v1/55426312e4b0cf1b9ec75236/1522089733865-BCCWI79PLA7EAGJ5L7YB/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/K91A8270.jpg?format=2500w",
+          evaluation: 0,
+          description:"A melhor massa é aqui.",
+          outDoor: false,
+          parking: false,
+          mediumWaitingTime: 4,
+          location:"R. Sara Afonso 105-107, 4460-841 Sra. da Hora",
 
           distance:"",
           travelDuration:"",
@@ -526,9 +580,42 @@ export default new Vuex.Store({
         img: "https://i.imgur.com/QpUTw16.jpg",
         description:
           "Batata a murro é fine, bife é que já na vai.",
-        restaurantId: 2,
+        restaurantId: 4,
         evaluation: 2,
         tag: "Carne",
+        recommended: true
+      },
+      {
+        id:6,
+        name: "Leite Creme",
+        img: "https://www.sidul.pt/emshare/views/modules/asset/downloads/originals/2017/01/42308/Leite-Creme.jpg/Leite-Creme.jpg",
+        description:
+          "O melhor do mundo.",
+        restaurantId: 7,
+        evaluation: 5,
+        tag: "Sobremesa",
+        recommended: true
+      },
+      {
+        id:7,
+        name: "Natas do Céu",
+        img: "https://www.teleculinaria.pt/wp-content/uploads/2017/04/Natas-do-c%C3%A9u-CHSB-16.jpg",
+        description:
+          "De pedir aos céus.",
+        restaurantId: 8,
+        evaluation: 4,
+        tag: "Sobremesa",
+        recommended: true
+      },
+      {
+        id:8,
+        name: "Cheesecake Oreo",
+        img: "https://i.imgur.com/QpUTw16.jpg",
+        description:
+          "Comer e chorar por mais.",
+        restaurantId: 8,
+        evaluation: 2,
+        tag: "Sobremesa",
         recommended: true
       }
       ]
