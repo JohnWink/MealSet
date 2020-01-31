@@ -16,6 +16,7 @@
 
                 </v-col>
                 <v-col cols="12" sm="5" >
+                    <!--add edit restaurant data button here-->
                 </v-col>
 
                 <v-col cols="7" sm="1" >
