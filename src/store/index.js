@@ -674,7 +674,8 @@ export default new Vuex.Store({
     }
 
     if (state.existUser === false) {
-      alert("Credenciais Inválidas");
+      state.existUser = false;
+      state.logged = false;
 
     } else if(state.existUser===true) {
       state.existUser = false;
