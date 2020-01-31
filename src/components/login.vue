@@ -1,4 +1,7 @@
 <template>
+<div class="login">
+
+
   <v-dialog v-model="dialog" persistent max-width="400">
     <template v-slot:activator="{ on }">
       <v-btn large rounded color="#5C6BC0" elevation="7" dark v-on="on">Iniciar Sessão</v-btn>
@@ -51,6 +54,22 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+  <v-dialog  v-model="alertDialog">
+    <v-alert
+        color="success"
+        dark
+        transition="slide-y-transition"
+      >
+      <v-row align="center">
+          <v-col class="grow">Login efetuado com sucesso</v-col>
+          <v-col class="shrink">
+            <v-btn @click="pushForward()">Entrar</v-btn>
+          </v-col>
+        </v-row>
+      </v-alert>
+  </v-dialog>
+</div>
 </template>
 
 
@@ -59,6 +78,8 @@
   color: white;
   text-shadow: 0px 0px 5px gray;
 }
+
+
 </style>
 
 
@@ -71,6 +92,7 @@ export default {
     username: "",
     password: "",
     dialog: false,
+    alertDialog: false,
 
     nameRules: [v => !!v || "Por favor preencha o Username"],
 
@@ -78,9 +100,9 @@ export default {
   }),
 
   methods: {
-    submit() {
+      submit() {
       if (this.$refs.form.validate()) {
-        this.dialog = false;
+        //this.dialog = false;
 
         this.$store.commit("LOGIN", {
           username: this.username,
@@ -89,7 +111,8 @@ export default {
 
         if (this.$store.getters.checkLogged === true) {
           // A bug happens in all the image renders in all the pages if this happens, maybe, ask the teacher.
-          if (this.$store.getters.getLoggedUserRestaurantType === true){
+          
+       if (this.$store.getters.getLoggedUserRestaurantType === true){
             this.$router.push({ path: "/userRestaurantPage" });            
           }
           else{
@@ -98,6 +121,10 @@ export default {
           
         }
       }
+    },
+
+    pushForward(){
+
     }
   },
   computed: {
@@ -110,3 +137,4 @@ export default {
   }
 };
 </script>
+
