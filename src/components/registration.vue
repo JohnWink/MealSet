@@ -235,9 +235,76 @@ export default {
   }),
 
   methods: {
+
+    userCheck(){
+      if(this.$store.getters.feedbackChecker === "Username já utilizado"){
+          this.$fire({
+            type: "error",
+            title: 'Oops...',
+            text: 'Username já utilizado!',
+          })
+          this.$refs.form.reset()
+          }else if(this.$store.getters.feedbackChecker === "Utilizador Registado"){
+              this.$fire({
+              type: "success",
+              title: 'Parabéns',
+              text: 'Utilizador Registado!',
+            })
+          }else if(this.$store.getters.feedbackChecker === "Email Já registado"){
+              this.$fire({
+              type: "error",
+              title: 'Oops!',
+              text: 'Email já registado',
+            })
+           this.$refs.form.reset()
+            }
+    },
+
+    restaurantUserCheck(){
+       if(this.$store.getters.feedbackChecker === "Username já utilizado"){
+          this.$fire({
+            type: "error",
+            title: 'Oops...',
+            text: 'Username já utilizado!',
+          })
+         this.$refs.form.reset()
+          }else if(this.$store.getters.feedbackChecker === "Email Já registado"){
+              this.$fire({
+              type: "error",
+              title: 'Oops!',
+              text: 'Email já registado',
+            })
+           this.$refs.form.reset()
+            }else if(this.$store.getters.feedbackChecker === "Nome restaurante Já existe"){
+
+            this.$fire({
+                type: "error",
+                title: 'Oops...',
+                text: 'Restaurante já existe...',
+              })
+              this.$refs.form.reset()
+
+              }else if(this.$store.getters.feedbackChecker === "Localização já existe"){
+                this.$fire({
+                    type: "error",
+                    title: 'Oops...',
+                    text: 'Localização já existe...',
+                  })
+              this.$refs.form.reset()
+            }else if(this.store.getters.feedbackChecker === "Utilizador e restaurante registado"){
+              this.$fire({
+                  type: "Success",
+                  title: 'Registado!',
+                  text: 'Bem vindo ao MealSet',
+                })
+                this.$refs.form.reset()
+            }
+    },
+
     submit() {
       if (this.$refs.form.validate()) {
         this.dialog = false;
+        
 
         //some if conditions for missing pictures to give a default look
         // when left it empthy if you cleared with the cler option it will return null
@@ -285,31 +352,26 @@ export default {
           restaurantUser: false,
           restaurantId: 0
 
-        });}
+        });
 
-         if(this.$store.getters.feedbackChecker === "Username já utilizado"){
-          this.$fire({
-            type: "error",
-            title: 'Oops...',
-            text: 'Username já utilizado!',
-          })
+        this.userCheck();
+
+         
         }
 
         else{
-          // add has a userRestaurant
-          this.$store.commit("ADD_USER", {
-          id: this.$store.getters.getLastUserId,
+        
+          
+          //then add the new restuarant
+          this.$store.commit("ADD_USER_RESTAURANT",{
+          userId: this.$store.getters.getLastUserId,
           avatar : this.userAvatar,
           username: this.username,
           password: this.password,
           email: this.email,
           restaurantUser: true,
-          restaurantId: this.$store.getters.getLastRestaurantId        
-          
-          })//then add the new restuarant
-
-          this.$store.commit("ADD_RESTAURANT",{
-          id: this.$store.getters.getLastRestaurantId,          
+          userRestaurantId: this.$store.getters.getLastRestaurantId,  
+          restaurantId: this.$store.getters.getLastRestaurantId,          
           name:this.restautantName,
           coverImg:this.restaurantCover,
           description:this.restaurantDescrip,
@@ -320,8 +382,15 @@ export default {
           logo: this.restaurantLogo
         })
 
+        this.restaurantUserCheck();
           
         }
+
+          
+          
+        }
+
+        
         
         
 
@@ -334,8 +403,8 @@ export default {
     
     reset() {
       this.$refs.form.reset();
-    }
-  },
+    },
+  
 
   computed: {
     form() {

@@ -538,37 +538,101 @@ export default new Vuex.Store({
    },
 
    ADD_RESTAURANT(state,payload){
+    state.feedback = ""
      if(!state.restaurants.some(restaurant => restaurant.name === payload.name)){
-      state.restaurants.push({
-        id: payload.id,
-        name:payload.name,
-        routerLink:"/restaurant",
-        coverImg:payload.coverImg,
-        evaluation: 0,
-        description:payload.description,
-        outDoor: payload.outDoor,
-        parking: payload.parking,
-        mediumWaitingTime: payload.mediumWaitingTime,
-        location: payload.location,
-        distance:"",
-        travelDuration:"",    
-        comments:"",
-        logo: payload.logo
-      });
-      localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+       if(!state.restaurants.some(restaurant => restaurant.location === payload.location)){
+        state.restaurants.push({
+          id: payload.id,
+          name:payload.name,
+          routerLink:"/restaurant",
+          coverImg:payload.coverImg,
+          evaluation: 0,
+          description:payload.description,
+          outDoor: payload.outDoor,
+          parking: payload.parking,
+          mediumWaitingTime: payload.mediumWaitingTime,
+          location: payload.location,
+          distance:"",
+          travelDuration:"",    
+          comments:"",
+          logo: payload.logo
+        });
+        localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+
+        state.feedback="Restaurante válido"
+
+        
+      }else{
+        state.feedback = "Localização já existe"
+      }
+
+    }else{
+       state.feedback = "Nome restaurante Já existe"
      }
    },
+
+   ADD_USER_RESTAURANT(state,payload){
+    state.feedback = ""
+    if(!state.users.some(user => user.email === payload.email)) {
+      if(!state.users.some(user =>user.username === payload.username )){
+        if(!state.restaurants.some(restaurant => restaurant.name === payload.name)){
+          if(!state.restaurants.some(restaurant => restaurant.location === payload.location)){
+
+            state.users.push({
+              id: payload.userId,
+              avatar: payload.avatar,
+              username: payload.username,
+              password:payload.password,
+              email: payload.email,
+              admin: false,
+              restaurantUser: payload.restaurantUser,
+              restaurantId: payload.userRestaurantId
+
+            });
+
+            state.restaurants.push({
+              id: payload.restaurantId,
+              name:payload.name,
+              routerLink:"/restaurant",
+              coverImg:payload.coverImg,
+              evaluation: 0,
+              description:payload.description,
+              outDoor: payload.outDoor,
+              parking: payload.parking,
+              mediumWaitingTime: payload.mediumWaitingTime,
+              location: payload.location,
+              distance:"",
+              travelDuration:"",    
+              comments:"",
+              logo: payload.logo
+            });
+            state.feedback = "Utilizador e restaurante registado"
+          }else{
+            state.feedback ="Email Já registado"
+          }
+        }else{
+          state.feedback="Nome restaurante Já existe"
+        }
+      }else{
+        state.feedback = "Username já utilizado"
+      }
+    }else{
+      state.feedback = "Localização já existe"
+    }
+   },
+
     SET_RESTAURANT_DISTANCE(state,payload){
       state.restaurants[payload.id].distance = payload.distance;
       state.restaurants[payload.id].travelDuration = payload.travelDuration;
       localStorage.setItem("restaurants",JSON.stringify(state.restaurants))
     },
     ADD_USER(state, payload) {
+      state.feedback = ""
     //check se email já está registado
     if (!state.users.some(user => user.email === payload.email)) {
       if(!state.users.some(user =>user.username === payload.username )){
 
-      
+        
         //adicionar novo user ao array
           state.users.push({
           id: payload.id,
@@ -592,13 +656,13 @@ export default new Vuex.Store({
 
         state.logged = true;
   */
-        alert("Registado")
+        state.feedback="Utilizador Registado"
         //levar user pra pagina inicial?
       }else{
         state.feedback ="Username já utilizado"
       }
     }else {
-      alert("E-MAIL JÁ REGISTADO");
+        state.feedback ="Email Já registado"
     }
 
 
@@ -794,10 +858,8 @@ export default new Vuex.Store({
 
     localStorage.setItem("users", JSON.stringify(state.users))
   },
-  
+  /*
   ADD_USER_RESTAURANT(state,payload){
-
-    
       //check se email já está registado
       if (!state.users.some(user => user.email === payload.email)) {
         if(!state.users.some(user =>user.username === payload.username )){
@@ -814,7 +876,7 @@ export default new Vuex.Store({
           });
   
           localStorage.setItem("users", JSON.stringify(state.users));
-    /*
+  
           //user agora está registado e o login é feito
           state.loggedUser.id = payload.id;
           state.loggedUser.username = payload.username;
@@ -823,7 +885,7 @@ export default new Vuex.Store({
   
           state.logged = true;
           
-    */
+   
           
 
           alert("Registado")
@@ -838,6 +900,7 @@ export default new Vuex.Store({
       }
 
   },
+  */
 
   CHANGE_READ_HISTORIC(state,payload){
     for (let notification of state.historic) {

@@ -89,6 +89,7 @@ export default {
   methods: {
       submit() {
       if (this.$refs.form.validate()) {
+        this.dialog = false
         //this.dialog = false;
 
         this.$store.commit("LOGIN", {
@@ -114,6 +115,7 @@ export default {
             title: 'Oops...',
             text: 'Credenciais inválidas!',
           })
+          this.$refs.form.reset()
         }
       }
     },

@@ -1,14 +1,14 @@
 <template>
   <div class="pl-12 ml-12 mr-2">
     <v-hover v-slot:default="{ hover }" open-delay="200">
-      
+        <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
         <v-card          
           class="mx-auto cards"
           max-height="350"
           max-width="500"
           :elevation="hover ? 16 : 2"
-        ><router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
-          <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img></router-link>
+        >
+          <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>
           <v-row class="mb-6 mx-2">
             <v-col class="text-left">
               <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
@@ -30,12 +30,17 @@
             </v-col>
           </v-row>
         </v-card>
-      
+      </router-link>
     </v-hover>
   </div>
 </template>
 
 <style>
+
+ a{
+    text-decoration: none;
+  }
+
 .cards {
   border-radius: 20px;
 }
