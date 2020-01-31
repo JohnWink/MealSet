@@ -214,8 +214,8 @@ export default {
        
         getColor(status){
 
-            if (status == "A ser Comfirmado...") return 'orange lighten-1'
-            else if(status =="Reserva Comfirmada!") return 'green lighten-1'       
+            if (status == "A ser Confirmado...") return 'orange lighten-1'
+            else if(status =="Reserva Confirmada!") return 'green lighten-1'       
             else return 'red lighten-1' 
         },
 

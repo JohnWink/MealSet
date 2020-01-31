@@ -869,7 +869,23 @@ export default new Vuex.Store({
 
     localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
 
-  }
+  },
+
+  //remove restaurantes do array
+  /*REMOVE_RESTAURANT(state,payload){
+
+    let indexRestaurant = 0;
+    for (let restaurant of state.restaurants) {
+      
+      if (restaurant.id === payload.id){
+        state.restaurants.splice(indexRestaurant,1);
+        
+      }
+      indexRestaurant++;
+    }
+    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+
+  },*/
 
 
   

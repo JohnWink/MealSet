@@ -43,18 +43,18 @@
             </v-col>
         
             <v-col cols="5">
-           
               <v-spacer></v-spacer>  
-              <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
-              <p> <i class="fas fa-tag"></i>Tags: {{dish.tag}} </p>
-              <p> <i class="fas fa-edit"></i> Descrição: {{dish.description}} </p>
+              <v-title class="font-weight-bold nameTitle">{{ dish.name }}</v-title>
+              
+              <p> <i class="fas fa-tag mt-7"></i>Tags: {{dish.tag}} </p>
+              <p> <i class="fas fa-edit mt-7"></i> Descrição: {{dish.description}} </p>
               <!--
               <p>Avaliação: {{dish.evaluation}} <v-icon medium color="yellow darken-1">fas fa-star</v-icon></p>
                   -->
               
               <v-card-actions class="text-right mr-3">
                 <router-link :to="{name:'restaurant', params:{id: dish.restaurantId}}">
-                <v-btn  color="#f7c23e" dark @click="showModal = false">Visitar Restaurante</v-btn>
+                <v-btn class="visitBtn" color="#f7c23e" dark @click="showModal = false">Visitar Restaurante</v-btn>
                 </router-link>
               </v-card-actions>
               
@@ -101,6 +101,11 @@
   margin-left: 21px;
   font-size: 13px;
   margin-top: 1%;
+}
+
+.visitBtn {
+  margin-top: 100%;
+  margin-left: 50%;
 }
 </style>
 

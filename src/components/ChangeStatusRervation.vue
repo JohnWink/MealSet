@@ -91,10 +91,10 @@ methods: {
 
         //conditions for the status change , if true then it will go to the storage and change that data
         //also making sure that if we are changing a status true to true again, not to send to the historic again 
-        if(this.selected.status != "Reserva Comfirmada!"){
+        if(this.selected.status != "Reserva Confirmada!"){
            let statusValue =""
           if(this.statusChange ==='Aceite' ){
-             statusValue = "Reserva Comfirmada!"
+             statusValue = "Reserva Confirmada!"
 
             
             
