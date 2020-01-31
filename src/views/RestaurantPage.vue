@@ -71,13 +71,10 @@
 
             <!--Google Maps API box-->        
             <v-col cols="12" md="6" >
-              <p class="headline font-weight-bold ">Localização do restaurante</p><br>
-              
-              <v-btn @click="distanceCalc()" large rounded color="#f7c23e" dark v-on="on">Calcular Distância </v-btn>
-            
+              <p class="headline font-weight-bold ">Localização do restaurante <v-btn right @click="distanceCalc()" large rounded color="#f7c23e" dark v-on="on">Calcular Distância </v-btn></p><br>
               <!--temp place holder for the actually thing-->
               <div id="googleMap"  style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
-
+              
             </v-col>
           </v-row>
           
