@@ -91,33 +91,59 @@ methods: {
 
         //conditions for the status change , if true then it will go to the storage and change that data
         //also making sure that if we are changing a status true to true again, not to send to the historic again 
+        let statusValue =""
         if(this.selected.status != "Reserva Confirmada!"){
-           let statusValue =""
+           
           if(this.statusChange ==='Aceite' ){
-             statusValue = "Reserva Confirmada!"
+            if(noteText !== ""){
+              statusValue = "Reserva Confirmada!"
+              
 
+              this.$store.commit("ACCEPT_RESERVATION",{
+                id: this.selected.id,            
+                status: statusValue
+              })
+
+              //sending the notification
+
+              this.$store.commit("ADD_HISTORY",{
+                id: this.$store.getters.getLastHistoricId,
+                userId: this.selected.userId,
+                restaurantId: this.selected.restaurantId,
+                status: statusValue,
+                notification: noteText,
+                date: postDate,
+                restaurantName: this.$store.getters.getRestaurantName
+              })
+
+              this.$fire({
+                  title: "Reserva Aceitada!",          
+                  type: "sucess",
+                  confirmButtonText: "ok"
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
+
+
+
+            }else{
+              this.$fire({
+                  title: "Adicione uma justificação na área de notação!",          
+                  type: "error",
+                  confirmButtonText: "ok"
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
+
+            }
+
+
+          
+          
             
-            
-
-            this.$store.commit("ACCEPT_RESERVATION",{
-              id: this.selected.id,            
-              status: statusValue
-            })
-
-            //sending the notification
-
-            this.$store.commit("ADD_HISTORY",{
-              id: this.$store.getters.getLastHistoricId,
-              userId: this.selected.userId,
-              restaurantId: this.selected.restaurantId,
-              status: statusValue,
-              notification: noteText,
-              date: postDate,
-              restaurantName: this.$store.getters.getRestaurantName
-            })
-
-
-          }
+          
           // if false it will get eliminated from the storage
          
             if(this.statusChange === 'Recusado'){
@@ -140,34 +166,110 @@ methods: {
                 restaurantName: this.$store.getters.getRestaurantName
               })
 
-              }else{
+              this.$fire({
+                  title: "Reserva Recusada!",          
+                  type: "sucess",
+                  confirmButtonText: "ok"
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
+
+
+
+
+              }
+              else{
 
                 this.$fire({
                   title: "Adicione uma justificação na área de notação!",          
-                  type: "success",
+                  type: "error",
                   confirmButtonText: "ok"
-                })
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
               }
+
+              
 
               
 
             }
 
 
-        }
-        else{
-          this.$fire({
-            title: "A reserva já foi aceite!",          
-            type: "warning",
-            confirmButtonText: "ok"
-          })
+        }}
+        if (this.selected.status == "Reserva Confirmada!"){
+
+
+          if(this.statusChange === 'Recusado'){
+              if(noteText !== ""){
+
+                statusValue = "Reserva Recusada"
+
+              this.$store.commit("REFUSE_RESERVATION",{
+                id: this.selected.id 
+              })
+              //sending the notification
+
+              this.$store.commit("ADD_HISTORY",{
+                id: this.$store.getters.getLastHistoricId,
+                userId: this.selected.userId,
+                restaurantId: this.selected.restaurantId,
+                status: statusValue,
+                notification: noteText,
+                date: postDate,
+                restaurantName: this.$store.getters.getRestaurantName
+              })
+
+
+              this.$fire({
+                  title: "Reserva Recusada!",          
+                  type: "sucess",
+                  confirmButtonText: "ok"
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
+
+              }else{
+
+                this.$fire({
+                  title: "Adicione uma justificação na área de notação!",          
+                  type: "error",
+                  confirmButtonText: "ok"
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
+              }
+
+              
+
+              
+
+            }
+            else{
+              this.$fire({
+                title: "A reserva já foi aceite!",          
+                type: "warning",
+                confirmButtonText: "ok"
+              }).then((result) => {
+                  if (result.value) {
+                  location.reload();}
+              });
+            }
+
+
+
           
-          } 
+          
+        } 
 
                 
         
 
-        location.reload();
+        
         
       }
     }
@@ -175,4 +277,5 @@ methods: {
 
   
 }
+
 </script>
