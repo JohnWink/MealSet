@@ -844,7 +844,30 @@ export default new Vuex.Store({
     }
     localStorage.setItem("historic", JSON.stringify(state.historic))
 
+  },
+
+  EDIT_RESTAURANT(state,payload){
+
+    for (let restaurant of state.restaurants) {
+      if (restaurant.id === payload.id){
+        //change the infor
+        restaurant.name = payload.name
+        restaurant.coverImg = payload.coverImg
+        restaurant.description = payload.description
+        restaurant.outDoor = payload.outDoor
+        restaurant.parking =payload.parking
+        restaurant.mediumWaitingTime= payload.mediumWaitingTime
+        restaurant.location = payload.location
+        restaurant.logo = payload.logo
+        
+      }
+    }
+
+    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+
   }
+
+
   
 
 

@@ -117,6 +117,7 @@
           <v-text-field          
           v-model="restaurantWaitTime"          
           label="Tempo media de espera"
+          :rules="waitTimeRule"
           required
           clearable
           color="#5C6BC0"
@@ -126,6 +127,7 @@
           v-model="restaurantLocation"          
           label="Morada do Restaurante"
           required
+          :rules="locationRules"
           clearable
           color="#5C6BC0"
           ></v-text-field>
@@ -205,6 +207,15 @@ export default {
         "A password não pode ter mais que 20 caracteres"
     ],
 
+    waitTimeRule:[ 
+      time => !!time || "Por favor preencha o tempo media de espera"
+    ],
+
+    locationRules:[
+      location => !!location || "Por favor preencha a localização do Restaurante"
+    ],
+
+
     emailRules: [v => !!v || "Por favor introduza o seu email"],
 
     //rules on the restaurant user part
@@ -229,16 +240,34 @@ export default {
         this.dialog = false;
 
         //some if conditions for missing pictures to give a default look
+        // when left it empthy if you cleared with the cler option it will return null
+        // if you clear it whit backspace keyboard button then it will return ""
 
-        if(this.userAvatar === ""){
+        if(this.userAvatar === null ){
           this.userAvatar = "https://i.imgur.com/6txmFi3.png"
         }
 
-        if(this.restaurantCover === ""){
+        if(this.userAvatar === "" ){
+          this.userAvatar = "https://i.imgur.com/6txmFi3.png"
+        }
+
+
+
+        if(this.restaurantCover === null  ){
           this.restaurantCover = "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/61/2016/05/05151505/Manotel-Geneve-Restaurants.jpg"
         }
 
-        if(this.restaurantLogo ===""){
+        if(this.restaurantCover === ""  ){
+          this.restaurantCover = "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/61/2016/05/05151505/Manotel-Geneve-Restaurants.jpg"
+        }
+
+
+
+        if(this.restaurantLogo ===null ){
+          this.restaurantLogo = "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
+        }
+
+        if(this.restaurantLogo === "" ){
           this.restaurantLogo = "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
         }
 

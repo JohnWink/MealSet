@@ -7,11 +7,15 @@
         <v-col cols="12">
           <v-row align="start" justify="center">
             
-            <v-col cols="8" sm="10">
+            <v-col cols="5" sm="8">
               <navBar />
             </v-col>
-            
-            
+
+            <v-col cols="3" sm="2">
+            <!--add edit restaurant data button here-->
+              <editPage v-if="this.userRest === true" v-bind:restaurant="restaurant"/>              
+            </v-col>
+
             <v-col cols="4" sm="2">
               <logout/>
             </v-col>
@@ -196,6 +200,7 @@ import commentAdd from "@/components/commentADD.vue"
 import Logout from "@/components/logout.vue";
 import restaurantMenu from"@/components/RestaurantMenu.vue"
 import reservation from "@/components/Reservation.vue"
+import editPage from "@/components/EditRestaurant.vue"
 
  
 
@@ -211,7 +216,8 @@ export default {
     commentReview,
     commentAdd,
     restaurantMenu,
-    reservation
+    reservation,
+    editPage
   },
   data: () => ({
     checker:"border: solid indigo",
