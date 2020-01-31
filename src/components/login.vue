@@ -108,6 +108,7 @@ export default {
           }
           
         }else{
+          // Sweet alert error
            this.$fire({
             type: "error",
             title: 'Oops...',
