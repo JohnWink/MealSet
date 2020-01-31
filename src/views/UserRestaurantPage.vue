@@ -214,19 +214,38 @@ export default {
        
         getColor(status){
 
-            if (status == "A ser Comfirmado...") return 'orange lighten-1'
-            else if(status =="Reserva Comfirmada!") return 'green lighten-1'       
+            if (status == "A ser Confirmado...") return 'orange lighten-1'
+            else if(status =="Reserva Confirmada!") return 'green lighten-1'       
             else return 'red lighten-1' 
         },
 
         // delete dish method
         deleteItem(){
-            confirm('Tem acertza que deseja remover este prato?') &&
-            this.$store.commit("REMOVE_DISH",{
-            id: this.selected[0].id
-          })
-          //update List 
-          this.dishes = this.$store.getters.getRestaurantDishes
+
+            this.$fire({
+                title: 'Quer remover o Prato?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim!'
+                }).then((result) => {
+                if (result.value) {
+                    this.$store.commit("REMOVE_DISH",{
+                    id: this.selected[0].id            
+                    })
+                    //update List 
+                    this.dishes = this.$store.getters.getRestaurantDishes
+                    this.$fire({
+                        title:'Prato removido!',                        
+                        type:'success'})
+                }})
+                                
+
+
+
+          
         },
         // return recommended text
         getRecommended(recommendedV){

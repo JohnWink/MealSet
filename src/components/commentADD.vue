@@ -95,7 +95,16 @@ export default {
                     restaurantId: parseInt(this.$route.params.id)
                 })
 
-                location.reload();
+                this.$fire({
+                    title: "Comentario Enviado!",          
+                    type: "success",
+                    confirmButtonText: "ok"
+                }).then((result) => {
+                    if (result.value) {
+                    location.reload();}
+                });
+
+                
             }
 
             //this.$router.replace("/")

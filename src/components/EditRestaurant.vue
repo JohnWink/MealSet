@@ -182,8 +182,17 @@ methods: {
           logo: this.restaurantLogo
         })
 
-        alert("Restaurante Editado!")
-        location.reload();
+        
+
+        this.$fire({
+          title: "Restaurante Editado!",          
+          type: "success",
+          confirmButtonText: "ok"
+        }).then((result) => {
+          if (result.value) {
+          location.reload();}
+        });
+        
       }
       
     }

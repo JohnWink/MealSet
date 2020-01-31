@@ -12,6 +12,9 @@
           <v-row class="mb-6 mx-2">
             <v-col class="text-left">
               <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
+
+              <p> <i class="fas fa-edit mt-7"></i> {{restaurant.description}} </p>
+     
               <!--
               <p class="ps">
                 <i class="fas fa-map-marker-alt" ></i>

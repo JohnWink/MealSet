@@ -144,10 +144,16 @@ methods: {
             evaluation: 0,
             tag: this.tag,
             recommended: this.recommended
-        })
+        })        
 
-        alert("Prato Adicionado!")
-        location.reload();
+        this.$fire({
+            title: "Prato Adicionado!",          
+            type: "success",
+            confirmButtonText: "ok"
+        }).then((result) => {
+            if (result.value) {
+            location.reload();}
+        });
       }
       
     }
