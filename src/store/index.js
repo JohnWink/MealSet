@@ -12,6 +12,8 @@ export default new Vuex.Store({
 
     dishes:[],
 
+    feedback:"",
+
     loggedUser:[],
 
     reservations:[],
@@ -246,6 +248,8 @@ export default new Vuex.Store({
       return userHistorics
 
     },
+
+    feedbackChecker:state=> state.feedback,
     
     
 
@@ -591,7 +595,7 @@ export default new Vuex.Store({
         alert("Registado")
         //levar user pra pagina inicial?
       }else{
-        alert("Username Já Utilizado")
+        state.feedback ="Username já utilizado"
       }
     }else {
       alert("E-MAIL JÁ REGISTADO");

@@ -287,6 +287,14 @@ export default {
 
         });}
 
+         if(this.$store.getters.feedbackChecker === "Username já utilizado"){
+          this.$fire({
+            type: "error",
+            title: 'Oops...',
+            text: 'Username já utilizado!',
+          })
+        }
+
         else{
           // add has a userRestaurant
           this.$store.commit("ADD_USER", {
