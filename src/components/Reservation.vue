@@ -163,6 +163,14 @@ export default {
           status: this.status
         });
 
+        this.$fire({
+          title: "Reserva enviada!",          
+          type: "success",
+          confirmButtonText: "ok"
+        })
+
+
+
        
       }
     },
