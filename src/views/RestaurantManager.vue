@@ -17,7 +17,7 @@
           </v-col>
        
           <v-col sm="3">
-            <v-btn large rounded color="#FF0000" dark>Remover Restaurante Selecionado</v-btn>
+            <v-btn large rounded color="#FF0000" dark @click="deleteItem()" >Remover Restaurante Selecionado</v-btn>
           </v-col>
      </v-row>
       <p v-if="this.selected.length!== 0">{{this.selected[0].id}}</p> 
@@ -56,6 +56,18 @@ data () {
   created(){
    this.restaurants  = this.$store.getters.getRestaurants
   },
+   methods:{
+
+        // delete restaurant method
+        deleteItem(){
+            confirm('Tem a certeza que deseja remover este restaurante?') &&
+            this.$store.commit("REMOVE_RESTAURANT",{
+            id: this.selected[0].id
+          })
+          //update List 
+          this.restaurants = this.$store.getters.getRestaurants
+        }
+   }
 }
 </script>
 

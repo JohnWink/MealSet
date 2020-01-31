@@ -214,14 +214,14 @@ export default {
        
         getColor(status){
 
-            if (status == "A ser Comfirmado...") return 'orange lighten-1'
-            else if(status =="Reserva Comfirmada!") return 'green lighten-1'       
+            if (status == "A ser Confirmado...") return 'orange lighten-1'
+            else if(status =="Reserva Confirmada!") return 'green lighten-1'       
             else return 'red lighten-1' 
         },
 
         // delete dish method
         deleteItem(){
-            confirm('Tem acertza que deseja remover este prato?') &&
+            confirm('Tem a certeza que deseja remover este prato?') &&
             this.$store.commit("REMOVE_DISH",{
             id: this.selected[0].id
           })
