@@ -7,11 +7,11 @@
         <v-row align="start" justify="center">
           <!-- ++++++++++++++++++++++++++++++++++Registration dialog box+++++++++++++++++++++++++++++++-->
 
-          <v-col md="1" offset-sm="9">
+          <v-col sm="2" offset-sm="7" xs="2" offset="7" cols="3">
             <registration/>
           </v-col>
           <!--Login Button to pop up modal   !-->
-          <v-col md="2">
+          <v-col cols="5" sm="3" offset-sm="0" offset="6" >
             <login/>
           </v-col>
           
@@ -19,12 +19,12 @@
         <v-row>
           <v-col>
             <p
-              style="margin-top: 15%"
+              :style="fontsize"
               id="header-text1"
-              class="display-4 font-weight-bold white--text text-center"
+              class="font-weight-bold white--text text-center"
             >Bem vindo ao MealSet!</p>
             <p
-              id="header-text2" style="margin-top: 15%"
+              id="header-text2"
               class="headline font-weight-bold black--text text-center"
             >Começa já a utilizar a nossa aplicação</p>
           </v-col>
@@ -40,10 +40,14 @@
 <style>
 #header-text1 {
   text-shadow: 1px 1px 14px gray ;
+  margin-top: 15%;
 }
 #header-text2 {
   text-shadow: 0px 0px 20px gray ;
+  margin-top: 15%;
 }
+
+
 
 
 </style>
@@ -62,6 +66,26 @@ export default {
     login,
     guestPageContent
   },
-  data: () => ({})
+  data: () => ({
+    fontsize: "",
+    compHeight: ""
+  }),
+  methods:{
+    mobileAjust(){
+
+       let cssLine = "font-size:580%;"
+      
+      if(window.innerWidth < 600){
+        
+        cssLine += "font-size:300%;"
+        
+      }
+      this.fontsize = cssLine;
+    },
+  },
+  created(){
+    window.addEventListener('resize', this.mobileAjust);
+    this.mobileAjust();
+  }
 };
 </script>
