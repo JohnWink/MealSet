@@ -7,6 +7,7 @@
               width="80"
               height="80"
               v-on="on"
+              style="border: 4px solid rgba(92, 107, 192, 0.82)"
             ></v-img>
     </template>
     

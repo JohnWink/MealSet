@@ -10,8 +10,8 @@
         >
           <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>
           <v-row class="mb-7 mx-2">
-            <v-col class="text-left">
-              <v-title class="ml-5 font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
+            <v-col cols="12" class="text-left">
+              <v-title class=" font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
 
               <p> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} </p>
      

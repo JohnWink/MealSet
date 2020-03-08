@@ -10,16 +10,16 @@
       >
         <!-- ++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
         <v-row align="start" justify="center">
-          <v-col md="1">
-            <navBar/>
+          <v-col cols="1">
+            <navBar />
           </v-col>
 
-          <v-col md="1" offset-sm="8">
-              <perfil/>
+          <v-col cols="3" sm="2" offset-sm="6" offset="6">
+            <perfil />
           </v-col>
 
-          <v-col md="1">
-            <logout/>
+          <v-col cols="3" sm="1" offset-sm="0" offset="7">
+            <logout />
           </v-col>
         </v-row>
         <!--++++++++++++++++Information tittle, adress, and reservation button++++++++++++++++++++++++++++++++ -->
@@ -53,7 +53,7 @@
     </v-row>
 
     <!--RECOMENDAÇÃO DE PRATOS-->
-    <div>
+    <div class="pl-8 ml-8">
       <v-row class="mx-2" justify="center" align="center">
         <v-col class="mb-2" cols="12" sm="6" md="4" v-for="dish in getSearchedDishes" :key="dish.id">
           <DishesCards v-bind:dish="dish"/>

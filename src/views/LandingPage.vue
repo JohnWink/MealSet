@@ -10,15 +10,15 @@
       >
         <!-- ++++++++++++++++++++++++++++++++++registration, logn, search bar componets+++++++++++++++++++++++++++++++-->
         <v-row align="start" justify="center">
-          <v-col md="1">
+          <v-col cols="1">
             <navBar />
           </v-col>
 
-          <v-col md="1" offset-sm="8">
+          <v-col cols="3" sm="2" offset-sm="6" offset="6">
             <perfil />
           </v-col>
 
-          <v-col md="1">
+          <v-col cols="3" sm="1" offset-sm="0" offset="7">
             <logout />
           </v-col>
         </v-row>
