@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-12 ml-12 mr-2">
+  <div class="pl-4 ml-2 mr-2">
     <v-hover v-slot:default="{ hover }" open-delay="200">
       <v-card
         class="mx-auto cards"
@@ -9,7 +9,7 @@
         @click="showModal = true"
       >
         <v-img class="cardsImg" :src="dish.img"></v-img>
-        <v-row class="mb-6 mx-2">
+        <v-row class="mb-6 mx-1">
           <v-col class="text-left">
             <v-title class="ml-5 font-weight-bold nameTitle">{{ dish.name }}</v-title>
             <p class="ps">
@@ -20,14 +20,15 @@
               {{ dish.description }}
             </p>
           </v-col>
+          <!--
           <v-col class="text-right">
-            <!--
+            
             <p style="margin-right: 25px; margin-top: 15%" class="font-weight-bold">
               {{ dish.evaluation }}
               <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
             </p>
-            -->
-          </v-col>
+           
+          </v-col>-->
         </v-row>
       </v-card>
     </v-hover>
