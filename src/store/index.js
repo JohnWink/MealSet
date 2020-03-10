@@ -313,19 +313,6 @@ export default new Vuex.Store({
 
     if(localStorage.getItem('comments')){
       state.comments = JSON.parse(localStorage.getItem('comments'));
-    }else{
-      state.comments =[
-        {
-          id:0,
-          restaurantId:0,
-          name: "username1sd",
-          img: require("@/assets/eaters-collective-vOdK_eih7B0-unsplash.jpg"),
-          description: "It tastes like gud burger",
-          date:"3/7/2020",
-          rating: 4
-        }
-      ]
-      localStorage.setItem("comments", JSON.stringify(state.comments))
     }
 
     if(sessionStorage.getItem("loggedUser")){

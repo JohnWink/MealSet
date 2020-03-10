@@ -115,9 +115,6 @@ export default {
     searchValue: "",
     filterValue: "",
     search: "",
-    distance: "",
-    travelDuration: "",
-    currentRestaurantId: ""
   }),
 
   created() {
@@ -126,6 +123,10 @@ export default {
 
     window.addEventListener("resize", this.mobileAjust);
     this.mobileAjust();
+  },
+
+  mounted(){
+    this.calcDistance();
   },
 
   computed: {
@@ -188,7 +189,7 @@ export default {
       }
     },
 
-    /*
+    
 calcDistance(){
 
     
@@ -221,15 +222,13 @@ calcDistance(){
 
             
 
-            var element = results[j];
-            var distance = element.distance.value
-            var travelDuration = element.duration.value
-           this.currentRestaurantId = j
-           this.distance = distance
-           this.travelDuration = travelDuration
+            let element = results[j];
+            let travelDuration = JSON.stringify(element.duration.text)
+
+            this.restaurants[j].travelDuration = travelDuration
            //this.inputGeoData()
           
-
+          alert(travelDuration)
            
       }
     }
@@ -240,21 +239,14 @@ calcDistance(){
 
 }
 
-alert(service.DistanceMatrixResponse.rows[0].elements[1] .distance.value)
 
-function afterCallBack(restaurantId,distanceValue,travelDurationValue){
-  this.$store.commit("SET_RESTAURANT_DISTANCE", {
-          id: restaurantId,
-          distance : distanceValue,
-          travelDuration: travelDurationValue,
-        });
-        
-}
+
+
 
 
 
     
-  
+  /*
       -----------------------------Halted idea of single geolocation travel------------------------
       const directionsService = new google.maps.DirectionsService();
       const directionsRenderer = new google.maps.DirectionsRenderer();
@@ -314,15 +306,11 @@ function afterCallBack(restaurantId,distanceValue,travelDurationValue){
         });
 
     },
-  
+  */
       
   },
 
-  */
-
-    beforeMount() {
-      //this.calcDistance()
-    }
+  
   }
 };
 </script>
