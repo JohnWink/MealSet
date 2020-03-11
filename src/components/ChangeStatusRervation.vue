@@ -95,7 +95,7 @@ methods: {
         if(this.selected.status != "Reserva Confirmada!"){
            
           if(this.statusChange ==='Aceite' ){
-            if(noteText !== ""){
+          
               statusValue = "Reserva Confirmada!"
               
 
@@ -127,17 +127,7 @@ methods: {
 
 
 
-            }else{
-              this.$fire({
-                  title: "Adicione uma justificação na área de notação!",          
-                  type: "error",
-                  confirmButtonText: "ok"
-                }).then((result) => {
-                    if (result.value) {
-                    location.reload();}
-                });
-
-            }
+            
 
 
           
@@ -198,8 +188,10 @@ methods: {
             }
 
 
-        }}
-        if (this.selected.status == "Reserva Confirmada!"){
+        }
+        
+        }
+        else if (this.selected.status == "Reserva Confirmada!"){
 
 
           if(this.statusChange === 'Recusado'){

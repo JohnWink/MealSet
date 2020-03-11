@@ -33,19 +33,29 @@ export default new Vuex.Store({
 
   getters: {
 
-    
-    restaurantInfo: state => id => {
-      return state.restaurants.find(restaurant =>restaurant.id === id);
-    },
-    
+    //+++++++++++++++++++++++++++ USER  ++++++++++++++++++++++++++++
 
-    checkLogged: state => state.logged,
+      //get last user Id in array
+      getLastUserId: (state)=>{
+        if (state.users.length) {
+          return 1 + state.users[state.users.length-1].id;
+        } else {
+          return 0;
+        }
+      },
 
-    getLoggedUserId: (state) => {
+      userInfo: state => state.users,
+
+      //+++++++++++++++++++++++++ LOGGEDUSER ++++++++++++++++++++++++++++++++++++++++++
+      getLoggedUserId: (state) => {
 
         return state.loggedUser[0].id
       },  
       
+      checkLogged: state => state.logged,
+
+
+    
       getLoggedUsername:(state) => {
         return state.loggedUser[0].username
       },
@@ -53,140 +63,19 @@ export default new Vuex.Store({
       getLoggedUserAvatar:(state) =>{
         return state.loggedUser[0].avatar
       },
-   
+
+      getLoggedUserLocation:(state)=>{
+        return state.loggedUser[0].location
+      },
+
+      getLoggedAdmin: (state) =>{
+        return state.loggedUser[0].admin
+      },
+  
+    restaurantInfo: state => id => {
+      return state.restaurants.find(restaurant =>restaurant.id === id);
+    },
     
-    getComments: state => state.comments,
-    getRestaurants: state =>state.restaurants,
-
-    getRestaurantsById: (state) =>{
-      return state.restaurants.sort(function(a,b){
-        const idA = a.id
-        const idB = b.id
-    
-        if(idA>idB) return 1;
-        if(idB>idA) return -1;
-
-        return 0
-      })
-    },
-
-    getRestaurantsByRating: (state) =>{
-      return state.restaurants.sort(function(a,b){
-        const ratingA = a.evaluation
-        const ratingB = b.evaluation
-    
-        if(ratingA>ratingB) return -1;
-        if(ratingB>ratingA) return 1;
-
-        return 0
-      })
-    },
-
-    getRestaurantsByDistance:(state) =>{
-      return state.restaurants.sort(function(a,b){
-        const distanceA = a.distance
-        const distanceB = b.distance
-    
-        if(distanceA>distanceB) return -1;
-        if(distanceB>distanceA) return 1;
-
-        return 0
-      })
-    },
-
-    getRestaurantByAlphOrder:(state) =>{
-      return state.restaurants.sort(function(a,b){
-        if(a.name > b.name) return 1;
-        if(b.name > a.name) return -1;
-      })
-    },
-
-    getDishes: state => state.dishes,
-
-    getReservations: state => state.reservations,
-
-    
-
-    getHistoric: state => state.historic,
-    
-    //get last user Id in array
-    getLastUserId: (state)=>{
-      if (state.users.length) {
-        return 1 + state.users[state.users.length-1].id;
-      } else {
-        return 0;
-      }
-    },
-    getLastCommentId:(state)=>{
-      if(state.comments.length){
-        return state.comments[state.comments.length-1].id
-      }
-    },
-    getLastReservationId:(state)=>{
-      if (state.reservations.length) {
-        return 1 + state.reservations[state.reservations.length-1].id;
-      } else {
-        return 0;
-      }
-    },
-
-    getLastDishId:(state)=>{
-      if (state.dishes.length) {
-        return 1 + state.dishes[state.dishes.length-1].id;
-      } else {
-        return 0;
-      }
-    },
-
-
-
-
-    getLastRestaurantId:(state)=>{
-      if(state.restaurants.length){
-        return 1 + state.restaurants[state.restaurants.length-1].id;
-      }else{
-        return 0;
-      }
-    },
-
-   
-
-
-    getLastHistoricId:(state)=>{
-      if(state.historic.length){
-        return 1 + state.historic[state.historic.length-1].id;
-      }else{
-        return 0;
-      }
-    },
-    getLoggedUserLocation:(state)=>{
-      return state.loggedUser[0].location
-    },
-
-    getRestaurantReservations: (state) =>{
-      let reservationList = []
-      for (const reservation of state.reservations) {
-        if (reservation.restaurantId === state.loggedUser[0].restaurantId) {
-          reservationList.push(reservation)        
-        }
-      }
-
-      return reservationList
-
-
-    },
-
-    getRestaurantDishes: (state) =>{
-      let dishList = []
-      for (const dish of state.dishes) {
-        if (dish.restaurantId === state.loggedUser[0].restaurantId) {
-          dishList.push(dish) 
-
-      }
-      
-    }return dishList
-  },
-
     getLoggedUserRestaurant: (state) =>{
       return state.loggedUser[0].restaurantId
     },
@@ -195,32 +84,160 @@ export default new Vuex.Store({
       return state.loggedUser[0].restaurantUser
     },
 
-    getLoggedAdmin: (state) =>{
-      return state.loggedUser[0].admin
-    },
+  //++++++++++++++++++++++++++++++++ RESTAURANTS +++++++++++++++++++++++++++++++++
+  getRestaurants: state =>state.restaurants,
+  
+  getRestaurantsById: (state) =>{
+    return state.restaurants.sort(function(a,b){
+      const idA = a.id
+      const idB = b.id
+  
+      if(idA>idB) return 1;
+      if(idB>idA) return -1;
 
-    getCoverLogo: (state) =>{
-      let cover = ""
-      for (const rest  of state.restaurants) {
-        if (rest.restaurantId === state.loggedUser[0].restaurantId) {
-          cover = rest.logo
-        }
+      return 0
+    })
+  },
+  
+  getRestaurantsByRating: (state) =>{
+    return state.restaurants.sort(function(a,b){
+      const ratingA = a.evaluation
+      const ratingB = b.evaluation
+  
+      if(ratingA>ratingB) return -1;
+      if(ratingB>ratingA) return 1;
+
+      return 0
+    })
+  },
+    
+  getRestaurantsByDistance:(state) =>{
+    return state.restaurants.sort(function(a,b){
+      const distanceA = a.distance
+      const distanceB = b.distance
+  
+      if(distanceA>distanceB) return -1;
+      if(distanceB>distanceA) return 1;
+
+      return 0
+    })
+  },
+
+  getRestaurantByAlphOrder:(state) =>{
+    return state.restaurants.sort(function(a,b){
+      if(a.name > b.name) return 1;
+      if(b.name > a.name) return -1;
+    })
+  },
+
+
+  getLastRestaurantId:(state)=>{
+    if(state.restaurants.length){
+      return 1 + state.restaurants[state.restaurants.length-1].id;
+    }else{
+      return 0;
+    }
+  },
+
+  getCoverLogo: (state) =>{
+    let cover = ""
+    for (const rest  of state.restaurants) {
+      if (rest.restaurantId === state.loggedUser[0].restaurantId) {
+        cover = rest.logo
       }
-      return cover
-    },
+    }
+    return cover
+  },
 
-    getRestaurantName: (state) =>{
-      let name = ""
-      for (let rest of state.restaurants) {
-        if (rest.id === state.loggedUser[0].restaurantId){
-          name = rest.name
+  getRestaurantName: (state) =>{
+    let name = ""
+    for (let rest of state.restaurants) {
+      if (rest.id === state.loggedUser[0].restaurantId){
+        name = rest.name
 
-        }
       }
-      return name
-      
+    }
+    return name
+    
 
+  },
+
+
+  //++++++++++++++++++++++++++++++++++++++ COMMENTS ++++++++++++++++++++++++++++++++
+
+    getComments: state => state.comments,
+  
+    getLastCommentId:(state)=>{
+      if(state.comments.length){
+        return state.comments[state.comments.length-1].id
+      }
     },
+
+  //++++++++++++++++++++++++++++++++++++ DISHES ++++++++++++++++++++++++++++++++++++
+   
+  getDishes: state => state.dishes,
+
+  getLastDishId:(state)=>{
+    if (state.dishes.length) {
+      return 1 + state.dishes[state.dishes.length-1].id;
+    } else {
+      return 0;
+    }
+  },
+
+  getRestaurantDishes: (state) =>{
+    let dishList = []
+    for (const dish of state.dishes) {
+      if (dish.restaurantId === state.loggedUser[0].restaurantId) {
+        dishList.push(dish) 
+
+    }
+    
+    }return dishList
+  },
+
+ 
+ 
+
+  //+++++++++++++++++++++++++++++++++++++ RESERVATIONS ++++++++++++++++++++++++++++++++
+
+
+  getLastReservationId:(state)=>{
+    if (state.reservations.length) {
+      return 1 + state.reservations[state.reservations.length-1].id;
+    } else {
+      return 0;
+    }
+  },
+
+  getReservations: state => state.reservations,
+
+  getRestaurantReservations: (state) =>{
+    let reservationList = []
+    for (const reservation of state.reservations) {
+      if (reservation.restaurantId === state.loggedUser[0].restaurantId) {
+        reservationList.push(reservation)        
+      }
+    }
+
+    return reservationList
+
+
+  },
+
+  //++++++++++++++++++++++++++++++++++++++ HISTORIC ++++++++++++++++++++++++++++++++++
+
+    getHistoric: state => state.historic,
+    
+  
+    getLastHistoricId:(state)=>{
+      if(state.historic.length){
+        return 1 + state.historic[state.historic.length-1].id;
+      }else{
+        return 0;
+      }
+    },
+  
     getNotificationRead: (state) =>{
 
       let read = false
@@ -237,6 +254,7 @@ export default new Vuex.Store({
 
     },
 
+   
     getUserHistoric: (state) =>{
       let userHistorics = []
       for (let note of state.historic) {
@@ -249,22 +267,16 @@ export default new Vuex.Store({
 
     },
 
+    //++++++++++++++++++++++++++  FEEDBACK  ++++++++++++++++++++++++
+
+
     feedbackChecker:state=> state.feedback,
-    
-    
 
-    
-
-
-
-
-
-
-   
-    userInfo: state => state.users,
   },
   
   mutations: {
+
+    //+++++++++++++++++++++++++++++++++++++++++++++++ INITIALIZE DATA ++++++++++++++++++++++++++++++++++++++++++++++++++
 
    initializeStore(state){
 
@@ -611,6 +623,7 @@ export default new Vuex.Store({
     
    },
 
+   //++++++++++++++++++++++++++++++++++++ RESTAURANT ++++++++++++++++++++++++++++++++++++++++++++++++
    ADD_RESTAURANT(state,payload){
     state.feedback = ""
      if(!state.restaurants.some(restaurant => restaurant.name === payload.name)){
@@ -644,6 +657,27 @@ export default new Vuex.Store({
        state.feedback = "Nome restaurante Já existe"
      }
    },
+
+   EDIT_RESTAURANT(state,payload){
+
+    for (let restaurant of state.restaurants) {
+      if (restaurant.id === payload.id){
+        //change the infor
+        restaurant.name = payload.name
+        restaurant.coverImg = payload.coverImg
+        restaurant.description = payload.description
+        restaurant.outDoor = payload.outDoor
+        restaurant.parking =payload.parking
+        restaurant.mediumWaitingTime= payload.mediumWaitingTime
+        restaurant.location = payload.location
+        restaurant.logo = payload.logo
+        
+      }
+    }
+
+    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+
+  },
 
    ADD_USER_RESTAURANT(state,payload){
     state.feedback = ""
@@ -695,11 +729,33 @@ export default new Vuex.Store({
     }
    },
 
+   CALCULATE_RESTAURANT_RATING(state,payload){
+    let averageRating = 0
+    let counter = 0
+    let restaurantId = payload.restaurantId
+   
+    for(let i = 0; i < state.comments.length; i++){
+      if(state.comments[i].restaurantId == restaurantId){
+        averageRating += state.comments[i].rating
+        counter += 1
+      }
+    }
+
+    averageRating = averageRating / counter
+    state.restaurants[restaurantId].evaluation = Math.round(averageRating)
+
+    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+  },
+
+  
     SET_RESTAURANT_DISTANCE(state,payload){
       state.restaurants[payload.id].distance = payload.distance;
       state.restaurants[payload.id].travelDuration = payload.travelDuration;
       localStorage.setItem("restaurants",JSON.stringify(state.restaurants))
     },
+
+    //+++++++++++++++++++++++++++++++++++++++++++ USER +++++++++++++++++++++++++++++++++++++++++++++++
+
     ADD_USER(state, payload) {
       state.feedback = ""
     //check se email já está registado
@@ -741,50 +797,29 @@ export default new Vuex.Store({
 
 
   },
-  ADD_COMMENT(state,payload){
-    state.comments.push({
-      id: payload.id,
-      restaurantId: payload.restaurantId,
-      name: payload.name,
-      img: payload.avatar,
-      description: payload.description,
-      date: payload.date,
-      rating: payload.rating
-    })
-    localStorage.setItem("comments" ,JSON.stringify(state.comments))
-  },
-  CALCULATE_RESTAURANT_RATING(state,payload){
-    let averageRating = 0
-    let counter = 0
-    let restaurantId = payload.restaurantId
-   
-    for(let i = 0; i < state.comments.length; i++){
-      if(state.comments[i].restaurantId == restaurantId){
-        averageRating += state.comments[i].rating
-        counter += 1
+
+  PROFILE_EDIT(state,payload){
+
+    for (let user of state.users) {
+      if (user.id === payload.id){
+        //change the infor
+        user.email = payload.email
+        user.password = payload.password
+        user.avatar = payload.avatar
+
+        // change the looged stuff
+        state.loggedUser[0].email = payload.email
+        state.loggedUser[0].password = payload.password
+        state.loggedUser[0].avatar = payload.avatar
+
+        sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser));
+        
       }
     }
 
-    averageRating = averageRating / counter
-    state.restaurants[restaurantId].evaluation = Math.round(averageRating)
-
-    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
+    localStorage.setItem("users", JSON.stringify(state.users))
   },
-  ADD_RESERVATION(state,payload){
-    state.reservations.push({
-      id: payload.id,
-      userId: payload.userId,
-      restaurantId: payload.restaurantId,
-      name: payload.name,
-      peopleNumber: payload.peopleNumber,
-      mealTime: payload.mealTime,
-      mealDate: payload.mealDate,
-      status: payload.status
-    })
 
-    localStorage.setItem("reservations", JSON.stringify(state.reservations))
-  },
- 
   LOGIN(state,payload){
 
     for (const user of state.users) {
@@ -832,8 +867,42 @@ export default new Vuex.Store({
     sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
   },
 
-  //rEsevations changes and removal 
-  ACCEPT_RESERVATION(state,payload){
+ 
+  // ++++++++++++++++++++++++++++++++++++ COMMENT +++++++++++++++++++++++++++++++++
+
+  ADD_COMMENT(state,payload){
+    state.comments.push({
+      id: payload.id,
+      restaurantId: payload.restaurantId,
+      name: payload.name,
+      img: payload.avatar,
+      description: payload.description,
+      date: payload.date,
+      rating: payload.rating
+    })
+    localStorage.setItem("comments" ,JSON.stringify(state.comments))
+  },
+  
+
+  // +++++++++++++++++++++++++++++++++++  RESERVATION ++++++++++++++++++++++++++++++
+  
+  ADD_RESERVATION(state,payload){
+    state.reservations.push({
+      id: payload.id,
+      userId: payload.userId,
+      restaurantId: payload.restaurantId,
+      name: payload.name,
+      peopleNumber: payload.peopleNumber,
+      mealTime: payload.mealTime,
+      mealDate: payload.mealDate,
+      status: payload.status
+    })
+
+    localStorage.setItem("reservations", JSON.stringify(state.reservations))
+  },
+ 
+   //rEsevations changes and removal 
+   ACCEPT_RESERVATION(state,payload){
     for (let reservation of state.reservations) {
       if (reservation.id === payload.id){
         reservation.status = payload.status
@@ -841,8 +910,6 @@ export default new Vuex.Store({
     }
     localStorage.setItem("reservations", JSON.stringify(state.reservations))
   },
-
-  
 
   REFUSE_RESERVATION(state,payload){
     let indexRes = 0;
@@ -858,20 +925,8 @@ export default new Vuex.Store({
 
   },
 
-  ADD_HISTORY(state,payload){
-    state.historic.push({
-      id: payload.id,
-      userId: payload.userId,
-      restaurantId: payload.restaurantId,
-      status: payload.status,
-      notification: payload.notification,
-      date: payload.date,
-      read: false,
-      restaurantName: payload.restaurantName
-    })
-    localStorage.setItem("historic", JSON.stringify(state.historic))
-    
-  },
+// ++++++++++++++++++++++++++++++++++++++ DISHES ++++++++++++++++++++++++++++++++++++
+
 
 
   ///-----add and remove dishes commits
@@ -890,11 +945,6 @@ export default new Vuex.Store({
 
   },
 
-  ADD_CURRENT_LOCATION(state,payload){
-    state.loggedUser[0].location = payload.location
-    sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
-  },
-
   ADD_DISH(state,payload){
     state.dishes.push({
       id: payload.id, 
@@ -911,124 +961,50 @@ export default new Vuex.Store({
 
   },
 
-  PROFILE_EDIT(state,payload){
-
-    for (let user of state.users) {
-      if (user.id === payload.id){
-        //change the infor
-        user.email = payload.email
-        user.password = payload.password
-        user.avatar = payload.avatar
-
-        // change the looged stuff
-        state.loggedUser[0].email = payload.email
-        state.loggedUser[0].password = payload.password
-        state.loggedUser[0].avatar = payload.avatar
-
-        sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser));
-        
-      }
-    }
-
-    localStorage.setItem("users", JSON.stringify(state.users))
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++  LOGGED USER ++++++++++++++++++++++++++++
+  ADD_CURRENT_LOCATION(state,payload){
+    state.loggedUser[0].location = payload.location
+    sessionStorage.setItem("loggedUser",JSON.stringify(state.loggedUser))
   },
-  /*
-  ADD_USER_RESTAURANT(state,payload){
-      //check se email já está registado
-      if (!state.users.some(user => user.email === payload.email)) {
-        if(!state.users.some(user =>user.username === payload.username )){
-  
-        
-          //adicionar novo user ao array
-            state.users.push({
-            id: payload.id,
-            avatar: payload.avatar,
-            username: payload.username,
-            password:payload.password,
-            email: payload.email,
-            admin: false
-          });
-  
-          localStorage.setItem("users", JSON.stringify(state.users));
-  
-          //user agora está registado e o login é feito
-          state.loggedUser.id = payload.id;
-          state.loggedUser.username = payload.username;
-          state.loggedUser.profilePic =
-            "https://i.ytimg.com/vi/zQ4LiyFF8RU/hqdefault.jpg";
-  
-          state.logged = true;
-          
-   
-          
-
-          alert("Registado")
 
   
-          //levar user pra pagina inicial?
-        }else{
-          alert("Username Já Utilizado")
-        }
-      }else {
-        alert("E-MAIL JÁ REGISTADO");
-      }
 
-  },
-  */
-
-  CHANGE_READ_HISTORIC(state,payload){
-    for (let notification of state.historic) {
-      if (notification.id === payload.id){
-        notification.read = payload.read;
-        
-      }
-    }
+  // +++++++++++++++++++++++++++++++++++++++++++++++++++++ HISTORIC ++++++++++++++++++++++++++++++++++++++
+ 
+  ADD_HISTORY(state,payload){
+    state.historic.push({
+      id: payload.id,
+      userId: payload.userId,
+      restaurantId: payload.restaurantId,
+      status: payload.status,
+      notification: payload.notification,
+      date: payload.date,
+      read: false,
+      restaurantName: payload.restaurantName
+    })
     localStorage.setItem("historic", JSON.stringify(state.historic))
-
+    
   },
-
-  EDIT_RESTAURANT(state,payload){
-
-    for (let restaurant of state.restaurants) {
-      if (restaurant.id === payload.id){
-        //change the infor
-        restaurant.name = payload.name
-        restaurant.coverImg = payload.coverImg
-        restaurant.description = payload.description
-        restaurant.outDoor = payload.outDoor
-        restaurant.parking =payload.parking
-        restaurant.mediumWaitingTime= payload.mediumWaitingTime
-        restaurant.location = payload.location
-        restaurant.logo = payload.logo
-        
-      }
-    }
-
-    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
-
-  },
-
-  //remove restaurantes do array
-  /*REMOVE_RESTAURANT(state,payload){
-
-    let indexRestaurant = 0;
-    for (let restaurant of state.restaurants) {
-      
-      if (restaurant.id === payload.id){
-        state.restaurants.splice(indexRestaurant,1);
-        
-      }
-      indexRestaurant++;
-    }
-    localStorage.setItem("restaurants", JSON.stringify(state.restaurants))
-
-  },*/
-
-
   
-
-
-
+  
+   DELETE_NOTIFICATION(state,payload){
+     state.historic = state.historic.filter(
+       (notification) => notification.id !== payload.id )
+       
+      localStorage.setItem("historic", JSON.stringify(state.historic))
+  
+    },
+  
+    CONFIRM_HISTORY_READ(state,payload){
+      for(let notification of state.historic){
+        if(notification.userId === payload.id){
+          notification.read = true
+        }
+      }
+      
+      localStorage.setItem("historic", JSON.stringify(state.historic))
+  
+   },
 
   
  

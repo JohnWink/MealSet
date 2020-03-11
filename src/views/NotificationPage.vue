@@ -63,10 +63,10 @@
                    <v-col cols="12" sm="3">
                         <v-btn v-if="this.selected.length!== 0" 
                         large rounded color="amber lighten-1"
-                        class="white--text" @click="markRead()">
-                            Marcar como Lido
+                        class="white--text" @click="deleteNotification()">
+                           Remover Mensagem
                         </v-btn>
-                        <v-btn v-else large rounded  disabled>Marcar como Lido</v-btn>
+                        <v-btn v-else large rounded  disabled>Remover Mensagem</v-btn>
                    </v-col>
                    
 
@@ -127,8 +127,7 @@ export default {
                 { text: 'Restaurante', value: 'restaurantName' },
                 { text: 'Data', value: 'date' },
                 { text: 'Estado da Reserva', value: 'status' },
-                { text: 'Mensagem', value: 'notification' },
-                { text: 'Lido', value:'read' },                
+                { text: 'Mensagem', value: 'notification' },            
                 
             ],
             
@@ -145,11 +144,16 @@ export default {
     
     
     created(){
-        
         this.notification  = this.$store.getters.getUserHistoric
         
 
         //this.logoPage = this.$store.getters.getCoverLogo     somehow the getter isnt working?      */    
+    },
+
+    beforeMount(){
+        this.$store.commit("CONFIRM_HISTORY_READ",{
+            id: this.$store.getters.getLoggedUserId
+        })
     },
 
     
@@ -168,24 +172,20 @@ export default {
             else return 'red lighten-1' 
         },
 
-        getRead(readSts){
-            if (readSts === false) {return 'Não Lido' }
-            else return 'Lido'        
-            
-        },
         //mark the message has readed
 
-        markRead(){
-            this.$store.commit("CHANGE_READ_HISTORIC",{
+        deleteNotification(){
+            this.$store.commit("DELETE_NOTIFICATION",{
                 id: this.selected[0].id,
-                read: true
             })
 
         this.$fire({
-            title: "Marcado como Lido",          
+            title: "Mensagem Removida",          
             type: "success",
             confirmButtonText: "ok"
         })
+
+        location.reload();
 
             //update the notification (needs to be filtered by this users id)
 

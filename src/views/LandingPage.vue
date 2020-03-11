@@ -225,7 +225,7 @@ calcDistance(){
             let element = results[j];
             let travelDuration = JSON.stringify(element.duration.text)
 
-            this.restaurants[j].travelDuration = travelDuration
+            this.restaurants[j].travelDuration == travelDuration
            //this.inputGeoData()
           
           alert(travelDuration)
