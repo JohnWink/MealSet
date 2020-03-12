@@ -150,6 +150,8 @@ export default {
       if (this.$refs.form.validate()) {
         this.dialog = false;
 
+        //storing the data on the add_resercation commit
+
         this.$store.commit("ADD_RESERVATION", {
           id: this.$store.getters.getLastReservationId,
           userId: this.$store.getters.getLoggedUserId,

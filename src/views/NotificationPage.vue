@@ -1,24 +1,21 @@
 <template>
     <div class="notificationPage">
         
-        <v-row class="mr-2 mb-6 mt-6" align="center" justify="center">
+        <div class="mr-2 mb-6 mt-6" align="center" justify="center">
         
             <!-- ++++++++++++++++++++++++++++++++++navbar logout profile+++++++++++++++++++++++++++++++-->
-            <v-row class="ml-12 pl-12" align="center" justify="space-between">
+            <v-row align="start" justify="center" >
                 <v-col cols="1">
-                    <navBar/>
-                </v-col>  
-
-                   
-
-
-                <v-col cols="7"  >
-                    <perfil/>
-                </v-col>
-                <v-col cols="4" >
-                    <logout/>
+                    <navBar />
                 </v-col>
 
+                <v-col cols="3" sm="2" offset-sm="6" offset="6">
+                    <perfil />
+                </v-col>
+
+                <v-col cols="3" sm="1" offset-sm="0" offset="7">
+                    <logout />
+                </v-col>
             </v-row>
             <!--++++++++++++++++table and set up so it doesnt clip the table by the navbar++++++++++++++++++++++++++++++++ -->
 
@@ -56,21 +53,20 @@
 
                 </v-col>
                 
-                
-                <v-row class="pl-6 ml-6 mr-2 mt-3"  align="center" justify="center" justify-sm="end">
+               
                    
 
-                   <v-col cols="12" sm="3">
-                        <v-btn v-if="this.selected.length!== 0" 
-                        large rounded color="amber lighten-1"
-                        class="white--text" @click="deleteNotification()">
-                           Remover Mensagem
-                        </v-btn>
-                        <v-btn v-else large rounded  disabled>Remover Mensagem</v-btn>
-                   </v-col>
+                <v-col cols="12" offset="0" sm="6" offset-sm="6"  align-self="end" justify="end" >
+                    <v-btn v-if="this.selected.length!== 0" 
+                    large rounded color="amber lighten-1"
+                    class="white--text" @click="deleteNotification()">
+                        Remover Mensagem
+                    </v-btn>
+                    <v-btn v-else large rounded  disabled>Remover Mensagem</v-btn>
+                </v-col>
                    
 
-                </v-row>
+               
 
                 
 
@@ -81,7 +77,7 @@
 
 
 
-        </v-row>
+        </div>
 
     <footerVue/>
 
@@ -130,6 +126,8 @@ export default {
                 { text: 'Mensagem', value: 'notification' },            
                 
             ],
+
+            checker: "border: solid red 3px"
             
 
             

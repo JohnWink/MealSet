@@ -340,6 +340,19 @@ export default new Vuex.Store({
     //+++++++++++++++++++++++++++++++++++++++++++++Initialize Historic+++++++++++++++++++++++++++++++++++++++++++++
     if(localStorage.getItem('historic')){
       state.historic = JSON.parse(localStorage.getItem("historic"))
+    }else{
+      state.historic = [
+        {
+          id: 0,
+          userId: 1,
+          restaurantId: 2,          
+          status: "A ser Comfirmado...",
+          notification: "resercation test 1 daasidjasodjwoaijeoiqjdoaisdoiwjaeioawjdioawjejwadewe ",
+          date: "10-2-2019",
+          restaurantName: "Rochedo"
+
+        }
+      ]
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++Initialize Restaurants+++++++++++++++++++++++++++++++++++++++++++++
