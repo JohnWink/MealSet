@@ -4,7 +4,7 @@
         <router-link :to="{name:'restaurant', params:{id: restaurant.id}}">
         <v-card          
           class="mx-auto cards"
-          max-height="400"
+          max-height="500"
           max-width="500"
           :elevation="hover ? 16 : 2"
         >
@@ -13,8 +13,7 @@
             <v-col cols="12" class="text-left">
               <v-title class=" font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
 
-              <p> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} </p>
-     
+              <br> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} 
               <!--
               <p class="ps">
                 <i class="fas fa-map-marker-alt" ></i>
@@ -32,7 +31,10 @@
               </p>
             </v-col>
           </v-row>
+
         </v-card>
+
+        
       </router-link>
     </v-hover>
   </div>
