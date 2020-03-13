@@ -20,33 +20,23 @@
             <!--++++++++++++++++table and set up so it doesnt clip the table by the navbar++++++++++++++++++++++++++++++++ -->
 
             <!-------------------------Notification table-------------------------------------------------------------------------------->
-            <v-row class="pl-12 ml-12" >
-                <v-col cols="12" >
+            <v-row class="pl-10 ml-10" >
+                <v-col cols="12"  >
                     <v-data-table
                     v-model="selected"
                     :headers="headersMessage"                    
-                    :items="notification"                    
+                    :items="notification"
+                    :items-per-page="5"                    
                     :single-select="singleSelect"
                     item-key="id"
                     show-select
                     class="elevation-1"
                     >
-                    <!--Condition to change status to a string and give color chips -->
-                    <template v-slot:item.restaurantId="{ item }">
-                        {{getRestaurantName(item.restaurantId)}}
-                    </template>
 
 
-
-                    <template v-slot:item.status="{ item }">
-                        <v-chip :color="getColor(item.status)" dark> {{ item.status }}</v-chip>
-                    </template>
-                    
-                    <template v-slot:item.read="{ item }">
-                        <div class="font-weight-bold">
-                            {{getRead(item.read)}}
-                        </div>
-                    </template>
+                        <template v-slot:item.status="{ item }">
+                            <v-chip :color="getColor(item.status)" dark> {{ item.status }}</v-chip>
+                        </template>
 
                     
                     </v-data-table>
@@ -120,7 +110,7 @@ export default {
             statusStr: "",
             headersMessage: [
                 
-                { text: 'Restaurante', value: 'restaurantName' },
+                { text: 'Restaurante', value: 'restaurantName',align: 'start' },
                 { text: 'Data', value: 'date' },
                 { text: 'Estado da Reserva', value: 'status' },
                 { text: 'Mensagem', value: 'notification' },            
@@ -142,10 +132,11 @@ export default {
     
     
     created(){
-        this.notification  = this.$store.getters.getUserHistoric
-        
+        // first we have to change that users notifications read to false when ever they enter to the notification page
 
-        //this.logoPage = this.$store.getters.getCoverLogo     somehow the getter isnt working?      */    
+
+        // afte rthe cnage then dump all the store data in to the notifications
+        this.notification  = this.$store.getters.getUserHistoric 
     },
 
     beforeMount(){
@@ -185,35 +176,12 @@ export default {
 
         location.reload();
 
-            //update the notification (needs to be filtered by this users id)
-
-            //this.notification  = this.$store.getters.getHistoric
+            
 
         }
 
         
-        /*
-
-        // delete dish method
-        deleteItem(){
-            confirm('Tem acertza que deseja remover este prato?') &&
-            this.$store.commit("REMOVE_DISH",{
-            id: this.selected[0].id
-          })
-          //update List 
-          this.dishes = this.$store.getters.getRestaurantDishes
-        },
-        // return recommended text
-        getRecommended(recommendedV){
-            if(recommendedV === true){ return 'Sim';}
-            else{ return 'Não';}
-
-        },
-
-        colorRecommended(recommendedV){
-            if (recommendedV == false) return 'orange lighten-1'        
-            else return 'green lighten-1'
-        }*/
+       
 
         
     }
