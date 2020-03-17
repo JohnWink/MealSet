@@ -14,6 +14,9 @@
               <v-title class=" font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
 
               <p> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} </p>
+              <p>{{restaurant.travelDuration}}</p>
+              <p>{{Math.round(restaurant.distance/100)/10 + " km"}}</p>
+            
      
               <!--
               <p class="ps">

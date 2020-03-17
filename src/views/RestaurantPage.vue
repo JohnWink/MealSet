@@ -73,7 +73,20 @@
             <v-col cols="12" md="6" >
               <p class="headline font-weight-bold ">Localização do restaurante <v-btn right @click="distanceCalc()" large rounded color="#f7c23e" dark v-on="on">Calcular Distância </v-btn></p><br>
               <!--temp place holder for the actually thing-->
-              <div id="googleMap"  style="width:100%;min-height:400px;border: solid indigo ;border-radius: 12px"></div>
+              
+
+                  <GmapMap 
+                  :center="center"
+                  :zoom="15"
+                  ref="myMap"
+                  v-model="map"
+                  style="width:100%;min-height:400px;border: solid indigo ;"
+                >
+                <GmapMarker
+                ref="myMarker"
+                :position="position"/>
+                </GmapMap>
+      
               
             </v-col>
           </v-row>
@@ -229,7 +242,9 @@ export default {
 
       menu:[],
       comments: [],
-      menuCount: 0
+      menuCount: 0,
+      center:{lat:-34.397, lng:150.644},
+      position:{lat:-34.397, lng:150.644}
       
   }),
 
@@ -262,16 +277,20 @@ export default {
   methods:{
 
     // this is a place holder for google maps api
+
+    
       iniMap(){
+        /*
       this.map = new google.maps.Map(document.querySelector("#googleMap"),{
         center:{lat: -34.397, lng: 150.644},
         zoom:15,
         disableDefaultUI: true,
       });
       
+*/
+      this.$refs.myMap.$mapPromise.then(()=>{
 
-
-      const geocoder = new google.maps.Geocoder();
+         const geocoder = new google.maps.Geocoder();
 
       //this.geocodeAdress(geocoder,this.map)
      
@@ -282,12 +301,13 @@ export default {
       geocoder.geocode({'address': address},
       (results,status)=>{
         if(status ==='OK'){
-          this.map.setCenter(results[0].geometry.location);
-            const marker = new google.maps.Marker({
-            map:this.map,
-            position:results[0].geometry.location
-          });
-          marker.setMap(this.map);
+
+          this.center.lat = results[0].geometry.location.lat()
+          this.center.lng = results[0].geometry.location.lng()
+
+          this.position.lat = results[0].geometry.location.lat()
+          this.position.lng = results[0].geometry.location.lng()
+
         }else{
           //alert('Geocode was not successful for the following reason: ' + status);
           this.$fire({
@@ -297,11 +317,18 @@ export default {
           })
         }
       })
+      })
+
+     
 
     },
 
+    
+
     distanceCalc(){
+      
     let restaurant = this.$store.getters.restaurantInfo(parseInt(this.$route.params.id));
+      
       
 
           const directionsService = new google.maps.DirectionsService();
@@ -309,8 +336,10 @@ export default {
         
           let myPos = this.$store.getters.getLoggedUserLocation;
         
-          directionsRenderer.setMap(this.map)
-           this.map.setCenter(myPos);
+          directionsRenderer.setMap( this.$refs.myMap.$mapObject)
+
+           this.center.lat = myPos.lat
+           this.center.lng = myPos.lng
            
             const request = {
               origin: myPos,

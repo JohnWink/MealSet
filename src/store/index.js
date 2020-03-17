@@ -116,8 +116,8 @@ export default new Vuex.Store({
       const distanceA = a.distance
       const distanceB = b.distance
   
-      if(distanceA>distanceB) return -1;
-      if(distanceB>distanceA) return 1;
+      if(distanceA>distanceB) return 1;
+      if(distanceB>distanceA) return -1;
 
       return 0
     })
@@ -376,7 +376,7 @@ export default new Vuex.Store({
           mediumWaitingTime: 20,
           location:"Avenida Fonte Cova, Modivas, 4485-592 Vila do Conde",
 
-          distance:"",
+          distance:0,
           travelDuration:"",
           comments: "",
           logo: "https://media.istockphoto.com/vectors/restaurant-menu-order-tablet-pc-table-drawing-vector-id469918600"
@@ -749,8 +749,7 @@ export default new Vuex.Store({
 
   
     SET_RESTAURANT_DISTANCE(state,payload){
-      state.restaurants[payload.id].distance = payload.distance;
-      state.restaurants[payload.id].travelDuration = payload.travelDuration;
+      state.restaurants = payload.restaurantsPayload;
       localStorage.setItem("restaurants",JSON.stringify(state.restaurants))
     },
 

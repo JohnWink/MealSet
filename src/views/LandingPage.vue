@@ -109,7 +109,7 @@ export default {
   },
   data: () => ({
     //filters: ["Melhor Rating", "Mais Perto", "Peixe", "Carne", "Vegetariano"],
-    filters: ["Melhor Rating", "De A a Z"],
+    filters: ["Melhor Rating", "De A a Z", "Mais Perto"],
     restaurants: [],
     fontsize: " ",
     searchValue: "",
@@ -125,7 +125,7 @@ export default {
     this.mobileAjust();
   },
 
-  mounted(){
+  beforeMount(){
     this.calcDistance();
   },
 
@@ -135,6 +135,8 @@ export default {
         this.$store.getters.getRestaurantsByRating;
       } else if (this.filterValue == "De A a Z") {
         this.$store.getters.getRestaurantByAlphOrder;
+      }else if (this.filterValue == "Mais Perto"){
+        this.$store.getters.getRestaurantsByDistance;
       } else {
         this.$store.getters.getRestaurantsById;
       }
@@ -174,6 +176,7 @@ export default {
     },
 
     getCurrentLocation() {
+
       if (navigator.geolocation) {
         navigator.geolocation.watchPosition(position => {
           const myPos = {
@@ -182,8 +185,12 @@ export default {
           };
           this.$store.commit("ADD_CURRENT_LOCATION", {
             location: myPos
-          });
-        });
+          })
+        },
+         error=> {
+            alert(error.message)
+          }
+        );
       } else {
         alert("error on navigator");
       }
@@ -191,53 +198,81 @@ export default {
 
     
 calcDistance(){
-
-    
+  
+ 
   this.restaurants = this.$store.getters.getRestaurants;
   let destinationArray = []
   this.distance = []
   this.travelDuration = []
+  let restaurantInfo = this.restaurants
 
   this.restaurants.forEach(restaurant => {
     destinationArray.push(restaurant.location)
   });
 
   let myPos = this.$store.getters.getLoggedUserLocation;
+  var results = []
+  var origins = []
+  let element = []
   
-  var service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix(
+  var i = 0
+  var j = 0
+this.$gmapApiPromiseLazy().then(() => {
+      var service = new google.maps.DistanceMatrixService();
+    
+ service.getDistanceMatrix(
     {
       origins: [myPos],
       destinations: destinationArray,
       travelMode: 'DRIVING',
-    }, callback);
-
-    function callback(response, status) {
+    }, function callback(response, status) {
+      
       if (status == 'OK') {
-        var origins = response.originAddresses;
-        //var destinations = response.destinationAddresses;
-        for (var i = 0; i < origins.length; i++) {
-          var results = response.rows[i].elements;
-          for (var j = 0; j < results.length; j++) {
+         origins = response.originAddresses;
+       
+        for ( i = 0; i < origins.length; i++) {
+         results = response.rows[i].elements;
+
+  
+          for ( j = 0; j < results.length; j++) {
 
             
-
-            let element = results[j];
-            let travelDuration = JSON.stringify(element.duration.text)
-
-            this.restaurants[j].travelDuration == travelDuration
-           //this.inputGeoData()
           
-          alert(travelDuration)
-           
+            element = results[j];
+       
+
+        restaurantInfo[j].distance = element.distance.value
+        restaurantInfo[j].travelDuration = element.duration.text
+         
+
       }
+
+
     }
+
+  
   }else{
      alert('Geocode was not successful for the following reason: ' + status);
   }
 
 
-}
+});
+
+this.restaurants = restaurantInfo
+
+this.$store.commit("SET_RESTAURANT_DISTANCE",{
+  restaurantsPayload: this.restaurants
+})
+
+})
+
+
+
+
+
+
+
+
 
 
 
