@@ -8,13 +8,30 @@
           max-width="500"
           :elevation="hover ? 16 : 2"
         >
-          <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>
+          <!--<v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>-->
+          <v-carousel
+            cycle
+            height="250"
+            hide-delimiter-background
+            hide-delimiters
+            :show-arrows="false"
+            :style="checker"
+          >
+            <v-carousel-item
+              v-for=" cyImg in restaurant.cycleImg"
+              :key="cyImg"
+              :src="cyImg"
+            >
+              
+            </v-carousel-item>
+          </v-carousel>
+
           <v-row class="mb-7 mx-2">
             <v-col cols="12" class="text-left">
               <v-title class=" font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
 
               <br> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} 
-              <p>{{restaurant.travelDuration}}</p>
+              <p>{{restaurant.travelDuration}} timeHere</p>
               <p>{{Math.round(restaurant.distance/100)/10 + " km"}}</p>
               <!--
               <p class="ps">
@@ -89,12 +106,15 @@ export default {
   props: ["restaurant"],
   
   data: () => ({
-    checker: "border: solid red",
+    checker: "border: 3px solid #5C6BC0;border-radius: 5px;",
     distance:'',
     travelDuration:'',
     map:"",
     myPos:'',
-    distanceValue:''
+    distanceValue:'',
+
+    
+    
  
   }),
 
@@ -148,7 +168,7 @@ export default {
   mounted(){
     //this.calcDistance()
    
-  }
+  },
   
 
 };

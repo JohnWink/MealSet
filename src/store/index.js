@@ -365,6 +365,7 @@ export default new Vuex.Store({
           name:"Chimarrão",
           routerLink:"/restaurant",
           coverImg: "https://i.imgur.com/RhoP4aZ.jpg",
+          cycleImg: ["https://i.imgur.com/RhoP4aZ.jpg","https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"],
           evaluation: 0,
           description:"Chimarrão é mesmo bão",
           outDoor: true,
@@ -382,6 +383,11 @@ export default new Vuex.Store({
           name:"Cascata",
           routerLink:"/restaurant",
           coverImg: "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/32/2019/10/16141503/Novo-Restaurante-Varanda-de-Lisboa-HOTEL-MUNDIAL-6.jpg",
+          cycleImg: [
+            "https://d1vp8nomjxwyf1.cloudfront.net/wp-content/uploads/sites/32/2019/10/16141503/Novo-Restaurante-Varanda-de-Lisboa-HOTEL-MUNDIAL-6.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+
+          ],
           evaluation: 0,
           description:"Cascata é mesmo barata",
           outDoor: false,
@@ -399,6 +405,10 @@ export default new Vuex.Store({
           name:"Rochedo",
           routerLink:"/restaurant",
           coverImg: "https://imprensafalsa.com/wp-content/uploads/2017/03/scandic-sundsvall-city-restaurant-verket-10.jpg",
+          cycleImg: [
+            "https://imprensafalsa.com/wp-content/uploads/2017/03/scandic-sundsvall-city-restaurant-verket-10.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"Rochedo, sabe bem!",
           outDoor: false,
@@ -416,6 +426,10 @@ export default new Vuex.Store({
           name:"Dona Maria",
           routerLink:"/restaurant",
           coverImg: "https://i.imgur.com/76ph5sb.jpg",
+          cycleImg: [
+            "https://i.imgur.com/76ph5sb.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"Dona Maria, comer lá quem não queria!",
           outDoor: false,
@@ -435,6 +449,10 @@ export default new Vuex.Store({
           name:"ESHT",
           routerLink:"/restaurant",
           coverImg: "https://i.imgur.com/l9e8b8M.jpg",
+          cycleImg: [
+            "https://i.imgur.com/l9e8b8M.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"Tão bom como o nome sugere",
           outDoor: false,
@@ -453,6 +471,10 @@ export default new Vuex.Store({
           name:"Su",
           routerLink:"/restaurant",
           coverImg: "https://www.ahstatic.com/photos/5555_rsr001_01_p_1024x768.jpg",
+          cycleImg: [
+            "https://www.ahstatic.com/photos/5555_rsr001_01_p_1024x768.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"Sempre Unidos",
           outDoor: false,
@@ -471,6 +493,10 @@ export default new Vuex.Store({
           name:"Ponto X",
           routerLink:"/restaurant",
           coverImg: "https://restauranteocean.com/wp-content/uploads/2017/06/ocean-diningroom-131.jpg",
+          cycleImg:[
+            "https://restauranteocean.com/wp-content/uploads/2017/06/ocean-diningroom-131.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"Encontra a melhor comida aqui.",
           outDoor: false,
@@ -489,6 +515,10 @@ export default new Vuex.Store({
           name:"Magalhães",
           routerLink:"/restaurant",
           coverImg: "https://www.panorama-restaurante.com/pt/resourcefiles/chef-thumb-image/panorama-restaurant.jpg",
+          cycleImg:[
+            "https://www.panorama-restaurante.com/pt/resourcefiles/chef-thumb-image/panorama-restaurant.jpg",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"As melhores francesinhas.",
           outDoor: false,
@@ -507,6 +537,10 @@ export default new Vuex.Store({
           name:"Passione",
           routerLink:"/restaurant",
           coverImg: "https://images.squarespace-cdn.com/content/v1/55426312e4b0cf1b9ec75236/1522089733865-BCCWI79PLA7EAGJ5L7YB/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/K91A8270.jpg?format=2500w",
+          cycleImg:[
+            "https://images.squarespace-cdn.com/content/v1/55426312e4b0cf1b9ec75236/1522089733865-BCCWI79PLA7EAGJ5L7YB/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/K91A8270.jpg?format=2500w",
+            "https://i.pinimg.com/736x/20/27/0f/20270fdb19d0c0925c3d0ca3cb6280c8.jpg"
+          ],
           evaluation: 0,
           description:"A melhor massa é aqui.",
           outDoor: false,
@@ -646,6 +680,7 @@ export default new Vuex.Store({
           name:payload.name,
           routerLink:"/restaurant",
           coverImg:payload.coverImg,
+          cycleImg:payload.coverImg,
           evaluation: 0,
           description:payload.description,
           outDoor: payload.outDoor,
@@ -716,6 +751,7 @@ export default new Vuex.Store({
               name:payload.name,
               routerLink:"/restaurant",
               coverImg:payload.coverImg,
+              cycleImg:payload.coverImg,
               evaluation: 0,
               description:payload.description,
               outDoor: payload.outDoor,
