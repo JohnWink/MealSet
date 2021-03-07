@@ -63,9 +63,14 @@
                         <ChangeStatusRes v-if="this.selected.length!== 0" :selected="this.selected[0]" />
                         <v-btn v-else large rounded  disabled>Mudar estado da Reserva</v-btn>
                    </v-col>
-                   
-
+                
+                    <v-col cols="12" sm="3">
+                       <v-btn  large rounded color="red" class="white--text" @click="deleteReserves()"> Limpar todas as Reservas </v-btn>
+                   </v-col>
                 </v-row>
+
+               
+                   
 
             </v-row >
 
@@ -244,6 +249,29 @@ export default {
                                 
 
 
+
+          
+        },
+        deleteReserves(){
+
+   this.$fire({
+            title: 'Tem a certeza?',
+            text: "Todas as reservas vão ser permanentemente eliminadas",
+            type: 'warning',
+            confirmButtonText: 'Sim! Eliminar tudo!',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.value) {
+
+                this.$store.commit("DELETE_RESERVES",{
+                    restaurantId: this.$store.getters.getLoggedUserRestaurant
+                })
+
+                location.reload()
+            }
+        })
 
           
         },

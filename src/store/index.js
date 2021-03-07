@@ -913,7 +913,14 @@ export default new Vuex.Store({
     localStorage.setItem("reservations", JSON.stringify(state.reservations))
   },
  
-   //rEsevations changes and removal 
+  DELETE_RESERVES(state,payload){
+    state.reservations = state.reservations.filter(
+      (reserve) => reserve.restaurantId !== payload.restaurantId
+    )
+
+    localStorage.setItem("reservations",JSON.stringify(state.reservations))
+  },
+   //Resevations changes and removal 
    ACCEPT_RESERVATION(state,payload){
     for (let reservation of state.reservations) {
       if (reservation.id === payload.id){
@@ -924,14 +931,15 @@ export default new Vuex.Store({
   },
 
   REFUSE_RESERVATION(state,payload){
-    let indexRes = 0;
+   // let indexRes = 0;
     for (let reservation of state.reservations) {
       
       if (reservation.id === payload.id){
-        state.reservations.splice(indexRes,1);
+        reservation.status= payload.status
+        //state.reservations.splice(indexRes,1);
         
       }
-      indexRes++;
+      //indexRes++;
     }
     localStorage.setItem("reservations", JSON.stringify(state.reservations))
 
@@ -998,7 +1006,7 @@ export default new Vuex.Store({
     
   },
   
-  
+ 
    DELETE_NOTIFICATION(state,payload){
      state.historic = state.historic.filter(
        (notification) => notification.id !== payload.id )
