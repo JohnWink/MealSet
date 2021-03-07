@@ -7,15 +7,33 @@
           max-height="500"
           max-width="500"
           :elevation="hover ? 16 : 2"
+          :style="cardBorder"
         >
-          <v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>
+          <!--<v-img max-width =  "500px" max-height = "250px" :src="restaurant.coverImg"></v-img>-->
+          <v-carousel
+            cycle
+            height="250"
+            hide-delimiter-background
+            hide-delimiters
+            :show-arrows="false"
+            :style="topCard"
+          >
+            <v-carousel-item
+              v-for=" cyImg in restaurant.cycleImg"
+              :key="cyImg"
+              :src="cyImg"
+              
+            >
+              
+            </v-carousel-item>
+          </v-carousel>
+
           <v-row class="mb-7 mx-2">
             <v-col cols="12" class="text-left">
               <v-title class=" font-weight-bold nameTitle" >{{ restaurant.name }}</v-title>
 
               <br> <i class="fas fa-edit mt-3"></i> {{restaurant.description}} 
-              <p>{{restaurant.travelDuration}}</p>
-              <p>{{Math.round(restaurant.distance/100)/10 + " km"}}</p>
+              
               <!--
               <p class="ps">
                 <i class="fas fa-map-marker-alt" ></i>
@@ -26,8 +44,12 @@
               </p>
               -->
             </v-col>
-            <v-col class="text-right">
-              <p style="margin-right: 25px; margin-top: 10%" class="font-weight-bold">
+            <v-col cols="12" class="text-left font-weight-bold" >
+              <i class="fas fa-clock mt-3"></i> <span> {{restaurant.travelDuration}} </span>
+              <br> <i class="fas fa-car mt-3"></i><span> {{Math.round(restaurant.distance/100)/10 + " km"}}</span>
+            </v-col>
+            <v-col class="text-right" >
+              <p style="margin-right: 10px;" class="font-weight-bold">
                 {{ restaurant.evaluation }}
                 <v-icon medium color="yellow darken-1">fas fa-star</v-icon>
               </p>
@@ -89,12 +111,21 @@ export default {
   props: ["restaurant"],
   
   data: () => ({
-    checker: "border: solid red",
+    
     distance:'',
     travelDuration:'',
     map:"",
     myPos:'',
-    distanceValue:''
+    distanceValue:'',
+
+    //style ajustments
+    topCard: "border-bottom: 3px solid #5C6BC0",
+    cardBorder: "border: 1.7px solid #5C6BC0;border-radius: 5px;"
+
+
+
+    
+    
  
   }),
 
@@ -148,7 +179,7 @@ export default {
   mounted(){
     //this.calcDistance()
    
-  }
+  },
   
 
 };
