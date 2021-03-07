@@ -130,11 +130,11 @@ methods: {
             
 
 
-          
+            }
           
             
           
-          // if false it will get eliminated from the storage
+            // if false it will change the status to "Reserva Recusada"
          
             if(this.statusChange === 'Recusado'){
               if(noteText !== ""){
@@ -142,7 +142,8 @@ methods: {
                 statusValue = "Reserva Recusada"
 
               this.$store.commit("REFUSE_RESERVATION",{
-                id: this.selected.id 
+                id: this.selected.id ,
+                status: statusValue
               })
               //sending the notification
 
@@ -188,7 +189,7 @@ methods: {
             }
 
 
-        }
+      
         
         }
         else if (this.selected.status == "Reserva Confirmada!"){
@@ -200,7 +201,9 @@ methods: {
                 statusValue = "Reserva Recusada"
 
               this.$store.commit("REFUSE_RESERVATION",{
-                id: this.selected.id 
+                id: this.selected.id,
+                status: statusValue 
+
               })
               //sending the notification
 
